@@ -37,7 +37,7 @@ export default function CollectionsPage() {
             <FadeIn key={collection.id} delay={`delay-${(index + 1) * 200}`}>
               <Link
                 href={`/collections/${collection.slug}`}
-                className="group block"
+                className="group block h-full"
               >
                 <Card className="h-full flex flex-col overflow-hidden border-2 transition-all duration-300 group-hover:border-primary group-hover:shadow-xl">
                   <div className="relative h-96 w-full">
@@ -52,17 +52,13 @@ export default function CollectionsPage() {
                       />
                     )}
                   </div>
-                  <div className="flex flex-col flex-grow">
-                    <CardHeader>
-                      <CardTitle className="font-headline text-2xl">
-                        {collection.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="text-muted-foreground">
-                        {collection.description}
-                      </p>
-                    </CardContent>
+                  <div className="flex flex-col flex-grow p-6">
+                    <CardTitle className="font-headline text-2xl">
+                      {collection.title}
+                    </CardTitle>
+                    <p className="mt-2 text-muted-foreground flex-grow">
+                      {collection.description}
+                    </p>
                   </div>
                 </Card>
               </Link>
