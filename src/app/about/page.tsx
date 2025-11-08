@@ -28,7 +28,7 @@ export default function AboutPage() {
         )}
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
           <FadeIn direction="down">
-            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
               Our Story
             </h1>
           </FadeIn>
@@ -114,5 +114,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
-    

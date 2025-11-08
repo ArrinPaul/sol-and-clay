@@ -36,7 +36,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
           <FadeIn direction="down">
-            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground md:text-7xl">
+            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl md:text-7xl">
               Functional décor with soul.
             </h1>
           </FadeIn>

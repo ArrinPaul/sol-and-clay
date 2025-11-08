@@ -16,7 +16,7 @@ export default function CollectionsPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <FadeIn direction="down">
-        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
           The Collections
         </h1>
       </FadeIn>
@@ -73,5 +73,3 @@ export default function CollectionsPage() {
     </div>
   );
 }
-
-    
