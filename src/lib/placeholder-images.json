@@ -25,22 +25,100 @@
       "imageHint": "earth tone pottery"
     },
     {
+      "id": "collection-bloom",
+      "description": "Pottery with floral patterns and pastel colors.",
+      "imageUrl": "https://images.unsplash.com/photo-1593720293781-5310a4eeaa8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbG9yYWwlMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "floral pottery"
+    },
+    {
+      "id": "collection-monsoon",
+      "description": "Pottery with deep blue and grey stormy colors.",
+      "imageUrl": "https://images.unsplash.com/photo-1609881822242-f26da08bf76a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdG9ybXklMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "stormy pottery"
+    },
+    {
+      "id": "collection-ember",
+      "description": "Pottery with warm, rustic orange and brown glazes.",
+      "imageUrl": "https://images.unsplash.com/photo-1708667019496-b6fb2508a899?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxydXN0aWMlMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rustic pottery"
+    },
+    {
       "id": "maker-isabella-chen",
       "description": "A portrait of an artisan, Isabella Chen, smiling in her sunlit pottery studio.",
       "imageUrl": "https://images.unsplash.com/photo-1719154717789-2b4d2ec8105c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcnRpc2FuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNTQwODk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "artisan portrait"
     },
     {
-      "id": "product-1",
-      "description": "Terracotta Vase, a statement piece for any room.",
-      "imageUrl": "https://images.unsplash.com/photo-1635776398604-7c66ef09186a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZXJyYWNvdHRhJTIwdmFzZXxlbnwwfHx8fDE3NjI1NzI2NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "terracotta vase"
+      "id": "product-checkered-tray-1",
+      "description": "Checkered Tray - top down view.",
+      "imageUrl": "https://images.unsplash.com/photo-1741875598837-689465d88bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaGVja2VyZWQlMjB0cmF5fGVufDB8fHx8MTc2MjYxOTc2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered tray"
     },
     {
-      "id": "product-2",
-      "description": "A set of two hand-glazed mugs in earthy tones.",
-      "imageUrl": "https://images.unsplash.com/photo-1644901620069-14c27ce5e392?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnbGF6ZWQlMjBtdWdzfGVufDB8fHx8MTc2MjYyODQ1OXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "glazed mugs"
+      "id": "product-checkered-tray-2",
+      "description": "Checkered Tray - lifestyle view.",
+      "imageUrl": "https://images.unsplash.com/photo-1629654846975-396ea52ae2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGVja2VyZWQlMjB0cmF5JTIwbGlmZXN0eWxlfGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered tray lifestyle"
+    },
+    {
+      "id": "product-checkered-vase-1",
+      "description": "Checkered Vase - front view.",
+      "imageUrl": "https://images.unsplash.com/photo-1554930005-a4eec61838ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaGVja2VyZWQlMjB2YXNlfGVufDB8fHx8MTc2MjYyODI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered vase"
+    },
+    {
+      "id": "product-checkered-vase-2",
+      "description": "Checkered Vase - with flowers.",
+      "imageUrl": "https://images.unsplash.com/photo-1741586333240-af69a76bc9d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaGVja2VyZWQlMjB2YXNlJTIwZmxvd2Vyc3xlbnwwfHx8fDE3NjI2MjkwODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered vase flowers"
+    },
+    {
+      "id": "product-wave-bowl-1",
+      "description": "Wave Serving Bowl - empty.",
+      "imageUrl": "https://images.unsplash.com/photo-1622947344865-a7fcf40e88e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3YXZ5JTIwYm93bHxlbnwwfHx8fDE3NjI2MjkwODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wavy bowl"
+    },
+    {
+      "id": "product-wave-bowl-2",
+      "description": "Wave Serving Bowl - with fruit.",
+      "imageUrl": "https://images.unsplash.com/photo-1693712282760-ef9ec70d25ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3YXZ5JTIwYm93bCUyMGZydWl0fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wavy bowl fruit"
+    },
+    {
+      "id": "product-wave-plates-1",
+      "description": "Wavy Edge Plates - stack.",
+      "imageUrl": "https://images.unsplash.com/photo-1719144530455-81a08b67027e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXZ5JTIwcGxhdGVzfGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wavy plates"
+    },
+    {
+      "id": "product-wave-plates-2",
+      "description": "Wavy Edge Plates - with food.",
+      "imageUrl": "https://images.unsplash.com/photo-1682117650536-e3b23a6d3e5e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3YXZ5JTIwcGxhdGVzJTIwZm9vZHxlbnwwfHx8fDE3NjI2MjkwODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wavy plates food"
+    },
+    {
+      "id": "product-earthline-planter-1",
+      "description": "Earthline Planter - empty.",
+      "imageUrl": "https://images.unsplash.com/photo-1483794344563-d27a8d18014e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlYXJ0aHklMjBwbGFudGVyfGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "earthy planter"
+    },
+    {
+      "id": "product-earthline-planter-2",
+      "description": "Earthline Planter - with plant.",
+      "imageUrl": "https://images.unsplash.com/photo-1656740840036-7744c5bce4fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlYXJ0aHklMjBwbGFudGVyJTIwcGxhbnR8ZW58MHx8fHwxNzYyNjI5MDgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "earthy planter plant"
+    },
+    {
+      "id": "product-earthline-mugs-1",
+      "description": "Textured Mugs - set of two.",
+      "imageUrl": "https://images.unsplash.com/photo-1616004620731-4d2bb50923e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGV4dHVyZWQlMjBtdWdzfGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "textured mugs"
+    },
+    {
+      "id": "product-earthline-mugs-2",
+      "description": "Textured Mugs - in hand.",
+      "imageUrl": "https://images.unsplash.com/photo-1614833193447-427b75eee2f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZXh0dXJlZCUyMG11ZyUyMGhhbmR8ZW58MHx8fHwxNzYyNjI5MDgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "textured mug hand"
     },
     {
       "id": "about-hero",

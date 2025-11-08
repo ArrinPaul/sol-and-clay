@@ -23,7 +23,14 @@ class Orb {
 
   draw(context: CanvasRenderingContext2D) {
     context.beginPath();
-    const gradient = context.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+    const gradient = context.createRadialGradient(
+      this.x,
+      this.y,
+      0,
+      this.x,
+      this.y,
+      this.radius
+    );
     gradient.addColorStop(0, this.color);
     gradient.addColorStop(1, 'transparent');
     context.fillStyle = gradient;
@@ -47,10 +54,19 @@ class Orb {
 export function AuraBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
-  
-  const colors = theme === 'dark' 
-    ? ['hsl(22, 36%, 15%, 0.2)', 'hsl(21, 33%, 13%, 0.2)', 'hsl(0, 73%, 88%, 0.05)'] // Umber, Deep Brown, Pastel Pink
-    : ['hsl(22, 36%, 15%, 0.05)', 'hsl(36, 56%, 95%, 0.1)', 'hsl(0, 73%, 88%, 0.1)']; // Deep Brown, Warm Cream, Pastel Pink
+
+  const colors =
+    theme === 'dark'
+      ? [
+          'hsl(20, 38%, 14%, 0.2)', // Deep Clay Brown
+          'hsl(17, 26%, 28%, 0.2)', // Warm Walnut
+          'hsl(183, 55%, 73%, 0.05)', // Soft Teal
+        ]
+      : [
+          'hsl(20, 38%, 14%, 0.05)', // Deep Clay Brown
+          'hsl(28, 33%, 96%, 0.1)', // Off-white
+          'hsl(0, 73%, 88%, 0.1)', // Pastel Pink
+        ];
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -61,28 +77,30 @@ export function AuraBackground() {
 
     let animationFrameId: number;
     let orbs: Orb[] = [];
-    let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      orbs = colors.map(color => new Orb(canvas.width, canvas.height, color));
+      orbs = colors.map((color) => new Orb(canvas.width, canvas.height, color));
     };
 
     resizeCanvas();
-    
+
     if (reducedMotion) {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.globalCompositeOperation = 'lighter';
-      orbs.forEach(orb => orb.draw(context));
+      orbs.forEach((orb) => orb.draw(context));
       return;
     }
 
     const animate = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.globalCompositeOperation = 'lighter'; // Additive blending
-      
-      orbs.forEach(orb => {
+
+      orbs.forEach((orb) => {
         orb.update(canvas.width, canvas.height);
         orb.draw(context);
       });
@@ -108,3 +126,5 @@ export function AuraBackground() {
     />
   );
 }
+
+    

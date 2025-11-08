@@ -8,7 +8,8 @@ import { collections } from '@/lib/data';
 
 export const metadata = {
   title: 'Our Collections - Sol & Clay',
-  description: 'Every Sol & Clay collection begins with a concept — a story told through form and function. Explore our evolving series, each one inspired by texture, pattern, and emotion.',
+  description:
+    'Every Sol & Clay collection begins with a story — a fusion of design and craft. Explore our evolving series, each one inspired by texture, pattern, and emotion.',
 };
 
 export default function CollectionsPage() {
@@ -21,17 +22,24 @@ export default function CollectionsPage() {
       </FadeIn>
       <FadeIn direction="up" delay="delay-200">
         <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
-          Every Sol & Clay collection begins with a concept — a story told through form and function. Explore our evolving series, each one inspired by texture, pattern, and emotion.
+          Every Sol & Clay collection begins with a story — a fusion of design
+          and craft. Explore our evolving series, each one inspired by
+          texture, pattern, and emotion.
         </p>
       </FadeIn>
 
       <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {collections.map((collection, index) => {
-          const image = PlaceHolderImages.find((img) => img.id === collection.imageId);
+          const image = PlaceHolderImages.find(
+            (img) => img.id === collection.imageId
+          );
           return (
             <FadeIn key={collection.id} delay={`delay-${(index + 1) * 200}`}>
-              <Link href={`/collections/${collection.slug}`} className="group block">
-                <Card className="overflow-hidden border-2 transition-all duration-300 group-hover:border-primary group-hover:shadow-xl h-full flex flex-col">
+              <Link
+                href={`/collections/${collection.slug}`}
+                className="group block"
+              >
+                <Card className="h-full flex flex-col overflow-hidden border-2 transition-all duration-300 group-hover:border-primary group-hover:shadow-xl">
                   <div className="relative h-96 w-full">
                     {image && (
                       <Image
@@ -51,7 +59,9 @@ export default function CollectionsPage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow">
-                      <p className="text-muted-foreground">{collection.description}</p>
+                      <p className="text-muted-foreground">
+                        {collection.description}
+                      </p>
                     </CardContent>
                   </div>
                 </Card>
@@ -63,3 +73,5 @@ export default function CollectionsPage() {
     </div>
   );
 }
+
+    

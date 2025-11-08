@@ -8,7 +8,7 @@ const formSchema = z.object({
   studioName: z.string(),
   email: z.string().email(),
   portfolioURL: z.string().url(),
-  pitch: z.string(),
+  message: z.string(),
   image: z.instanceof(File),
 });
 
@@ -17,7 +17,7 @@ export async function submitCollaborationRequest(formData: FormData) {
     studioName: formData.get('studioName'),
     email: formData.get('email'),
     portfolioURL: formData.get('portfolioURL'),
-    pitch: formData.get('pitch'),
+    message: formData.get('message'),
     image: formData.get('image'),
   };
 
@@ -26,7 +26,7 @@ export async function submitCollaborationRequest(formData: FormData) {
     return { success: false, error: 'Invalid form data.' };
   }
 
-  const { studioName, email, portfolioURL, pitch } = parsed.data;
+  const { studioName, email, portfolioURL, message } = parsed.data;
 
   // In a real application, you would upload the image to Firebase Storage
   // and get a downloadable URL. For this demo, we'll use a placeholder.
@@ -37,10 +37,10 @@ export async function submitCollaborationRequest(formData: FormData) {
       studioName,
       email,
       portfolioURL,
-      pitch,
+      pitch: message, // Use `message` field from form as `pitch`
       imageURL,
     });
-    
+
     // In a real application, you would now save the submission and the
     // analysis result to your Firestore 'collaborations' collection.
     console.log('Collaboration submission received:', {
@@ -52,29 +52,33 @@ export async function submitCollaborationRequest(formData: FormData) {
     // You could set a status based on the analysis
     let status = 'pending_review';
     if (analysisResult.isSpam) {
-        status = 'rejected_spam';
+      status = 'rejected_spam';
     } else if (!analysisResult.isRelevant) {
-        status = 'rejected_irrelevant';
+      status = 'rejected_irrelevant';
     }
-    
+
     // Example of what you would save to Firestore:
     const dataToSave = {
-        studioName,
-        email,
-        portfolioURL,
-        pitch,
-        imageURL, // The URL from Firebase Storage
-        status,
-        aiReasoning: analysisResult.reason,
-        createdAt: new Date().toISOString(),
+      studioName,
+      email,
+      portfolioURL,
+      pitch: message,
+      imageURL, // The URL from Firebase Storage
+      status,
+      aiReasoning: analysisResult.reason,
+      createdAt: new Date().toISOString(),
     };
-    
+
     console.log('Data to save to Firestore:', dataToSave);
 
     return { success: true };
-
   } catch (error) {
     console.error('Error processing collaboration request:', error);
-    return { success: false, error: 'An error occurred while analyzing the submission.' };
+    return {
+      success: false,
+      error: 'An error occurred while analyzing the submission.',
+    };
   }
 }
+
+    

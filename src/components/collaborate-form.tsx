@@ -21,23 +21,28 @@ import { submitCollaborationRequest } from '@/app/actions/collaboration';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
-  studioName: z.string().min(2, { message: 'Studio name must be at least 2 characters.' }),
+  studioName: z
+    .string()
+    .min(2, { message: 'Studio name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   portfolioURL: z.string().url({ message: 'Please enter a valid URL.' }),
-  pitch: z.string().min(20, { message: 'Your pitch must be at least 20 characters.' }).max(500, { message: 'Pitch cannot exceed 500 characters.' }),
+  message: z
+    .string()
+    .min(20, { message: 'Your message must be at least 20 characters.' })
+    .max(500, { message: 'Message cannot exceed 500 characters.' }),
   image: z.instanceof(File).optional(),
 });
 
 export function CollaborateForm() {
   const { toast } = useToast();
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       studioName: '',
       email: '',
       portfolioURL: '',
-      pitch: '',
+      message: '',
     },
   });
 
@@ -48,8 +53,8 @@ export function CollaborateForm() {
     formData.append('studioName', values.studioName);
     formData.append('email', values.email);
     formData.append('portfolioURL', values.portfolioURL);
-    formData.append('pitch', values.pitch); 
-    
+    formData.append('message', values.message);
+
     // Add file if it exists
     if (values.image) {
       formData.append('image', values.image);
@@ -64,14 +69,16 @@ export function CollaborateForm() {
     if (result.success) {
       toast({
         title: 'Submission Received!',
-        description: "Thank you for your interest. We'll review your submission and be in touch soon.",
+        description:
+          "Thank you for your interest. We'll review your submission and be in touch soon.",
         variant: 'default',
       });
       form.reset();
     } else {
       toast({
         title: 'Submission Failed',
-        description: result.error || 'An unexpected error occurred. Please try again.',
+        description:
+          result.error || 'An unexpected error occurred. Please try again.',
         variant: 'destructive',
       });
     }
@@ -113,7 +120,11 @@ export function CollaborateForm() {
             <FormItem>
               <FormLabel>Portfolio Link</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="https://your-portfolio.com" {...field} />
+                <Input
+                  type="url"
+                  placeholder="https://your-portfolio.com"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -121,7 +132,7 @@ export function CollaborateForm() {
         />
         <FormField
           control={form.control}
-          name="pitch"
+          name="message"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Message / Pitch</FormLabel>
@@ -144,3 +155,5 @@ export function CollaborateForm() {
     </Form>
   );
 }
+
+    
