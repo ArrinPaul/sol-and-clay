@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Leaf, Users, Star, Wind } from 'lucide-react';
+import { ArrowRight, Leaf, Users, Star } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
 import {
@@ -184,7 +184,7 @@ export default function Home() {
               <Card className="h-full border-0 bg-transparent text-center shadow-none">
                 <CardHeader>
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                    <Wind />
+                    <Leaf />
                   </div>
                   <CardTitle className="pt-4 font-headline text-2xl">
                     Natural Materials
@@ -267,5 +267,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
