@@ -18,13 +18,14 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn } from '@/components/utils/fade-in';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, Instagram, Twitch } from 'lucide-react';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   message: z.string().min(10, { message: 'Your message must be at least 10 characters.' }),
+  image: z.any().optional(),
 });
 
 
@@ -43,7 +44,7 @@ export default function ContactPage() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Simulate form submission
+    // Simulate form submission (e.g., upload image to Firebase Storage)
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log(values);
     
@@ -62,13 +63,13 @@ export default function ContactPage() {
                 Get in Touch
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
-                Have a question, a comment, or just want to say hello? We&apos;d love to hear from you.
+                We’d love to hear from you — whether you’re looking to collaborate, customize, or just say hello.
             </p>
         </FadeIn>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
             <FadeIn direction="left">
-                <h2 className="font-headline text-3xl font-bold">Contact Us</h2>
+                <h2 className="font-headline text-3xl font-bold">Contact Info</h2>
                 <div className="mt-6 space-y-6 text-muted-foreground">
                     <div className="flex items-start gap-4">
                         <Mail className="h-6 w-6 mt-1 text-primary"/>
@@ -81,14 +82,21 @@ export default function ContactPage() {
                         <Phone className="h-6 w-6 mt-1 text-primary"/>
                         <div>
                             <h3 className="font-semibold text-foreground">Phone</h3>
-                            <span>+1 (234) 567-890</span>
+                            <span>+91-XXXX-XXX-XXX</span>
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
-                        <MapPin className="h-6 w-6 mt-1 text-primary"/>
+                        <Instagram className="h-6 w-6 mt-1 text-primary"/>
                         <div>
-                            <h3 className="font-semibold text-foreground">Studio</h3>
-                            <span>123 Artisan Way, Brooklyn, NY 11201</span>
+                            <h3 className="font-semibold text-foreground">Instagram</h3>
+                            <a href="#" className="hover:underline">@solandclay</a>
+                        </div>
+                    </div>
+                     <div className="flex items-start gap-4">
+                        <Twitch className="h-6 w-6 mt-1 text-primary"/>
+                        <div>
+                            <h3 className="font-semibold text-foreground">Pinterest</h3>
+                            <a href="#" className="hover:underline">@solandclay</a>
                         </div>
                     </div>
                 </div>
@@ -132,7 +140,7 @@ export default function ContactPage() {
                                 <FormLabel>Message</FormLabel>
                                 <FormControl>
                                     <Textarea
-                                    placeholder="Your message..."
+                                    placeholder="Your message for collaboration or customization..."
                                     className="min-h-[120px]"
                                     {...field}
                                     />
@@ -140,6 +148,26 @@ export default function ContactPage() {
                                 <FormMessage />
                                 </FormItem>
                             )}
+                            />
+                             <FormField
+                              control={form.control}
+                              name="image"
+                              render={({ field: { onChange, value, ...rest } }) => (
+                                <FormItem>
+                                  <FormLabel>Attach Image (Optional)</FormLabel>
+                                  <FormControl>
+                                    <Input
+                                      type="file"
+                                      accept="image/png, image/jpeg, image/webp"
+                                      onChange={(e) => {
+                                        onChange(e.target.files);
+                                      }}
+                                      {...rest}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
                             <Button type="submit" className="w-full" disabled={isSubmitting}>
                                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

@@ -5,8 +5,8 @@ import { FadeIn } from '@/components/utils/fade-in';
 import { Sparkles, Users, Target } from 'lucide-react';
 
 export const metadata = {
-  title: 'About Sol & Clay',
-  description: 'Learn about our mission to bring soulful, handcrafted objects into modern homes and the values that guide us.',
+  title: 'Our Story - Sol & Clay',
+  description: 'Sol & Clay builds collections around strong visual ideas. Each piece is handcrafted and carries a story of design and touch.',
 };
 
 export default function AboutPage() {
@@ -28,12 +28,12 @@ export default function AboutPage() {
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
           <FadeIn direction="down">
             <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl">
-              Objects with Soul
+              Our Story
             </h1>
           </FadeIn>
           <FadeIn direction="up" delay="delay-200">
             <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-              We are Sol & Clay, a curated space where modern design meets the timeless beauty of handcrafted objects. We believe the items in our homes should be more than just functional—they should tell a story, evoke a feeling, and connect us to the artisans who made them.
+              Sol & Clay builds collections around strong visual ideas. Each piece is handcrafted and carries a story of design and touch. We see pottery as living art — functional yet soulful.
             </p>
           </FadeIn>
         </div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
               Our Philosophy
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
-              Our philosophy is rooted in three core principles that guide everything we do, from sourcing to curation.
+             We value craft, collaboration, and character over mass production. Every item is made with intention and care.
             </p>
           </FadeIn>
           <div className="mt-16 grid gap-12 md:grid-cols-3">
@@ -54,24 +54,37 @@ export default function AboutPage() {
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground">
                 <Sparkles className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 font-headline text-2xl font-semibold">Artisanal Quality</h3>
+              <h3 className="mt-6 font-headline text-2xl font-semibold">Craft</h3>
               <p className="mt-2 text-muted-foreground">We partner with independent makers who pour their heart and skill into every piece, ensuring exceptional quality and uniqueness.</p>
             </FadeIn>
              <FadeIn className="text-center" delay="delay-200">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground">
                 <Users className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 font-headline text-2xl font-semibold">Community Connection</h3>
-              <p className="mt-2 text-muted-foreground">We are a platform for artisans to thrive, fostering a community that values creativity, collaboration, and conscious consumerism.</p>
+              <h3 className="mt-6 font-headline text-2xl font-semibold">Collaboration</h3>
+              <p className="mt-2 text-muted-foreground">We are a platform for artisans to thrive, fostering a community that values creativity and shared storytelling.</p>
             </FadeIn>
              <FadeIn className="text-center" delay="delay-400">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground">
                 <Target className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 font-headline text-2xl font-semibold">Soulful Design</h3>
+              <h3 className="mt-6 font-headline text-2xl font-semibold">Character</h3>
               <p className="mt-2 text-muted-foreground">We curate objects that are not only beautiful but also meaningful, designed to bring warmth and soul into your everyday life.</p>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+       <section className="bg-secondary/30 py-16 md:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <FadeIn>
+            <h2 className="text-center font-headline text-4xl font-bold text-foreground">
+              Our Craft Process
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground">
+              From sketch to kiln, we work with artisans who transform ideas into timeless décor. Our process is a dialogue between design and material, ensuring every piece reflects our shared vision and the maker's unique touch.
+            </p>
+          </FadeIn>
         </div>
       </section>
     </div>

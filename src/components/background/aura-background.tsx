@@ -49,8 +49,8 @@ export function AuraBackground() {
   const { theme } = useTheme();
   
   const colors = theme === 'dark' 
-    ? ['hsl(22, 36%, 15%, 0.2)', 'hsl(21, 33%, 13%, 0.2)', 'hsl(0, 73%, 88%, 0.05)']
-    : ['hsl(22, 36%, 15%, 0.05)', 'hsl(36, 56%, 95%, 0.1)', 'hsl(0, 73%, 88%, 0.1)'];
+    ? ['hsl(22, 36%, 15%, 0.2)', 'hsl(21, 33%, 13%, 0.2)', 'hsl(0, 73%, 88%, 0.05)'] // Umber, Deep Brown, Pastel Pink
+    : ['hsl(22, 36%, 15%, 0.05)', 'hsl(36, 56%, 95%, 0.1)', 'hsl(0, 73%, 88%, 0.1)']; // Deep Brown, Warm Cream, Pastel Pink
 
   useEffect(() => {
     const canvas = canvasRef.current;

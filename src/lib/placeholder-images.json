@@ -2,27 +2,27 @@
   "placeholderImages": [
     {
       "id": "hero-main",
-      "description": "A beautifully arranged modern living room with artisanal pottery on a wooden coffee table.",
-      "imageUrl": "https://images.unsplash.com/photo-1761048168740-9b06078c2a95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXJ0aXNhbmFsJTIwcG90dGVyeXxlbnwwfHx8fDE3NjI2MjcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "artisanal pottery"
+      "description": "Pottery making scene with hands shaping clay on a wheel, embodying the Sol & Clay brand essence.",
+      "imageUrl": "https://images.unsplash.com/photo-1590605105526-5c08f63f89aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwb3R0ZXJ5JTIwd2hlZWx8ZW58MHx8fHwxNzYyNTk5MDE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pottery making"
     },
     {
-      "id": "collection-terracotta-dreams",
-      "description": "A close-up of a terracotta vase with dried flowers against a warm, earthy background.",
-      "imageUrl": "https://images.unsplash.com/photo-1694230282496-276da5c16ac9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0ZXJyYWNvdHRhJTIwdmFzZXxlbnwwfHx8fDE3NjI1NzI2NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "terracotta vase"
+      "id": "collection-checkered",
+      "description": "A checkered stoneware tray with a modern, earthy feel.",
+      "imageUrl": "https://images.unsplash.com/photo-1711287961637-2e2c0c089571?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjaGVja2VyZWQlMjBzdG9uZXdhcmV8ZW58MHx8fHwxNzYyNjI4MjY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered stoneware"
     },
     {
-      "id": "collection-oceanic-whispers",
-      "description": "A collection of blue and green glazed ceramic bowls, reminiscent of the sea.",
-      "imageUrl": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjZXJhbWljJTIwYm93bHN8ZW58MHx8fHwxNzYyNjI3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ceramic bowls"
+      "id": "collection-wave",
+      "description": "Ceramic pieces with organic, wave-like edges.",
+      "imageUrl": "https://images.unsplash.com/photo-1644052021752-b14a42f567d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvcmdhbmljJTIwY2VyYW1pY3xlbnwwfHx8fDE3NjI2MjgyNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "organic ceramic"
     },
     {
-      "id": "collection-midnight-garden",
-      "description": "Dark, almost black, ceramic plates with a subtle floral pattern etched into them.",
-      "imageUrl": "https://images.unsplash.com/photo-1652919794553-ce6f54927291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXJrJTIwY2VyYW1pY3xlbnwwfHx8fDE3NjI2MjcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "dark ceramic"
+      "id": "collection-earthline",
+      "description": "Pottery with natural, muted earth-toned glazes.",
+      "imageUrl": "https://images.unsplash.com/photo-1588946502132-c3fc69c31047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlYXJ0aCUyMHRvbmUlMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyODI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "earth tone pottery"
     },
     {
       "id": "maker-isabella-chen",
@@ -32,21 +32,21 @@
     },
     {
       "id": "product-1",
-      "description": "A minimalist white ceramic vase with a single green leaf.",
-      "imageUrl": "https://images.unsplash.com/photo-1643569556871-91ec60671ed7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjZXJhbWljJTIwdmFzZXxlbnwwfHx8fDE3NjI1NzA5MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ceramic vase"
+      "description": "Checkered Tray - Inspired by the rhythm of pattern and pause.",
+      "imageUrl": "https://images.unsplash.com/photo-1608006777796-e80fba4643db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaGVja2VyZWQlMjB0cmF5fGVufDB8fHx8MTc2MjYxOTc2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered tray"
     },
     {
       "id": "product-2",
-      "description": "A set of four rustic, hand-glazed coffee mugs in earthy tones.",
-      "imageUrl": "https://images.unsplash.com/photo-1702541826991-dc7cb0925a67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb2ZmZWUlMjBtdWdzfGVufDB8fHx8MTc2MjUyMzk2OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "coffee mugs"
+      "description": "Checkered Vase - A study in balance and contrast.",
+      "imageUrl": "https://images.unsplash.com/photo-1748599327993-3e8b4f18c9d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGVja2VyZWQlMjB2YXNlfGVufDB8fHx8MTc2MjYyODI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered vase"
     },
     {
       "id": "product-3",
-      "description": "A large, textured ceramic platter perfect for serving.",
-      "imageUrl": "https://images.unsplash.com/photo-1551807305-baa15a10803f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjZXJhbWljJTIwcGxhdHRlcnxlbnwwfHx8fDE3NjI2MjcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ceramic platter"
+      "description": "Checkered Bowl - Hand-built and glazed, preserving subtle variations.",
+      "imageUrl": "https://images.unsplash.com/photo-1708346319652-7f22fcb91a0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaGVja2VyZWQlMjBib3dsfGVufDB8fHx8MTc2MjYyMzUyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checkered bowl"
     },
     {
       "id": "about-hero",

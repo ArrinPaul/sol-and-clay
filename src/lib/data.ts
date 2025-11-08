@@ -5,24 +5,24 @@ import type { Collection, Maker } from './types';
 export const collections: Collection[] = [
   {
     id: '1',
-    title: 'Terracotta Dreams',
-    slug: 'terracotta-dreams',
-    description: 'A collection inspired by the warmth of the earth, featuring rich terracotta hues and organic forms.',
-    imageId: 'collection-terracotta-dreams',
+    title: 'The Checkered Collection',
+    slug: 'checkered-collection',
+    description: 'A study in balance and contrast—bringing timeless checks into earthy, tactile design.',
+    imageId: 'collection-checkered',
   },
   {
     id: '2',
-    title: 'Oceanic Whispers',
-    slug: 'oceanic-whispers',
-    description: 'Evoking the calm and mystery of the sea with cool blue and green glazes and fluid shapes.',
-    imageId: 'collection-oceanic-whispers',
+    title: 'The Wave Collection',
+    slug: 'wave-collection',
+    description: 'A collection defined by its organic, flowing edges and serene glazes.',
+    imageId: 'collection-wave',
   },
   {
     id: '3',
-    title: 'Midnight Garden',
-    slug: 'midnight-garden',
-    description: 'Deep, dramatic tones and subtle textures that recall a garden at night.',
-    imageId: 'collection-midnight-garden',
+    title: 'The Earthline Collection',
+    slug: 'earthline-collection',
+    description: 'Featuring natural, muted glazes that celebrate the colors of the earth.',
+    imageId: 'collection-earthline',
   }
 ];
 

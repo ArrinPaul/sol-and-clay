@@ -8,7 +8,7 @@ import { collections } from '@/lib/data';
 
 export const metadata = {
   title: 'Our Collections - Sol & Clay',
-  description: 'Explore our curated collections of artisanal home décor, from the earthy tones of Terracotta Dreams to the cool hues of Oceanic Whispers.',
+  description: 'Every Sol & Clay collection begins with a concept — a story told through form and function. Explore our evolving series, each one inspired by texture, pattern, and emotion.',
 };
 
 export default function CollectionsPage() {
@@ -21,7 +21,7 @@ export default function CollectionsPage() {
       </FadeIn>
       <FadeIn direction="up" delay="delay-200">
         <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
-          Each collection is a carefully curated world of its own, inspired by nature, emotion, and the timeless beauty of handcrafted art. Discover the story that resonates with you.
+          Every Sol & Clay collection begins with a concept — a story told through form and function. Explore our evolving series, each one inspired by texture, pattern, and emotion.
         </p>
       </FadeIn>
 

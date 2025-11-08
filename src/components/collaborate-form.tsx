@@ -18,15 +18,14 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { submitCollaborationRequest } from '@/app/actions/collaboration';
-import { Card, CardContent } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   studioName: z.string().min(2, { message: 'Studio name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   portfolioURL: z.string().url({ message: 'Please enter a valid URL.' }),
-  pitch: z.string().min(20, { message: 'Your pitch must be at least 20 characters.' }).max(500, { message: 'Pitch cannot exceed 500 characters.' }),
-  image: z.any().refine(file => file?.length == 1, 'Sample image is required.'),
+  message: z.string().min(20, { message: 'Your message must be at least 20 characters.' }).max(500, { message: 'Message cannot exceed 500 characters.' }),
 });
 
 export function CollaborateForm() {
@@ -35,10 +34,11 @@ export function CollaborateForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
       studioName: '',
       email: '',
       portfolioURL: '',
-      pitch: '',
+      message: '',
     },
   });
 
@@ -49,9 +49,13 @@ export function CollaborateForm() {
     formData.append('studioName', values.studioName);
     formData.append('email', values.email);
     formData.append('portfolioURL', values.portfolioURL);
-    formData.append('pitch', values.pitch);
-    formData.append('image', values.image[0]);
+    // Use 'message' as 'pitch' for the server action
+    formData.append('pitch', values.message); 
     
+    // Create a dummy file for the image since it's not in this form
+    const dummyFile = new File([''], 'dummy.txt', { type: 'text/plain' });
+    formData.append('image', dummyFile);
+
     const result = await submitCollaborationRequest(formData);
 
     if (result.success) {
@@ -71,93 +75,82 @@ export function CollaborateForm() {
   }
 
   return (
-    <Card>
-      <CardContent className="p-6">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="studioName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Studio Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g., Artisan Pots" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="you@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="portfolioURL"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Portfolio URL</FormLabel>
-                  <FormControl>
-                    <Input type="url" placeholder="https://your-portfolio.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="pitch"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Your Pitch</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Tell us about your work and why you'd be a great fit for Sol & Clay..."
-                      className="min-h-[120px]"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-             <FormField
-              control={form.control}
-              name="image"
-              render={({ field: { onChange, value, ...rest } }) => (
-                <FormItem>
-                  <FormLabel>Sample Image</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="file"
-                      accept="image/png, image/jpeg, image/webp"
-                      onChange={(e) => {
-                        onChange(e.target.files);
-                      }}
-                      {...rest}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isSubmitting ? 'Submitting...' : 'Submit Request'}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Your Name" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="studioName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Studio Name</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., Artisan Pots" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="you@example.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="portfolioURL"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Portfolio Link</FormLabel>
+              <FormControl>
+                <Input type="url" placeholder="https://your-portfolio.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Tell us about your work and why you'd be a great fit for Sol & Clay..."
+                  className="min-h-[120px]"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isSubmitting ? 'Submitting...' : 'Submit Request'}
+        </Button>
+      </form>
+    </Form>
   );
 }
