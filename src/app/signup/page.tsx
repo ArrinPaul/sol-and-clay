@@ -39,7 +39,7 @@ export default function SignUpPage() {
   const { toast } = useToast();
   const auth = useAuth();
   const router = useRouter();
-  const bgImage = PlaceHolderImages.find((img) => img.id === 'login-bg');
+  const bgImage = PlaceHolderImages.find((img) => img.id === 'signup-bg');
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
