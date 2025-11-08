@@ -23,9 +23,6 @@ import { Star } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
-  const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
 
   return (
     <div className="flex flex-col">
@@ -85,7 +82,12 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
-              plugins={[autoplayPlugin.current]}
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                  stopOnInteraction: true,
+                }),
+              ]}
               opts={{
                 align: 'start',
                 loop: true,
@@ -221,7 +223,12 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
-              plugins={[autoplayPlugin.current]}
+              plugins={[
+                Autoplay({
+                  delay: 5000,
+                  stopOnInteraction: true,
+                }),
+              ]}
               opts={{
                 align: 'start',
                 loop: true,
