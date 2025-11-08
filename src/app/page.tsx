@@ -1,6 +1,10 @@
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +22,7 @@ import { collections, testimonials } from '@/lib/data';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
+  const autoplayPlugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
   return (
     <div className="flex flex-col">
@@ -77,6 +82,7 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
+              plugins={[autoplayPlugin.current]}
               opts={{
                 align: 'start',
                 loop: true,
@@ -212,6 +218,7 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
+              plugins={[autoplayPlugin.current]}
               opts={{
                 align: 'start',
                 loop: true,
