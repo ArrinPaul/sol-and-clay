@@ -26,19 +26,19 @@
     },
     {
       "id": "collection-bloom",
-      "description": "Pottery with floral patterns and pastel colors.",
+      "description": "Inspired by flora and subtle pastel hues, this collection is a celebration of new beginnings.",
       "imageUrl": "https://images.unsplash.com/photo-1593720293781-5310a4eeaa8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbG9yYWwlMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "floral pottery"
     },
     {
       "id": "collection-monsoon",
-      "description": "Pottery with deep blue and grey stormy colors.",
+      "description": "Deep blues and rich grey clays capture the dramatic beauty of a storm.",
       "imageUrl": "https://images.unsplash.com/photo-1609881822242-f26da08bf76a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdG9ybXklMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "stormy pottery"
     },
     {
       "id": "collection-ember",
-      "description": "Pottery with warm, rustic orange and brown glazes.",
+      "description": "Rustic orange-brown glazes and bold, clean lines that evoke warmth and comfort.",
       "imageUrl": "https://images.unsplash.com/photo-1708667019496-b6fb2508a899?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxydXN0aWMlMjBwb3R0ZXJ5fGVufDB8fHx8MTc2MjYyOTA4MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "rustic pottery"
     },
