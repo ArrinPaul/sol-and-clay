@@ -1,0 +1,593 @@
+{
+  "entities": {
+    "Collection": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Collection",
+      "type": "object",
+      "description": "Represents a collection of artisanal home décor products.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the collection."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the collection."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the collection."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the collection (rich text)."
+        },
+        "coverImage": {
+          "type": "string",
+          "description": "URL or storage path to the cover image of the collection."
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Indicates if the collection is featured."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the collection was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "slug",
+        "description",
+        "coverImage",
+        "featured",
+        "createdAt"
+      ]
+    },
+    "Product": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Product",
+      "type": "object",
+      "description": "Represents an artisanal home décor product.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the product."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the product."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the product."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the product (rich text)."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the product."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code (e.g., 'INR', 'USD')."
+        },
+        "images": {
+          "type": "array",
+          "description": "Array of URLs to product images.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gallery360": {
+          "type": "string",
+          "description": "Optional URL to 360° gallery or GLTF model."
+        },
+        "materials": {
+          "type": "string",
+          "description": "Materials used to make the product."
+        },
+        "dimensions": {
+          "type": "string",
+          "description": "Dimensions of the product."
+        },
+        "collectionId": {
+          "type": "string",
+          "description": "Reference to Collection. (Relationship: Collection 1:N Product)"
+        },
+        "available": {
+          "type": "boolean",
+          "description": "Indicates if the product is available for purchase."
+        },
+        "stock": {
+          "type": "number",
+          "description": "Number of units currently in stock."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the product was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "slug",
+        "description",
+        "price",
+        "currency",
+        "images",
+        "materials",
+        "dimensions",
+        "collectionId",
+        "available",
+        "stock",
+        "createdAt"
+      ]
+    },
+    "Order": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Order",
+      "type": "object",
+      "description": "Represents a customer order.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the order."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Order). Nullable if guest checkout."
+        },
+        "items": {
+          "type": "array",
+          "description": "Array of items in the order.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "Subtotal of the order."
+        },
+        "shipping": {
+          "type": "number",
+          "description": "Shipping cost for the order."
+        },
+        "tax": {
+          "type": "number",
+          "description": "Tax amount for the order."
+        },
+        "total": {
+          "type": "number",
+          "description": "Total amount for the order."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code for the order."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the order (e.g., 'pending', 'paid', 'fulfilled', 'cancelled')."
+        },
+        "stripeSessionId": {
+          "type": "string",
+          "description": "Stripe Checkout session ID."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the order was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of when the order was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "items",
+        "subtotal",
+        "shipping",
+        "tax",
+        "total",
+        "currency",
+        "status",
+        "stripeSessionId",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CustomOrder": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CustomOrder",
+      "type": "object",
+      "description": "Represents a custom order request from a customer.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the custom order."
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Name of the customer placing the custom order."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the customer.",
+          "format": "email"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to Product. (Relationship: Product 1:N CustomOrder)"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes or instructions from the customer."
+        },
+        "imageURL": {
+          "type": "string",
+          "description": "URL of the uploaded image for the custom order."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the custom order (e.g., 'pending', 'in progress', 'completed')."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the custom order was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "customerName",
+        "email",
+        "productId",
+        "notes",
+        "imageURL",
+        "status",
+        "createdAt"
+      ]
+    },
+    "Collaboration": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Collaboration",
+      "type": "object",
+      "description": "Represents a collaboration request from a maker.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the collaboration."
+        },
+        "studioName": {
+          "type": "string",
+          "description": "Name of the maker's studio."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the maker.",
+          "format": "email"
+        },
+        "portfolioURL": {
+          "type": "string",
+          "description": "URL to the maker's portfolio.",
+          "format": "uri"
+        },
+        "pitch": {
+          "type": "string",
+          "description": "Pitch or proposal from the maker."
+        },
+        "imageURL": {
+          "type": "string",
+          "description": "URL of the uploaded image for the collaboration."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the collaboration (e.g., 'pending', 'shortlisted', 'approved')."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the collaboration was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "studioName",
+        "email",
+        "portfolioURL",
+        "pitch",
+        "imageURL",
+        "status",
+        "createdAt"
+      ]
+    },
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Sol & Clay platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the user (e.g., 'admin', 'editor', 'maker', 'customer')."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the user was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "displayName",
+        "email",
+        "role",
+        "createdAt"
+      ]
+    },
+    "Contact": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Contact",
+      "type": "object",
+      "description": "Represents a contact form submission.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contact message."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the form."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the form.",
+          "format": "email"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the contact message."
+        },
+        "message": {
+          "type": "string",
+          "description": "Content of the contact message."
+        },
+        "attachments": {
+          "type": "array",
+          "description": "Array of URLs to attached files.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the contact message was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "subject",
+        "message",
+        "createdAt"
+      ]
+    },
+    "CartItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CartItem",
+      "type": "object",
+      "description": "Represents an item added to the user's cart.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the cart item (can be a combination of userId and productId)."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N CartItem)"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to Product. (Relationship: Product 1:N CartItem)"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the product in the cart."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the item was added to the cart.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "productId",
+        "quantity",
+        "createdAt"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "collections/{collectionId}",
+        "definition": {
+          "entityName": "Collection",
+          "schema": {
+            "$ref": "#/backend/entities/Collection"
+          },
+          "description": "Stores collection data. Publicly readable.",
+          "params": [
+            {
+              "name": "collectionId",
+              "description": "Unique identifier for the collection."
+            }
+          ]
+        }
+      },
+      {
+        "path": "products/{productId}",
+        "definition": {
+          "entityName": "Product",
+          "schema": {
+            "$ref": "#/backend/entities/Product"
+          },
+          "description": "Stores product data. Publicly readable.",
+          "params": [
+            {
+              "name": "productId",
+              "description": "Unique identifier for the product."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user data. Only accessible by the user themselves or admins.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "orders/{orderId}",
+        "definition": {
+          "entityName": "Order",
+          "schema": {
+            "$ref": "#/backend/entities/Order"
+          },
+          "description": "Stores order data. Accessible by admins and the user who placed the order (if logged in).",
+          "params": [
+            {
+              "name": "orderId",
+              "description": "Unique identifier for the order."
+            }
+          ]
+        }
+      },
+      {
+        "path": "customOrders/{customOrderId}",
+        "definition": {
+          "entityName": "CustomOrder",
+          "schema": {
+            "$ref": "#/backend/entities/CustomOrder"
+          },
+          "description": "Stores custom order requests. Accessible by admins.",
+          "params": [
+            {
+              "name": "customOrderId",
+              "description": "Unique identifier for the custom order."
+            }
+          ]
+        }
+      },
+      {
+        "path": "collaborations/{collaborationId}",
+        "definition": {
+          "entityName": "Collaboration",
+          "schema": {
+            "$ref": "#/backend/entities/Collaboration"
+          },
+          "description": "Stores collaboration requests from makers. Accessible by admins.",
+          "params": [
+            {
+              "name": "collaborationId",
+              "description": "Unique identifier for the collaboration."
+            }
+          ]
+        }
+      },
+      {
+        "path": "contacts/{contactId}",
+        "definition": {
+          "entityName": "Contact",
+          "schema": {
+            "$ref": "#/backend/entities/Contact"
+          },
+          "description": "Stores contact form submissions. Accessible by admins.",
+          "params": [
+            {
+              "name": "contactId",
+              "description": "Unique identifier for the contact message."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}/cartItems/{cartItemId}",
+        "definition": {
+          "entityName": "CartItem",
+          "schema": {
+            "$ref": "#/backend/entities/CartItem"
+          },
+          "description": "Stores items in the user's cart. Includes denormalized 'userId' for authorization independence. Only accessible by the user themselves.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "cartItemId",
+              "description": "Unique identifier for the cart item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "roles_admin/{userId}",
+        "definition": {
+          "entityName": "role",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Indicates admin privileges. Existence of document grants admin role. Content is not relevant.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support a secure and scalable e-commerce platform for artisanal home décor, named \"Sol & Clay\".  The structure is optimized for authorization independence, clear security rules, and efficient data retrieval.  It uses path-based ownership for user-specific data and membership maps for collaborative data. Authorization Independence is achieved by denormalizing necessary access control data within subcollections, avoiding costly `get()` calls in security rules and enabling atomic operations. Specifically, for user-owned data like CartItems, the userId is included in the CartItem document itself, rather than relying on a `get()` call to the user document to verify ownership. Segregation of data based on access requirements (e.g., public products vs. private user carts) ensures that security rules are simpler and more focused.\n\nThe structure supports QAPs by:\n\n1.  Segregating public and private data: Products and collections are publicly readable, while user-specific data (carts, orders) are secured via path-based rules or membership maps.\n2.  Using existence-based global roles:  Admin privileges are checked by the existence of a document in the `/roles_admin/{uid}` collection, enabling efficient and scalable role management. This eliminates the need to read user documents for role verification.\n3.  Enforcing invariants by leveraging server-side timestamping and data validation within Cloud Functions.  For example, order creation and updates are handled by Cloud Functions to ensure data consistency and integrity.\n\nThis design aims to provide a robust, debuggable, and easily maintainable Firestore structure that aligns with best practices for security and scalability."
+  }
+}

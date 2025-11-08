@@ -1,0 +1,175 @@
+/**
+ * @fileoverview Firestore Security Rules for Sol & Clay.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a hybrid security model. Public data (collections, products) is freely readable.
+ * User-specific data (carts, user profiles) is strictly controlled via path-based ownership.
+ * Admin privileges are granted by the existence of a document in a designated roles collection.
+ *
+ * Data Structure:
+ * - /collections/{collectionId}: Publicly readable collections of products.
+ * - /products/{productId}: Publicly readable product details.
+ * - /users/{userId}: User profiles, accessible only to the user themselves or admins.
+ * - /users/{userId}/cartItems/{cartItemId}: Cart items, accessible only to the owning user.
+ * - /orders/{orderId}: Order history, accessible to the user who placed the order or admins.
+ * - /customOrders/{customOrderId}: Custom order requests, only accessible by admins.
+ * - /collaborations/{collaborationId}: Collaboration requests, only accessible by admins.
+ * - /contacts/{contactId}: Contact form submissions, only accessible by admins.
+ * - /roles_admin/{userId}: Indicates admin privileges. The document's existence grants the role.
+ *
+ * Key Security Decisions:
+ * - Public read access for collections and products to enable open browsing.
+ * - Strict user-ownership for user profiles and cart data.
+ * - Admin-only access for sensitive data like orders, custom orders, collaborations, and contact messages.
+ * - No client-side listing of users; this prevents potential information leakage.
+ *
+ * Denormalization for Authorization:
+ * - Cart items include the userId directly, avoiding costly `get()` calls to the user document. This enables secure and independent authorization for cart operations.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows public read access to collections.  Write access is not permitted.
+     * @path /collections/{collectionId}
+     * @allow (get, list): if true
+     * @deny (create, update, delete): Always, as direct client-side modification of collections is prohibited.
+     * @principle Public read access for all users.
+     */
+    match /collections/{collectionId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to products. Write access is not permitted.
+     * @path /products/{productId}
+     * @allow (get, list): if true
+     * @deny (create, update, delete): Always, as direct client-side modification of products is prohibited.
+     * @principle Public read access for all users.
+     */
+    match /products/{productId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Manages user profiles.  Allows a user to create their own profile, and to read/write their own profile data. Admins can also read and write user data.
+     * @path /users/{userId}
+     * @allow (create): If the user ID in the path matches the authenticated user's ID.
+     * @allow (get, update, delete): If the user ID in the path matches the authenticated user's ID, or if the requester is an admin.
+     * @deny (list): Listing all users is prohibited.
+     * @principle Enforces user-ownership for profile data and admin override.
+     */
+    match /users/{userId} {
+      allow create: if isSignedIn() && isOwner(userId);
+      allow get, update, delete: if isSignedIn() && (isOwner(userId) || isAdmin());
+      allow list: if false;
+    }
+
+    /**
+     * @description Manages order data. Allows a user to read their own order data, and admins to manage all orders.
+     * @path /orders/{orderId}
+     * @allow (get): If the order's userId matches the authenticated user's ID, or if the requester is an admin.
+     * @allow (create): if isSignedIn() && request.resource.data.userId == request.auth.uid;
+     * @allow (update, delete): If the requester is an admin.
+     * @deny: All requests not matching the above criteria.
+     * @principle Enforces user-ownership for read access, and admin control for management.
+     */
+    match /orders/{orderId} {
+      allow get: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.auth.uid != null && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAdmin();
+      allow list: if false;
+    }
+
+    /**
+     * @description Manages custom order requests. Only accessible by admins.
+     * @path /customOrders/{customOrderId}
+     * @allow (read, write): Only if the requester is an admin.
+     * @deny: All requests not matching the above criteria.
+     * @principle Enforces admin-only access.
+     */
+    match /customOrders/{customOrderId} {
+      allow get, list, create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Manages collaboration requests. Only accessible by admins.
+     * @path /collaborations/{collaborationId}
+     * @allow (read, write): Only if the requester is an admin.
+     * @deny: All requests not matching the above criteria.
+     * @principle Enforces admin-only access.
+     */
+    match /collaborations/{collaborationId} {
+      allow get, list, create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Manages contact form submissions. Only accessible by admins.
+     * @path /contacts/{contactId}
+     * @allow (read, write): Only if the requester is an admin.
+     * @deny: All requests not matching the above criteria.
+     * @principle Enforces admin-only access.
+     */
+    match /contacts/{contactId} {
+      allow get, list, create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description Manages cart items for a specific user.  Allows a user to manage their own cart items.
+     * @path /users/{userId}/cartItems/{cartItemId}
+     * @allow (create): If the user ID in the path matches the authenticated user's ID, and the userId in the cartItem matches the userId in the path.
+     * @allow (get, update, delete): If the user ID in the path matches the authenticated user's ID.
+     * @deny (list): Deny listing all cartItems.
+     * @principle Enforces user-ownership for cart data.
+     */
+    match /users/{userId}/cartItems/{cartItemId} {
+      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.userId == userId;
+      allow get, update, delete: if isSignedIn() && isOwner(userId);
+      allow list: if isOwner(userId);
+    }
+    
+        /**
+     * @description Checks for admin privileges. The presence of a document with the user's ID in this collection grants admin access.
+     * @path /roles_admin/{userId}
+     * @allow (read, write): Only if the document ID matches the authenticated user's ID. This allows admins to manage their own role document.
+     * @principle Existence of document grants admin role.
+     */
+    match /roles_admin/{userId} {
+        allow get: if isSignedIn() && request.auth.uid == userId;
+        allow create: if isSignedIn() && request.auth.uid == userId;
+        allow update: if false;
+        allow delete: if false;
+        allow list: if false;
+    }
+
+    // ---- Helper functions ----
+
+    /**
+     * @description Checks if the user is signed in.
+     * @return {bool} True if the user is signed in, false otherwise.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the user is the owner of the resource.
+     * @param {string} userId The user ID to check against.
+     * @return {bool} True if the user is the owner, false otherwise.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * @description Checks if the user is an admin.
+     * @return {bool} True if the user is an admin, false otherwise.
+     */
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+  }
+}
