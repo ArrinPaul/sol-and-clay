@@ -8,7 +8,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Leaf, Users, Star } from 'lucide-react';
+import { ArrowRight, Leaf, Users } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
 import {
@@ -19,10 +19,13 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { collections, testimonials } from '@/lib/data';
+import { Star } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
-  const autoplayPlugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
 
   return (
     <div className="flex flex-col">
