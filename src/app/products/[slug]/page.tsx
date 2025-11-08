@@ -1,17 +1,15 @@
-
 'use client';
 
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   products as allProducts,
-  collections,
   getRelatedProducts,
 } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
 import { Button } from '@/components/ui/button';
-import { Star, ShoppingCart, Zap } from 'lucide-react';
+import { Star, ShoppingCart, Zap, Loader2 } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -22,33 +20,74 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+  useUser,
+  useFirestore,
+  addDocumentNonBlocking,
+  useToast,
+} from '@/firebase';
+import { collection, doc, getDocs, query, where } from 'firebase/firestore';
+import { useState } from 'react';
 
 type Props = {
   params: { slug: string };
 };
 
-// Metadata generation can't be done in a client component, but can be exported
-// export async function generateMetadata({ params }: Props) {
-//   const product = allProducts.find((p) => p.slug === params.slug);
-
-//   if (!product) {
-//     return {
-//       title: 'Product Not Found',
-//     };
-//   }
-
-//   return {
-//     title: `${product.title} - Sol & Clay`,
-//     description: product.story,
-//   };
-// }
-
 export default function ProductDetailPage({ params }: Props) {
   const product = allProducts.find((p) => p.slug === params.slug);
+  const { user } = useUser();
+  const firestore = useFirestore();
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isAdding, setIsAdding] = useState(false);
 
   if (!product) {
     notFound();
   }
+
+  const handleAddToCart = async () => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    setIsAdding(true);
+
+    const cartRef = collection(firestore, 'users', user.uid, 'cartItems');
+    const q = query(cartRef, where('productId', '==', product.id));
+
+    try {
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        // Add new item
+        await addDocumentNonBlocking(cartRef, {
+          productId: product.id,
+          title: product.title,
+          price: product.price,
+          quantity: 1,
+          imageId: product.images[0],
+          slug: product.slug,
+        });
+      } else {
+        // Item exists, so we don't add it again.
+        // A real app might update quantity here.
+      }
+
+      toast({
+        title: 'Added to Cart',
+        description: `${product.title} has been added to your cart.`,
+      });
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'Could not add item to cart. Please try again.',
+      });
+    } finally {
+      setIsAdding(false);
+    }
+  };
 
   const relatedProducts = getRelatedProducts(product.id);
 
@@ -78,7 +117,9 @@ export default function ProductDetailPage({ params }: Props) {
           <Carousel className="w-full">
             <CarouselContent>
               {product.images.map((imageId, index) => {
-                const image = PlaceHolderImages.find((img) => img.id === imageId);
+                const image = PlaceHolderImages.find(
+                  (img) => img.id === imageId
+                );
                 return (
                   <CarouselItem key={index}>
                     <div className="relative aspect-square w-full">
@@ -144,10 +185,29 @@ export default function ProductDetailPage({ params }: Props) {
             </div>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button size="lg" className="flex-1">
-                <ShoppingCart className="mr-2" /> Add to Cart
+              <Button
+                size="lg"
+                className="flex-1"
+                onClick={handleAddToCart}
+                disabled={isAdding || product.stock === 0}
+              >
+                {isAdding ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <ShoppingCart className="mr-2" />
+                )}
+                {isAdding
+                  ? 'Adding...'
+                  : product.stock === 0
+                  ? 'Out of Stock'
+                  : 'Add to Cart'}
               </Button>
-              <Button size="lg" variant="secondary" className="flex-1">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="flex-1"
+                disabled={product.stock === 0}
+              >
                 <Zap className="mr-2" /> Buy Now
               </Button>
             </div>
@@ -223,11 +283,3 @@ export default function ProductDetailPage({ params }: Props) {
     </div>
   );
 }
-
-// export async function generateStaticParams() {
-//   return allProducts.map((product) => ({
-//     slug: product.slug,
-//   }));
-// }
-
-    

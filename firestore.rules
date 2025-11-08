@@ -66,6 +66,17 @@ service cloud.firestore {
       allow create: if isSignedIn() && isOwner(userId);
       allow get, update, delete: if isSignedIn() && (isOwner(userId) || isAdmin());
       allow list: if false;
+
+      /**
+       * @description Manages cart items for a specific user.  Allows a user to manage their own cart items.
+       * @path /users/{userId}/cartItems/{cartItemId}
+       * @allow (create): If the user ID in the path matches the authenticated user's ID.
+       * @allow (read, update, delete): If the user ID in the path matches the authenticated user's ID.
+       * @principle Enforces user-ownership for cart data.
+       */
+      match /cartItems/{cartItemId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
     }
 
     /**
@@ -115,20 +126,6 @@ service cloud.firestore {
      */
     match /contacts/{contactId} {
       allow get, list, create, update, delete: if isAdmin();
-    }
-
-    /**
-     * @description Manages cart items for a specific user.  Allows a user to manage their own cart items.
-     * @path /users/{userId}/cartItems/{cartItemId}
-     * @allow (create): If the user ID in the path matches the authenticated user's ID, and the userId in the cartItem matches the userId in the path.
-     * @allow (get, update, delete): If the user ID in the path matches the authenticated user's ID.
-     * @deny (list): Deny listing all cartItems.
-     * @principle Enforces user-ownership for cart data.
-     */
-    match /users/{userId}/cartItems/{cartItemId} {
-      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.userId == userId;
-      allow get, update, delete: if isSignedIn() && isOwner(userId);
-      allow list: if isOwner(userId);
     }
     
         /**
