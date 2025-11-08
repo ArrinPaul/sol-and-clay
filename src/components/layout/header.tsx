@@ -25,6 +25,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import { useRouter } from 'next/navigation';
 
 const navLinks = [
   { href: '/collections', label: 'Collections' },
@@ -179,6 +180,3 @@ export function Header() {
     </header>
   );
 }
-
-// Add useRouter to the imports for router.push()
-import { useRouter } from 'next/navigation';
