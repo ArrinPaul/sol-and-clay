@@ -20,12 +20,16 @@ import {
   useCollection,
   useMemoFirebase,
   deleteDocumentNonBlocking,
+  useToast,
 } from '@/firebase';
 import { collection, doc } from 'firebase/firestore';
+import { createCheckoutSession } from '@/app/actions/stripe';
+import { getStripe } from '@/lib/stripe';
 
 export default function CartPage() {
   const { user, isUserLoading } = useUser();
   const firestore = useFirestore();
+  const { toast } = useToast();
 
   const cartItemsRef = useMemoFirebase(
     () =>
@@ -50,6 +54,38 @@ export default function CartPage() {
     const itemRef = doc(firestore, 'users', user.uid, 'cartItems', itemId);
     deleteDocumentNonBlocking(itemRef);
   };
+
+  const handleCheckout = async () => {
+    if (!cartItems || cartItems.length === 0) {
+      toast({
+        variant: 'destructive',
+        title: 'Your cart is empty',
+        description: 'Add some items before checking out.',
+      });
+      return;
+    }
+
+    try {
+      const { sessionId } = await createCheckoutSession(cartItems);
+      const stripe = await getStripe();
+      if (!stripe) {
+        throw new Error('Stripe.js not loaded');
+      }
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error: any) {
+      console.error('Checkout error:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Checkout Failed',
+        description: error.message || 'Could not proceed to checkout. Please try again.',
+      });
+    }
+  };
+
 
   const isLoading = isUserLoading || isCartLoading;
 
@@ -158,7 +194,7 @@ export default function CartPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" size="lg">
+                  <Button className="w-full" size="lg" onClick={handleCheckout}>
                     Proceed to Checkout
                   </Button>
                 </CardFooter>

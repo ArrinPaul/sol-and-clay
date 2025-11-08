@@ -70,8 +70,7 @@ service cloud.firestore {
       /**
        * @description Manages cart items for a specific user.  Allows a user to manage their own cart items.
        * @path /users/{userId}/cartItems/{cartItemId}
-       * @allow (create): If the user ID in the path matches the authenticated user's ID.
-       * @allow (read, update, delete): If the user ID in the path matches the authenticated user's ID.
+       * @allow (read, write): If the user ID in the path matches the authenticated user's ID.
        * @principle Enforces user-ownership for cart data.
        */
       match /cartItems/{cartItemId} {
