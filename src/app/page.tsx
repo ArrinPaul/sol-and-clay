@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -6,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Leaf, Users, Wind } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
-import { collections } from '@/lib/data';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
@@ -41,7 +41,7 @@ export default function Home() {
           <FadeIn direction="up" delay="delay-400">
             <Button asChild size="lg" className="mt-8">
               <Link href="/collections">
-                Explore The Collection <ArrowRight />
+                Explore the Collection <ArrowRight />
               </Link>
             </Button>
           </FadeIn>
@@ -133,7 +133,7 @@ export default function Home() {
               <h2 className="mt-2 font-headline text-4xl font-bold text-foreground">The Checkered Collection</h2>
               <p className="mt-4 text-muted-foreground">Classic patterns, reimagined in modern, functional forms.</p>
               <Button asChild variant="link" className="p-0 text-base">
-                <Link href="#">Explore the Collection <ArrowRight /></Link>
+                <Link href="/collections/checkered-collection">Explore the Collection <ArrowRight /></Link>
               </Button>
             </FadeIn>
           </div>

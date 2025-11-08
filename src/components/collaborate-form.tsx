@@ -21,11 +21,11 @@ import { submitCollaborationRequest } from '@/app/actions/collaboration';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   studioName: z.string().min(2, { message: 'Studio name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   portfolioURL: z.string().url({ message: 'Please enter a valid URL.' }),
-  message: z.string().min(20, { message: 'Your message must be at least 20 characters.' }).max(500, { message: 'Message cannot exceed 500 characters.' }),
+  pitch: z.string().min(20, { message: 'Your pitch must be at least 20 characters.' }).max(500, { message: 'Pitch cannot exceed 500 characters.' }),
+  image: z.instanceof(File).optional(),
 });
 
 export function CollaborateForm() {
@@ -34,11 +34,10 @@ export function CollaborateForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
       studioName: '',
       email: '',
       portfolioURL: '',
-      message: '',
+      pitch: '',
     },
   });
 
@@ -49,12 +48,16 @@ export function CollaborateForm() {
     formData.append('studioName', values.studioName);
     formData.append('email', values.email);
     formData.append('portfolioURL', values.portfolioURL);
-    // Use 'message' as 'pitch' for the server action
-    formData.append('pitch', values.message); 
+    formData.append('pitch', values.pitch); 
     
-    // Create a dummy file for the image since it's not in this form
-    const dummyFile = new File([''], 'dummy.txt', { type: 'text/plain' });
-    formData.append('image', dummyFile);
+    // Add file if it exists
+    if (values.image) {
+      formData.append('image', values.image);
+    } else {
+      // Create a dummy file if image is not required or provided
+      const dummyFile = new File([''], 'dummy.txt', { type: 'text/plain' });
+      formData.append('image', dummyFile);
+    }
 
     const result = await submitCollaborationRequest(formData);
 
@@ -77,19 +80,6 @@ export function CollaborateForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your Name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="studioName"
@@ -131,10 +121,10 @@ export function CollaborateForm() {
         />
         <FormField
           control={form.control}
-          name="message"
+          name="pitch"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel>Message / Pitch</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Tell us about your work and why you'd be a great fit for Sol & Clay..."

@@ -32,33 +32,21 @@
     },
     {
       "id": "product-1",
-      "description": "Checkered Tray - Inspired by the rhythm of pattern and pause.",
-      "imageUrl": "https://images.unsplash.com/photo-1608006777796-e80fba4643db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaGVja2VyZWQlMjB0cmF5fGVufDB8fHx8MTc2MjYxOTc2OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "checkered tray"
+      "description": "Terracotta Vase, a statement piece for any room.",
+      "imageUrl": "https://images.unsplash.com/photo-1635776398604-7c66ef09186a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZXJyYWNvdHRhJTIwdmFzZXxlbnwwfHx8fDE3NjI1NzI2NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "terracotta vase"
     },
     {
       "id": "product-2",
-      "description": "Checkered Vase - A study in balance and contrast.",
-      "imageUrl": "https://images.unsplash.com/photo-1748599327993-3e8b4f18c9d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGVja2VyZWQlMjB2YXNlfGVufDB8fHx8MTc2MjYyODI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "checkered vase"
-    },
-    {
-      "id": "product-3",
-      "description": "Checkered Bowl - Hand-built and glazed, preserving subtle variations.",
-      "imageUrl": "https://images.unsplash.com/photo-1708346319652-7f22fcb91a0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaGVja2VyZWQlMjBib3dsfGVufDB8fHx8MTc2MjYyMzUyMHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "checkered bowl"
+      "description": "A set of two hand-glazed mugs in earthy tones.",
+      "imageUrl": "https://images.unsplash.com/photo-1644901620069-14c27ce5e392?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnbGF6ZWQlMjBtdWdzfGVufDB8fHx8MTc2MjYyODQ1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "glazed mugs"
     },
     {
       "id": "about-hero",
       "description": "Hands of a potter shaping clay on a pottery wheel.",
       "imageUrl": "https://images.unsplash.com/photo-1590605105526-5c08f63f89aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwb3R0ZXJ5JTIwd2hlZWx8ZW58MHx8fHwxNzYyNTk5MDE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "pottery wheel"
-    },
-    {
-      "id": "collaborate-hero",
-      "description": "Two sets of hands working together on a piece of pottery.",
-      "imageUrl": "https://images.unsplash.com/photo-1675101337462-a19b63af8b1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxoYW5kcyUyMHBvdHRlcnl8ZW58MHx8fHwxNzYyNjI3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "hands pottery"
     },
     {
       "id": "login-bg",

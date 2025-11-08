@@ -1,3 +1,4 @@
+
 import { CollaborateForm } from '@/components/collaborate-form';
 import { FadeIn } from '@/components/utils/fade-in';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

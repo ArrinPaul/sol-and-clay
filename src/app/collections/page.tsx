@@ -30,7 +30,7 @@ export default function CollectionsPage() {
           const image = PlaceHolderImages.find((img) => img.id === collection.imageId);
           return (
             <FadeIn key={collection.id} delay={`delay-${(index + 1) * 200}`}>
-              <Link href="#" className="group block">
+              <Link href={`/collections/${collection.slug}`} className="group block">
                 <Card className="overflow-hidden border-2 transition-all duration-300 group-hover:border-primary group-hover:shadow-xl h-full flex flex-col">
                   <div className="relative h-96 w-full">
                     {image && (

@@ -1,8 +1,9 @@
+
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
-import { Github, Twitter, Instagram } from 'lucide-react';
+import { Github, Twitter, Instagram, Pinterest } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -50,6 +51,7 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Sol & Clay. All rights reserved.</p>
           <div className="mt-4 flex space-x-4 sm:mt-0">
             <Link href="#" className="text-muted-foreground hover:text-primary"><Instagram className="h-5 w-5" /></Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary"><Pinterest className="h-5 w-5" /></Link>
             <Link href="#" className="text-muted-foreground hover:text-primary"><Twitter className="h-5 w-5" /></Link>
             <Link href="#" className="text-muted-foreground hover:text-primary"><Github className="h-5 w-5" /></Link>
           </div>

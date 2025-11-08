@@ -18,7 +18,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn } from '@/components/utils/fade-in';
-import { Mail, Phone, Instagram, Twitch } from 'lucide-react';
+import { Mail, Phone, Instagram, Pinterest } from 'lucide-react';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
@@ -44,7 +44,8 @@ export default function ContactPage() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Simulate form submission (e.g., upload image to Firebase Storage)
+    // In a real app, you'd handle file upload to Firebase Storage here
+    // and then save the message to Firestore.
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log(values);
     
@@ -93,7 +94,7 @@ export default function ContactPage() {
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
-                        <Twitch className="h-6 w-6 mt-1 text-primary"/>
+                        <Pinterest className="h-6 w-6 mt-1 text-primary"/>
                         <div>
                             <h3 className="font-semibold text-foreground">Pinterest</h3>
                             <a href="#" className="hover:underline">@solandclay</a>
@@ -160,9 +161,8 @@ export default function ContactPage() {
                                       type="file"
                                       accept="image/png, image/jpeg, image/webp"
                                       onChange={(e) => {
-                                        onChange(e.target.files);
+                                        onChange(e.target.files?.[0]);
                                       }}
-                                      {...rest}
                                     />
                                   </FormControl>
                                   <FormMessage />
