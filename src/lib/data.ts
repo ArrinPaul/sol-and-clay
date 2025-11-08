@@ -91,7 +91,7 @@ export const products: Product[] = [
       'Inspired by the rhythm of pattern and pause — perfect for table styling or daily ritual spaces.',
     materials: 'Stoneware with matte glaze; food safe.',
     dimensions: '12" L x 6" W x 1" H',
-    images: ['product-checkered-tray-1', 'product-checkered-tray-2'],
+    images: ['product-checkered-tray-1', 'product-checkered-tray-2', 'product-checkered-tray-3'],
   },
   {
     id: 'p2',
@@ -105,7 +105,21 @@ export const products: Product[] = [
       'A statement piece that combines classic pattern with a modern, sculptural form.',
     materials: 'Hand-built stoneware with clear interior glaze.',
     dimensions: '10" H x 5" Diameter',
-    images: ['product-checkered-vase-1', 'product-checkered-vase-2'],
+    images: ['product-checkered-vase-1', 'product-checkered-vase-2', 'product-checkered-vase-3'],
+  },
+  {
+    id: 'p7',
+    collectionId: '1',
+    title: 'Checkered Bowl',
+    slug: 'checkered-bowl',
+    price: 65.0,
+    rating: 4.7,
+    stock: 18,
+    story:
+      'A versatile bowl that brings a graphic touch to your countertop or table. Perfect for fruit or as a standalone decorative piece.',
+    materials: 'Stoneware with a satin-matte glaze. Food safe.',
+    dimensions: '8" Diameter x 3.5" H',
+    images: ['product-checkered-bowl-1', 'product-checkered-bowl-2'],
   },
   // Wave Collection
   {
@@ -120,7 +134,7 @@ export const products: Product[] = [
       'The organic, undulating edge of this bowl mimics the gentle movement of water.',
     materials: 'Porcelain with a soft teal gloss glaze.',
     dimensions: '11" Diameter x 4" H',
-    images: ['product-wave-bowl-1', 'product-wave-bowl-2'],
+    images: ['product-wave-bowl-1', 'product-wave-bowl-2', 'product-wave-bowl-3'],
   },
   {
     id: 'p4',
@@ -134,7 +148,21 @@ export const products: Product[] = [
       'Perfect for serving, these plates bring a touch of coastal calm to any meal.',
     materials: 'Porcelain with a sandy matte white glaze.',
     dimensions: '8" Diameter',
-    images: ['product-wave-plates-1', 'product-wave-plates-2'],
+    images: ['product-wave-plates-1', 'product-wave-plates-2', 'product-wave-plates-3'],
+  },
+  {
+    id: 'p8',
+    collectionId: '2',
+    title: 'Tidal Bud Vase',
+    slug: 'tidal-bud-vase',
+    price: 45.0,
+    rating: 4.9,
+    stock: 22,
+    story:
+      'A small vase with a soft, wavy rim, perfect for single stems or small bouquets. Its tranquil form captures the essence of a gentle tide.',
+    materials: 'Porcelain with a reactive blue and white glaze.',
+    dimensions: '5" H x 3" Diameter',
+    images: ['product-wave-vase-1', 'product-wave-vase-2'],
   },
   // Earthline Collection
   {
@@ -149,7 +177,7 @@ export const products: Product[] = [
       'A simple, honest home for your favorite plant, celebrating the texture of raw clay.',
     materials: 'Terracotta with a sealed interior, includes drainage hole.',
     dimensions: '6" H x 6" Diameter',
-    images: ['product-earthline-planter-1', 'product-earthline-planter-2'],
+    images: ['product-earthline-planter-1', 'product-earthline-planter-2', 'product-earthline-planter-3'],
   },
   {
     id: 'p6',
@@ -163,17 +191,120 @@ export const products: Product[] = [
       'The perfect mug for your morning ritual, with a satisfying texture that feels great in your hands.',
     materials: 'Stoneware with a thin white glaze on the interior.',
     dimensions: '3.5" H x 3" Diameter',
-    images: ['product-earthline-mugs-1', 'product-earthline-mugs-2'],
+    images: ['product-earthline-mugs-1', 'product-earthline-mugs-2', 'product-earthline-mugs-3'],
+  },
+  {
+    id: 'p9',
+    collectionId: '3',
+    title: 'Terra Serving Platter',
+    slug: 'terra-serving-platter',
+    price: 110.0,
+    rating: 4.8,
+    stock: 10,
+    story:
+      'A large, rustic platter that showcases the natural beauty and texture of terracotta. Ideal for serving or as a centerpiece.',
+    materials: 'Unglazed terracotta, finished with a food-safe sealant.',
+    dimensions: '15" L x 10" W',
+    images: ['product-earthline-platter-1', 'product-earthline-platter-2'],
+  },
+  // Bloom Collection
+  {
+    id: 'p10',
+    collectionId: '4',
+    title: 'Petal Serving Dish',
+    slug: 'petal-serving-dish',
+    price: 78.0,
+    rating: 4.9,
+    stock: 14,
+    story:
+      'Shaped like a delicate flower, this dish brings a touch of spring to your table. Finished in a soft, pastel pink glaze.',
+    materials: 'Fine porcelain with a glossy pastel glaze.',
+    dimensions: '9" Diameter',
+    images: ['product-bloom-dish-1', 'product-bloom-dish-2'],
+  },
+  {
+    id: 'p11',
+    collectionId: '4',
+    title: 'Blossom Bud Vases (Set of 3)',
+    slug: 'blossom-bud-vases',
+    price: 90.0,
+    rating: 4.8,
+    stock: 9,
+    story:
+      'A trio of small, elegant vases in varying pastel shades. Perfect for displaying single blossoms or creating a minimalist floral arrangement.',
+    materials: 'Porcelain with matte pastel glazes in pink, blue, and yellow.',
+    dimensions: 'Varying heights from 3" to 5".',
+    images: ['product-bloom-vases-1', 'product-bloom-vases-2'],
+  },
+  // Monsoon Collection
+  {
+    id: 'p12',
+    collectionId: '5',
+    title: 'Storm Grey Carafe',
+    slug: 'storm-grey-carafe',
+    price: 85.0,
+    rating: 4.7,
+    stock: 11,
+    story:
+      'A sleek, modern carafe made from dark grey stoneware. The deep blue reactive glaze drips down the side, like rain on a windowpane.',
+    materials: 'Grey stoneware with a reactive blue gloss glaze.',
+    dimensions: '9" H x 4" Diameter',
+    images: ['product-monsoon-carafe-1', 'product-monsoon-carafe-2'],
+  },
+  {
+    id: 'p13',
+    collectionId: '5',
+    title: 'Raindrop Dishes (Set of 4)',
+    slug: 'raindrop-dishes',
+    price: 60.0,
+    rating: 4.9,
+    stock: 20,
+    story:
+      'Small, teardrop-shaped dishes perfect for holding spices, sauces, or jewelry. Each dish features a unique splash of deep blue glaze.',
+    materials: 'Stoneware with matte grey and reactive blue glaze.',
+    dimensions: '4" L x 3" W',
+    images: ['product-monsoon-dishes-1', 'product-monsoon-dishes-2'],
+  },
+  // Ember Collection
+  {
+    id: 'p14',
+    collectionId: '6',
+    title: 'Hearth Mug',
+    slug: 'hearth-mug',
+    price: 42.0,
+    rating: 5.0,
+    stock: 30,
+    story:
+      'A sturdy, comforting mug with a rich, iron-flecked orange glaze. Designed to feel like a warm hug for your hands on a cold day.',
+    materials: 'Dark stoneware with a rustic, iron-rich glaze.',
+    dimensions: '4" H x 3.5" Diameter',
+    images: ['product-ember-mug-1', 'product-ember-mug-2'],
+  },
+  {
+    id: 'p15',
+    collectionId: '6',
+    title: 'Kiln Fired Platter',
+    slug: 'kiln-fired-platter',
+    price: 130.0,
+    rating: 4.9,
+    stock: 7,
+    story:
+      'A bold and beautiful serving platter with a dramatic, deep red and brown glaze reminiscent of glowing embers in a kiln.',
+    materials: 'High-fire stoneware with a reactive ember glaze.',
+    dimensions: '14" Diameter',
+    images: ['product-ember-platter-1', 'product-ember-platter-2'],
   },
 ];
 
 export const getRelatedProducts = (currentProductId: string): Product[] => {
   const currentProduct = products.find((p) => p.id === currentProductId);
   if (!currentProduct) return [];
-  return products.filter(
+  const related = products.filter(
     (p) =>
       p.collectionId === currentProduct.collectionId && p.id !== currentProductId
   );
+  // Return a consistent number of related products
+  return related.slice(0, 4);
 };
 
 export const makerOfMonth: Maker = {
