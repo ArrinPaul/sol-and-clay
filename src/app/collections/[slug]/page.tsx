@@ -2,11 +2,13 @@
 import { notFound } from 'next/navigation';
 import { collections, products as allProducts } from '@/lib/data';
 import CollectionDetailPage from './collection-detail-page';
+import { use } from 'react';
 
 type Props = {
   params: { slug: string };
 };
 
+// This page remains a Server Component to use generateStaticParams
 export default function CollectionPage({ params }: Props) {
   const { slug } = params;
   const collection = collections.find((c) => c.slug === slug);

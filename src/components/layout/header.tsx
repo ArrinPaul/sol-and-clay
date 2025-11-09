@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -82,7 +81,7 @@ export function Header() {
       </Button>
     ));
 
-  const renderAuthAndCart = (isMobile = false) => (
+  const renderAuthAndCart = () => (
     <>
       {isUserLoading ? (
         <div className="h-10 w-10 animate-pulse rounded-full bg-muted"></div>
@@ -153,14 +152,13 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-16 items-center px-4">
-        <div className="flex-1 md:flex-none">
-          <Link href="/" className="flex items-center justify-center md:justify-start">
-            <Logo />
-          </Link>
-        </div>
+        {/* Logo */}
+        <Link href="/" className="mr-auto flex items-center">
+          <Logo />
+        </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex flex-1 items-center justify-end space-x-2">
+        <div className="hidden md:flex items-center space-x-2">
           <nav className="flex items-center space-x-2">
             {renderNavLinks()}
           </nav>
@@ -170,7 +168,7 @@ export function Header() {
         </div>
         
         {/* Mobile Nav */}
-        <div className="md:hidden flex items-center justify-end">
+        <div className="md:hidden flex items-center">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -180,20 +178,19 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px]">
               <div className="p-4">
-                <Link href="/" className="mb-8 flex items-center justify-center">
+                <Link href="/" className="mb-8 flex items-center">
                   <Logo />
                 </Link>
-                <div className="flex items-center justify-center mb-4 gap-2">
-                  {renderAuthAndCart(true)}
-                </div>
-                <nav className="flex flex-col space-y-3">
+                <nav className="flex flex-col space-y-3 mb-4">
                   {renderNavLinks(true)}
                 </nav>
+                 <div className="flex items-center gap-2 pt-4 border-t">
+                  {renderAuthAndCart()}
+                </div>
               </div>
             </SheetContent>
           </Sheet>
         </div>
-
       </div>
     </header>
   );

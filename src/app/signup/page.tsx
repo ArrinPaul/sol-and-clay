@@ -55,6 +55,7 @@ export default function SignUpPage() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!auth) return;
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -186,5 +187,3 @@ export default function SignUpPage() {
     </div>
   );
 }
-
-    

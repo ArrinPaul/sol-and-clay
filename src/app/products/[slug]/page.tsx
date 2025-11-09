@@ -1,6 +1,6 @@
 'use client';
 
-import { use, type FC } from 'react';
+import { use, type FC, useState } from 'react';
 import { notFound, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -24,18 +24,17 @@ import { Card, CardContent } from '@/components/ui/card';
 import {
   useUser,
   useFirestore,
-  addDocumentNonBlocking,
   useToast,
+  useMemoFirebase,
 } from '@/firebase';
-import { collection, doc, getDocs, query, where } from 'firebase/firestore';
-import { useState } from 'react';
+import { collection, doc, getDocs, query, where, writeBatch } from 'firebase/firestore';
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 };
 
-const ProductDetailPage: FC<Props> = ({ params }) => {
-  const { slug } = use(params);
+export default function ProductDetailPage({ params }: Props) {
+  const { slug } = params;
   const product = allProducts.find((p) => p.slug === slug);
   const { user } = useUser();
   const firestore = useFirestore();
@@ -46,16 +45,21 @@ const ProductDetailPage: FC<Props> = ({ params }) => {
   if (!product) {
     notFound();
   }
+  
+  const cartRef = useMemoFirebase(() => 
+    user && firestore ? collection(firestore, 'users', user.uid, 'cartItems') : null,
+    [user, firestore]
+  );
+
 
   const handleAddToCart = async () => {
-    if (!user) {
+    if (!user || !cartRef) {
       router.push('/login');
       return;
     }
 
     setIsAdding(true);
 
-    const cartRef = collection(firestore, 'users', user.uid, 'cartItems');
     const q = query(cartRef, where('productId', '==', product.id));
 
     try {
@@ -63,7 +67,9 @@ const ProductDetailPage: FC<Props> = ({ params }) => {
 
       if (querySnapshot.empty) {
         // Add new item
-        await addDocumentNonBlocking(cartRef, {
+        const batch = writeBatch(firestore);
+        const newDocRef = doc(cartRef);
+        batch.set(newDocRef, {
           productId: product.id,
           title: product.title,
           price: product.price,
@@ -71,6 +77,8 @@ const ProductDetailPage: FC<Props> = ({ params }) => {
           imageId: product.images[0],
           slug: product.slug,
         });
+        await batch.commit();
+
       } else {
         // Item exists, so we don't add it again.
         // A real app might update quantity here.
@@ -81,6 +89,7 @@ const ProductDetailPage: FC<Props> = ({ params }) => {
         description: `${product.title} has been added to your cart.`,
       });
     } catch (error) {
+      console.error(error);
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
@@ -285,4 +294,3 @@ const ProductDetailPage: FC<Props> = ({ params }) => {
     </div>
   );
 }
-export default ProductDetailPage;

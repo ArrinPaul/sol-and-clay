@@ -46,6 +46,7 @@ export default function LoginPage() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!auth) return;
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       toast({
@@ -145,5 +146,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-    
