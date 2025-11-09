@@ -27,17 +27,36 @@ export default function SignUpPage() {
       <div className="flex items-center justify-center py-12">
         <SignUp 
           appearance={{
+            baseTheme: "dark",
             elements: {
-              rootBox: "mx-auto",
-              card: "bg-background shadow-lg border border-border rounded-lg",
-              headerTitle: "font-headline text-2xl font-bold",
-              formButtonPrimary: "bg-primary text-primary-foreground hover:bg-primary/90",
-              dividerLine: "bg-border",
-              dividerText: "text-muted-foreground",
-              socialButtonsBlockButton: "border border-border hover:bg-accent",
-              formFieldLabel: "text-foreground",
-              formFieldInput: "bg-input border-border text-foreground",
-              footerActionLink: "text-primary hover:text-primary/90",
+              rootBox: "mx-auto w-full max-w-md",
+              card: "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl border border-amber-600/30 rounded-xl",
+              headerTitle: "font-headline text-3xl font-bold bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent",
+              headerSubtitle: "text-amber-200/70",
+              socialButtonsBlockButton: "border-2 border-amber-600/40 bg-slate-700/50 hover:bg-amber-600/20 hover:border-amber-500 text-white transition-all",
+              socialButtonsBlockButtonText: "text-white font-semibold",
+              dividerLine: "bg-amber-600/20",
+              dividerText: "text-amber-300/80 font-semibold",
+              formFieldLabel: "text-amber-200 font-semibold",
+              formFieldInput: "bg-slate-700/60 border-2 border-amber-600/30 text-white placeholder-slate-400 focus:border-amber-500 focus:ring-amber-500 rounded-lg",
+              formButtonPrimary: "bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold shadow-lg hover:shadow-amber-500/50 hover:from-amber-400 hover:to-amber-500 transition-all rounded-lg",
+              footerActionLink: "text-amber-400 hover:text-amber-300 font-semibold",
+              footerActionText: "text-slate-300",
+              identifierInputField: "bg-slate-700/60 border-2 border-amber-600/30 text-white placeholder-slate-400 focus:border-amber-500",
+            },
+            variables: {
+              colorPrimary: "#f59e0b",
+              colorBackground: "#1e293b",
+              colorInputBackground: "#334155",
+              colorInputBorder: "#b45309",
+              colorInputText: "#ffffff",
+              colorText: "#fbbf24",
+              colorTextSecondary: "#cbd5e1",
+              colorDanger: "#ef4444",
+              colorSuccess: "#10b981",
+              colorWarning: "#f59e0b",
+              colorShimmer: "#f59e0b",
+              fontFamily: "ui-rounded, sans-serif",
             }
           }}
           redirectUrl="/"
