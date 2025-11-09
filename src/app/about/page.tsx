@@ -23,7 +23,7 @@ const timelineData = [
           </p>
           <div className="grid grid-cols-1 gap-4">
             <Image
-              src="https://picsum.photos/seed/idea-1/1000/500"
+              src="https://picsum.photos/seed/pottery-sketch/1000/500"
               alt="Sketchbook with pottery designs"
               width={1000}
               height={500}
