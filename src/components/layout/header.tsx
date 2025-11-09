@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -36,6 +37,9 @@ const navLinks = [
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const { user, isUserLoading } = useUser();
   const auth = useAuth();
   const firestore = useFirestore();
@@ -55,13 +59,25 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 10);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        setIsHidden(true);
+      } else {
+        // Scrolling up
+        setIsHidden(false);
+      }
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const handleLogout = async () => {
+    if(!auth) return;
     await signOut(auth);
     router.push('/');
   };
@@ -146,50 +162,48 @@ export function Header() {
     <header
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
-        isScrolled
-          ? 'border-b bg-background/80 backdrop-blur-sm'
-          : 'border-b border-transparent'
+        isScrolled ? 'border-b bg-background/80 backdrop-blur-sm' : 'border-b border-transparent',
+        isHidden ? '-translate-y-full' : 'translate-y-0'
       )}
     >
       <div className="container mx-auto flex h-16 items-center px-4">
         {/* Logo */}
-        <Link href="/" className="mr-auto flex items-center">
-          <Logo />
-        </Link>
+        <div className="flex items-center gap-4">
+            <div className="md:hidden">
+            <Sheet>
+                <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle Menu</span>
+                </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[300px]">
+                <div className="p-4">
+                    <Link href="/" className="mb-8 flex items-center">
+                    <Logo />
+                    </Link>
+                    <nav className="flex flex-col space-y-3 mb-4">
+                    {renderNavLinks(true)}
+                    </nav>
+                </div>
+                </SheetContent>
+            </Sheet>
+            </div>
+            <Link href="/" className="flex items-center">
+              <Logo />
+            </Link>
+        </div>
+
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-2">
+        <div className="hidden md:flex flex-1 items-center justify-center space-x-2">
           <nav className="flex items-center space-x-2">
             {renderNavLinks()}
           </nav>
-          <div className="flex items-center justify-end space-x-2">
-            {renderAuthAndCart()}
-          </div>
         </div>
-        
-        {/* Mobile Nav */}
-        <div className="md:hidden flex items-center">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px]">
-              <div className="p-4">
-                <Link href="/" className="mb-8 flex items-center">
-                  <Logo />
-                </Link>
-                <nav className="flex flex-col space-y-3 mb-4">
-                  {renderNavLinks(true)}
-                </nav>
-                 <div className="flex items-center gap-2 pt-4 border-t">
-                  {renderAuthAndCart()}
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+
+        <div className="flex items-center justify-end gap-2">
+            {renderAuthAndCart()}
         </div>
       </div>
     </header>
