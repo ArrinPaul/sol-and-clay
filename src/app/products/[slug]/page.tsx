@@ -4,12 +4,12 @@ import { products as allProducts } from '@/lib/data';
 import ProductDetailPageClient from './product-detail-page';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // This page is a Server Component to handle data fetching and static generation.
-export default function ProductDetailPage({ params }: Props) {
-  const { slug } = params;
+export default async function ProductDetailPage({ params }: Props) {
+  const { slug } = await params;
   const product = allProducts.find((p) => p.slug === slug);
 
   if (!product) {

@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { FadeIn } from '@/components/utils/fade-in';
 import { CheckCircle, Home } from 'lucide-react';
-import { useUser, useFirestore, useMemoFirebase } from '@/firebase';
+import { useFirestore, useMemoFirebase } from '@/firebase';
+import { useUser } from '@clerk/nextjs';
 import { collection, getDocs, writeBatch } from 'firebase/firestore';
 
 export default function CheckoutSuccessPage() {
@@ -16,7 +17,7 @@ export default function CheckoutSuccessPage() {
   const cartRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.uid, 'cartItems')
+        ? collection(firestore, 'users', user.id, 'cartItems')
         : null,
     [user, firestore]
   );

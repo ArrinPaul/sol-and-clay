@@ -2,17 +2,13 @@
 
 import { firebaseConfig } from '@/firebase/config';
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 
-// IMPORTANT: DO NOT MODIFY THIS FUNCTION
+// Firebase initialization for Firestore only
+// Authentication is handled by Clerk
 export function initializeFirebase() {
   if (!getApps().length) {
-    // Important! initializeApp() is called without any arguments because Firebase App Hosting
-    // integrates with the initializeApp() function to provide the environment variables needed to
-    // populate the FirebaseOptions in production. It is critical that we attempt to call initializeApp()
-    // without arguments.
     let firebaseApp;
     try {
       // Attempt to initialize via Firebase App Hosting environment variables
@@ -36,7 +32,6 @@ export function initializeFirebase() {
 export function getSdks(firebaseApp: FirebaseApp) {
   return {
     firebaseApp,
-    auth: getAuth(firebaseApp),
     firestore: getFirestore(firebaseApp)
   };
 }
@@ -49,6 +44,9 @@ export * from './non-blocking-updates';
 export * from './non-blocking-login';
 export * from './errors';
 export * from './error-emitter';
+
+// Re-export WithId type for convenience
+export type { WithId } from './firestore/use-collection';
 
 // Add useToast to the exports
 export { useToast };

@@ -5,14 +5,13 @@ import { useRef, useEffect, useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 type FadeInProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   delay?: string;
   direction?: 'up' | 'down' | 'left' | 'right';
-  as?: keyof JSX.IntrinsicElements;
 };
 
-export function FadeIn({ children, className, delay, direction = 'up', as: Component = 'div' }: FadeInProps) {
+export function FadeIn({ children, className, delay, direction = 'up' }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -47,7 +46,7 @@ export function FadeIn({ children, className, delay, direction = 'up', as: Compo
   };
 
   return (
-    <Component
+    <div
       ref={ref}
       className={cn(
         'transition-all duration-1000',
@@ -58,6 +57,6 @@ export function FadeIn({ children, className, delay, direction = 'up', as: Compo
       )}
     >
       {children}
-    </Component>
+    </div>
   );
 }

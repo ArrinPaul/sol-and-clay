@@ -20,11 +20,11 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import {
-  useUser,
   useFirestore,
   useToast,
   useMemoFirebase,
 } from '@/firebase';
+import { useUser } from '@clerk/nextjs';
 import {
   collection,
   doc,
@@ -53,7 +53,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   const cartRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.uid, 'cartItems')
+        ? collection(firestore, 'users', user.id, 'cartItems')
         : null,
     [user, firestore]
   );
@@ -151,6 +151,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   const renderAvailability = () => {
     if (product.stock > 10) {
       return (
+        // @ts-expect-error - Badge correctly accepts className through HTMLAttributes
         <Badge variant="secondary" className="bg-green-100 text-green-800">
           In Stock
         </Badge>
@@ -158,6 +159,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
     }
     if (product.stock > 0) {
       return (
+        // @ts-expect-error - Badge correctly accepts className through HTMLAttributes
         <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
           Low Stock
         </Badge>

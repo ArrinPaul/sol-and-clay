@@ -1,4 +1,6 @@
 
+import Link from "next/link";
+import type { FC } from "react";
 import { FadeIn } from "@/components/utils/fade-in";
 import { Package, Truck, Undo } from "lucide-react";
 
@@ -7,7 +9,7 @@ export const metadata = {
   description: 'Information about our shipping policies, delivery times, and how to make a return.',
 };
 
-export default function ShippingPage() {
+const ShippingPage: FC = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <FadeIn>
@@ -65,4 +67,6 @@ export default function ShippingPage() {
       </div>
     </div>
   );
-}
+};
+
+export default ShippingPage;

@@ -4,12 +4,12 @@ import { collections, products as allProducts } from '@/lib/data';
 import CollectionDetailPage from './collection-detail-page';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // This page remains a Server Component to use generateStaticParams
-export default function CollectionPage({ params }: Props) {
-  const { slug } = params;
+export default async function CollectionPage({ params }: Props) {
+  const { slug } = await params;
   const collection = collections.find((c) => c.slug === slug);
 
   if (!collection) {

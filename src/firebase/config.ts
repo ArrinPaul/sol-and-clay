@@ -1,8 +1,11 @@
+// Firebase configuration for Firestore Database only
+// Authentication is handled by Clerk
 export const firebaseConfig = {
-  "projectId": "studio-3230139571-ae1a2",
-  "appId": "1:625495196608:web:a481d05b1a244df625be25",
-  "apiKey": "AIzaSyBY2pTjYBMnN-kwG9idsHE99Hthv_0HDIU",
-  "authDomain": "studio-3230139571-ae1a2.firebaseapp.com",
-  "measurementId": "",
-  "messagingSenderId": "625495196608"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyBY2pTjYBMnN-kwG9idsHE99Hthv_0HDIU",
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "studio-3230139571-ae1a2.firebaseapp.com",
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "studio-3230139571-ae1a2",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "studio-3230139571-ae1a2.appspot.com",
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "625495196608",
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:625495196608:web:a481d05b1a244df625be25",
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "",
 };

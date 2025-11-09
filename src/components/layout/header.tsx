@@ -8,15 +8,13 @@ import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { useUser, SignOutButton } from '@clerk/nextjs';
 import {
-  useUser,
-  useAuth,
   useFirestore,
   useCollection,
   useMemoFirebase,
 } from '@/firebase';
 import { collection } from 'firebase/firestore';
-import { signOut } from 'firebase/auth';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
   DropdownMenu,
@@ -26,7 +24,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { useRouter } from 'next/navigation';
 
 const navLinks = [
   { href: '/collections', label: 'Collections' },
@@ -40,22 +37,20 @@ export function Header() {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const { user, isUserLoading } = useUser();
-  const auth = useAuth();
+  const { user, isLoaded } = useUser();
   const firestore = useFirestore();
-  const router = useRouter();
 
   const cartItemsRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.uid, 'cartItems')
+        ? collection(firestore, 'users', user.id, 'cartItems')
         : null,
     [user, firestore]
   );
   const { data: cartItems } = useCollection(cartItemsRef);
 
   const cartItemCount = cartItems?.length ?? 0;
-  const userInitial = user?.displayName?.charAt(0).toUpperCase() ?? '?';
+  const userInitial = user?.firstName?.charAt(0).toUpperCase() ?? user?.lastName?.charAt(0).toUpperCase() ?? '?';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,12 +71,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const handleLogout = async () => {
-    if(!auth) return;
-    await signOut(auth);
-    router.push('/');
-  };
-
   const renderNavLinks = (isMobile = false) =>
     navLinks.map((link) => (
       <Button key={link.href} variant="ghost" asChild>
@@ -99,7 +88,7 @@ export function Header() {
 
   const renderAuthAndCart = () => (
     <>
-      {isUserLoading ? (
+      {!isLoaded ? (
         <div className="h-10 w-10 animate-pulse rounded-full bg-muted"></div>
       ) : user ? (
         <DropdownMenu>
@@ -110,8 +99,8 @@ export function Header() {
             >
               <Avatar>
                 <AvatarImage
-                  src={user.photoURL ?? ''}
-                  alt={user.displayName ?? ''}
+                  src={user.imageUrl ?? ''}
+                  alt={user.fullName ?? ''}
                 />
                 <AvatarFallback>{userInitial}</AvatarFallback>
               </Avatar>
@@ -121,18 +110,20 @@ export function Header() {
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">
-                  {user.displayName}
+                  {user.fullName}
                 </p>
                 <p className="text-xs leading-none text-muted-foreground">
-                  {user.email}
+                  {user.primaryEmailAddress?.emailAddress}
                 </p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>Log out</span>
-            </DropdownMenuItem>
+            <SignOutButton>
+              <DropdownMenuItem>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+              </DropdownMenuItem>
+            </SignOutButton>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (

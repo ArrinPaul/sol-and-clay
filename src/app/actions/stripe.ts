@@ -22,7 +22,8 @@ interface CartItem {
 export async function createCheckoutSession(
   items: WithId<CartItem>[]
 ): Promise<{ sessionId: string }> {
-  const origin = headers().get('origin') || 'http://localhost:9002';
+  const headersList = await headers();
+  const origin = headersList.get('origin') || 'http://localhost:9002';
 
   const line_items = items.map((item) => {
     return {
