@@ -23,7 +23,9 @@ import { Star } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const collectionsPlugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
   const testimonialsPlugin = useRef(
     Autoplay({ delay: 3500, stopOnInteraction: true })
   );
@@ -86,13 +88,13 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
-              plugins={[plugin.current]}
+              plugins={[collectionsPlugin.current]}
               opts={{
                 align: 'start',
                 loop: true,
               }}
-              onMouseEnter={plugin.current.stop}
-              onMouseLeave={plugin.current.reset}
+              onMouseEnter={collectionsPlugin.current.stop}
+              onMouseLeave={collectionsPlugin.current.reset}
               className="mx-auto w-full max-w-sm md:max-w-3xl lg:max-w-5xl"
             >
               <CarouselContent>
