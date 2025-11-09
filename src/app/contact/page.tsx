@@ -179,7 +179,7 @@ export default function ContactPage() {
                   <FormField
                     control={form.control}
                     name="image"
-                    render={({ field: { onChange, value, ...rest } }) => (
+                    render={({ field: { onChange } }) => (
                       <FormItem>
                         <FormLabel>Attach Image (Optional)</FormLabel>
                         <FormControl>

@@ -51,7 +51,7 @@ export interface InternalQuery extends Query<DocumentData> {
  * The Firestore CollectionReference or Query. Waits if null/undefined.
  * @returns {UseCollectionResult<T>} Object with data, isLoading, error.
  */
-export function useCollection<T = any>(
+export function useCollection<T = unknown>(
     memoizedTargetRefOrQuery: ((CollectionReference<DocumentData> | Query<DocumentData>) & {__memo?: boolean})  | null | undefined,
 ): UseCollectionResult<T> {
   type ResultItemType = WithId<T>;
@@ -84,21 +84,34 @@ export function useCollection<T = any>(
         setError(null);
         setIsLoading(false);
       },
-      (error: FirestoreError) => {
-        // This logic extracts the path from either a ref or a query
-        const path: string =
-          memoizedTargetRefOrQuery.type === 'collection'
-            ? (memoizedTargetRefOrQuery as CollectionReference).path
-            : (memoizedTargetRefOrQuery as unknown as InternalQuery)._query.path.canonicalString()
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Firebase error parameter required by onSnapshot signature
+      (_firebaseError: FirestoreError) => {
+        // Attempt to extract a friendly path for error context.
+        // Accessing private SDK internals (_query) is brittle across versions,
+        // so attempt a few safe strategies and fall back to a generic message.
+        let path = 'unknown';
+        try {
+          // CollectionReference has a 'path' string property.
+          // Query/CollectionReference from the SDK may not expose a 'type' field,
+          // so check for the presence of 'path' first.
+          const ref = memoizedTargetRefOrQuery as unknown as Record<string, unknown>;
+          if (ref?.path) {
+            path = ref.path as string;
+          } else if ((ref as unknown as { _query?: { path?: { canonicalString?: () => string } } })?._query?.path?.canonicalString) {
+            path = (ref as unknown as { _query: { path: { canonicalString: () => string } } })._query.path.canonicalString();
+          }
+        } catch {
+          // ignore and use 'unknown' path
+        }
 
         const contextualError = new FirestorePermissionError({
           operation: 'list',
           path,
-        })
+        });
 
-        setError(contextualError)
-        setData(null)
-        setIsLoading(false)
+        setError(contextualError);
+        setData(null);
+        setIsLoading(false);
 
         // trigger global error propagation
         errorEmitter.emit('permission-error', contextualError);

@@ -9,19 +9,11 @@ import { useToast } from '@/hooks/use-toast';
 // Authentication is handled by Clerk
 export function initializeFirebase() {
   if (!getApps().length) {
-    let firebaseApp;
-    try {
-      // Attempt to initialize via Firebase App Hosting environment variables
-      firebaseApp = initializeApp();
-    } catch (e) {
-      // Only warn in production because it's normal to use the firebaseConfig to initialize
-      // during development
-      if (process.env.NODE_ENV === "production") {
-        console.warn('Automatic initialization failed. Falling back to firebase config object.', e);
-      }
-      firebaseApp = initializeApp(firebaseConfig);
-    }
-
+    // Always initialize explicitly with the provided firebaseConfig object.
+    // Relying on environment-provided credentials can be fragile in local dev
+    // and inside some hosting environments. Using the explicit config keeps
+    // behavior deterministic.
+    const firebaseApp = initializeApp(firebaseConfig);
     return getSdks(firebaseApp);
   }
 

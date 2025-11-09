@@ -107,10 +107,7 @@ export default async function SignUpPage({
               font-weight: 600;
             }
           `}</style>
-          <SignUp 
-            appearance={{
-              baseTheme: "light",
-            }}
+          <SignUp
             signInUrl="/login"
             afterSignUpUrl={redirectUrl}
           />

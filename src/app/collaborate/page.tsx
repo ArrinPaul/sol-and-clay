@@ -108,7 +108,7 @@ export default function CollaboratePage() {
                 <CardContent>
                   <p className="mb-6 text-muted-foreground">
                     Tell us about your work. Our team will review your
-                    submission to see if we're a good fit.
+                    submission to see if we&apos;re a good fit.
                   </p>
                   <CollaborateForm />
                 </CardContent>

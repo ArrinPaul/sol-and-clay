@@ -46,7 +46,7 @@ const ShippingPage: FC = () => {
           <div>
             <h2 className="font-headline text-2xl font-semibold text-foreground">Return Policy</h2>
             <div className="prose prose-lg text-muted-foreground mt-4 max-w-none">
-              <p>We want you to love your Sol & Clay pieces. If you're not completely satisfied, we accept returns on most items within 30 days of delivery.</p>
+              <p>We want you to love your Sol & Clay pieces. If you&apos;re not completely satisfied, we accept returns on most items within 30 days of delivery.</p>
               <p>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
                 <p>Please <Link href="/contact">contact us</Link> to initiate a return. Please note that customers are responsible for return shipping costs. Sale items and custom orders are final sale and cannot be returned.</p>
             </div>

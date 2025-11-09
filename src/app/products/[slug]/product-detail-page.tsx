@@ -33,7 +33,7 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore';
-import type { Product } from '@/lib/types';
+import type { Product, CartItem } from '@/lib/types';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { getStripe } from '@/lib/stripe';
 import { WithId } from '@/firebase';
@@ -117,8 +117,9 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
 
     setIsBuying(true);
 
-    const item: WithId<any> = {
+    const item: WithId<CartItem> = {
       id: product.id,
+      productId: product.id,
       title: product.title,
       price: product.price,
       quantity: 1,
@@ -137,13 +138,13 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
       if (error) {
         throw error;
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : 'Could not proceed to checkout. Please try again.';
       console.error('Checkout error:', error);
       toast({
         variant: 'destructive',
         title: 'Checkout Failed',
-        description:
-          error.message || 'Could not proceed to checkout. Please try again.',
+        description: errorMsg,
       });
     } finally {
       setIsBuying(false);
@@ -155,7 +156,6 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   const renderAvailability = () => {
     if (product.stock > 10) {
       return (
-        // @ts-expect-error - Badge correctly accepts className through HTMLAttributes
         <Badge variant="secondary" className="bg-green-100 text-green-800">
           In Stock
         </Badge>
@@ -163,7 +163,6 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
     }
     if (product.stock > 0) {
       return (
-        // @ts-expect-error - Badge correctly accepts className through HTMLAttributes
         <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
           Low Stock
         </Badge>

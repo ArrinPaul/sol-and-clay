@@ -250,7 +250,7 @@ export default function Home() {
                             ))}
                           </div>
                           <p className="mt-4 flex-grow text-muted-foreground">
-                            "{testimonial.quote}"
+                            &ldquo;{testimonial.quote}&rdquo;
                           </p>
                           <footer className="mt-4 font-semibold">
                             - {testimonial.author}

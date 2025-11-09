@@ -1,5 +1,4 @@
 
-'use client';
 
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -7,7 +6,7 @@ import { FadeIn } from '@/components/utils/fade-in';
 import { Sparkles, Users, Target } from 'lucide-react';
 import { Timeline } from '@/components/ui/timeline';
 
-const metadata = {
+export const metadata = {
   title: 'Our Story - Sol & Clay',
   description:
     'Sol & Clay builds collections around strong visual ideas. Each piece is handcrafted and carries a story of design and touch.',
@@ -183,7 +182,7 @@ export default function AboutPage() {
               Clay → Shape → Glaze → Fire → Home. From sketch to kiln, we work
               with artisans who transform ideas into timeless décor. Our
               process is a dialogue between design and material, ensuring every
-              piece reflects our shared vision and the maker's unique touch.
+              piece reflects our shared vision and the maker&apos;s unique touch.
             </p>
           </FadeIn>
         </div>

@@ -4,20 +4,11 @@ import 'dotenv/config';
 import Stripe from 'stripe';
 import { headers } from 'next/headers';
 import { WithId } from '@/firebase';
+import type { CartItem } from '@/lib/types';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2024-06-20',
 });
-
-// Define the type for a cart item
-interface CartItem {
-    id: string;
-    title: string;
-    price: number;
-    quantity: number;
-    imageId: string;
-    slug: string;
-}
 
 export async function createCheckoutSession(
   items: WithId<CartItem>[]

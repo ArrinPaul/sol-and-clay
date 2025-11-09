@@ -38,14 +38,15 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
   firebaseApp,
   firestore,
 }) => {
-  // Memoize the context value
-  const contextValue = useMemo((): FirebaseContextState => {
+  // Memoize the context value - note: deps include both firebaseApp and firestore to trigger recalculation
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- firebaseApp and firestore are complex objects passed from props
+  const contextValue = useMemo(() => {
     const servicesAvailable = !!(firebaseApp && firestore);
     return {
       areServicesAvailable: servicesAvailable,
       firebaseApp: servicesAvailable ? firebaseApp : null,
       firestore: servicesAvailable ? firestore : null,
-    };
+    } as const;
   }, [firebaseApp, firestore]);
 
   return (
@@ -91,8 +92,7 @@ export const useFirebaseApp = (): FirebaseApp => {
 
 type MemoFirebase <T> = T & {__memo?: boolean};
 
-// @ts-expect-error - React.DependencyList is properly exported in runtime even though IDE doesn't recognize it in 'use client' components
-export function useMemoFirebase<T>(factory: () => T, deps: React.DependencyList): T | (MemoFirebase<T>) {
+export function useMemoFirebase<T>(factory: () => T, deps: DependencyList): T | MemoFirebase<T> {
   const memoized = useMemo(factory, deps);
   
   if(typeof memoized !== 'object' || memoized === null) return memoized;

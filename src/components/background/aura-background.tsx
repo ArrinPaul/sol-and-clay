@@ -55,19 +55,6 @@ export function AuraBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
 
-  const colors =
-    theme === 'dark'
-      ? [
-          'hsl(20, 38%, 14%, 0.2)', // Deep Clay Brown
-          'hsl(17, 26%, 28%, 0.2)', // Warm Walnut
-          'hsl(183, 55%, 73%, 0.05)', // Soft Teal
-        ]
-      : [
-          'hsl(20, 38%, 14%, 0.05)', // Deep Clay Brown
-          'hsl(28, 33%, 96%, 0.1)', // Off-white
-          'hsl(0, 73%, 88%, 0.1)', // Pastel Pink
-        ];
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -75,9 +62,22 @@ export function AuraBackground() {
     const context = canvas.getContext('2d', { willReadFrequently: false });
     if (!context) return;
 
+    const colors =
+      theme === 'dark'
+        ? [
+            'hsl(20, 38%, 14%, 0.2)', // Deep Clay Brown
+            'hsl(17, 26%, 28%, 0.2)', // Warm Walnut
+            'hsl(183, 55%, 73%, 0.05)', // Soft Teal
+          ]
+        : [
+            'hsl(20, 38%, 14%, 0.05)', // Deep Clay Brown
+            'hsl(28, 33%, 96%, 0.1)', // Off-white
+            'hsl(0, 73%, 88%, 0.1)', // Pastel Pink
+          ];
+
     let animationFrameId: number;
     let orbs: Orb[] = [];
-    let reducedMotion = window.matchMedia(
+    const reducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
@@ -116,7 +116,7 @@ export function AuraBackground() {
       window.cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [theme, colors]);
+  }, [theme]);
 
   return (
     <canvas

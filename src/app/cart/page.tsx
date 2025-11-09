@@ -25,6 +25,7 @@ import { useUser } from '@clerk/nextjs';
 import { collection, doc } from 'firebase/firestore';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { getStripe } from '@/lib/stripe';
+import type { CartItem } from '@/lib/types';
 
 export default function CartPage() {
   const { user, isLoaded } = useUser();
@@ -39,7 +40,7 @@ export default function CartPage() {
     [user, firestore]
   );
   const { data: cartItems, isLoading: isCartLoading } =
-    useCollection(cartItemsRef);
+    useCollection<CartItem>(cartItemsRef);
 
   const subtotal =
     cartItems?.reduce(
@@ -76,12 +77,13 @@ export default function CartPage() {
       if (error) {
         throw error;
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : 'Could not proceed to checkout. Please try again.';
       console.error('Checkout error:', error);
       toast({
         variant: 'destructive',
         title: 'Checkout Failed',
-        description: error.message || 'Could not proceed to checkout. Please try again.',
+        description: errorMsg,
       });
     }
   };

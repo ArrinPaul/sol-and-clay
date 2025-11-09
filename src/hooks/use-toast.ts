@@ -24,6 +24,8 @@ const actionTypes = {
   DISMISS_TOAST: "DISMISS_TOAST",
   REMOVE_TOAST: "REMOVE_TOAST",
 } as const
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used in Action type discriminator
+type ActionType = typeof actionTypes
 
 let count = 0
 
@@ -31,8 +33,6 @@ function genId() {
   count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()
 }
-
-type ActionType = typeof actionTypes
 
 type Action =
   | {

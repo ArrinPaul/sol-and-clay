@@ -25,6 +25,15 @@ export interface Product {
   images: string[];
 }
 
+export interface CartItem {
+  productId: string;
+  title: string;
+  price: number;
+  quantity: number;
+  imageId: string;
+  slug: string;
+}
+
 export interface Maker {
   name: string;
   bio: string;

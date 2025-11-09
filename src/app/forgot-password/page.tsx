@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { FadeIn } from '@/components/utils/fade-in';
 import { Logo } from '@/components/logo';
 import { Loader2 } from 'lucide-react';
