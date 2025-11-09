@@ -29,43 +29,81 @@ export default async function LoginPage({
   return (
     <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2">
       <div className="flex items-center justify-center py-12 px-4">
-        <SignIn 
-          appearance={{
-            baseTheme: "light",
-            elements: {
-              rootBox: "mx-auto w-full max-w-md",
-              card: "bg-background shadow-2xl border-2 border-border rounded-xl",
-              headerTitle: "font-headline text-3xl font-bold text-primary",
-              headerSubtitle: "text-secondary-foreground",
-              socialButtonsBlockButton: "border-2 border-border bg-secondary/50 hover:bg-secondary text-foreground transition-all",
-              socialButtonsBlockButtonText: "text-foreground font-semibold",
-              dividerLine: "bg-border",
-              dividerText: "text-muted-foreground font-semibold",
-              formFieldLabel: "text-foreground font-semibold",
-              formFieldInput: "bg-secondary/30 border-2 border-border text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary rounded-lg",
-              formButtonPrimary: "bg-primary text-primary-foreground font-bold shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all rounded-lg",
-              footerActionLink: "text-primary hover:text-primary/80 font-semibold",
-              footerActionText: "text-muted-foreground",
-              identifierInputField: "bg-secondary/30 border-2 border-border text-foreground placeholder-muted-foreground focus:border-primary",
-            },
-            variables: {
-              colorPrimary: "#332219",
-              colorBackground: "#F8F4F0",
-              colorInputBackground: "#F8F4F0",
-              colorInputBorder: "#E5E0DB",
-              colorInputText: "#332219",
-              colorText: "#332219",
-              colorTextSecondary: "#5A3E36",
-              colorDanger: "#dc2626",
-              colorSuccess: "#16a34a",
-              colorWarning: "#d97706",
-              colorShimmer: "#F7C7C7",
-              fontFamily: "Inter, sans-serif",
+        <div className="w-full max-w-md">
+          <style>{`
+            .clerk-container {
+              background: hsl(var(--background));
+              border: 2px solid hsl(var(--border));
+              border-radius: 0.75rem;
+              box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             }
-          }}
-          signUpUrl="/signup"
-          afterSignInUrl={redirectUrl}
-        />
+            .clerk-element__title {
+              font-family: "Cormorant Garamond", serif;
+              color: hsl(var(--primary));
+              font-size: 1.875rem;
+              font-weight: bold;
+            }
+            .clerk-element__subtitle {
+              color: hsl(var(--secondary-foreground));
+            }
+            .clerk-element__label {
+              color: hsl(var(--foreground));
+              font-weight: 600;
+            }
+            .clerk-element__input,
+            .clerk-element__textarea {
+              background-color: hsl(var(--secondary)) / 0.3;
+              border: 2px solid hsl(var(--border));
+              color: hsl(var(--foreground));
+              border-radius: 0.5rem;
+            }
+            .clerk-element__input::placeholder,
+            .clerk-element__textarea::placeholder {
+              color: hsl(var(--muted-foreground));
+            }
+            .clerk-element__button--primary {
+              background-color: hsl(var(--primary));
+              color: hsl(var(--primary-foreground));
+              font-weight: bold;
+              border-radius: 0.5rem;
+              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+            .clerk-element__button--primary:hover {
+              background-color: hsl(var(--primary) / 0.9);
+              box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            }
+            .clerk-element__button--secondary {
+              border: 2px solid hsl(var(--border));
+              background-color: hsl(var(--secondary)) / 0.5;
+              color: hsl(var(--foreground));
+              border-radius: 0.5rem;
+            }
+            .clerk-element__button--secondary:hover {
+              background-color: hsl(var(--secondary));
+            }
+            .clerk-element__link {
+              color: hsl(var(--primary));
+              font-weight: 600;
+            }
+            .clerk-element__link:hover {
+              color: hsl(var(--primary) / 0.8);
+            }
+            .clerk-element__divider {
+              background-color: hsl(var(--border));
+            }
+            .clerk-element__divider__text {
+              color: hsl(var(--muted-foreground));
+              font-weight: 600;
+            }
+          `}</style>
+          <SignIn 
+            appearance={{
+              baseTheme: "light",
+            }}
+            signUpUrl="/signup"
+            afterSignInUrl={redirectUrl}
+          />
+        </div>
       </div>
       <div className="hidden bg-muted lg:block relative">
         {bgImage && (
