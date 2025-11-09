@@ -1,14 +1,97 @@
 
+'use client';
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
 import { Sparkles, Users, Target } from 'lucide-react';
+import { Timeline } from '@/components/ui/timeline';
 
-export const metadata = {
+const metadata = {
   title: 'Our Story - Sol & Clay',
   description:
     'Sol & Clay builds collections around strong visual ideas. Each piece is handcrafted and carries a story of design and touch.',
 };
+
+const timelineData = [
+    {
+      title: "The Idea",
+      content: (
+        <div>
+          <p className="text-muted-foreground text-sm md:text-base font-normal mb-8">
+            Sol & Clay was born from a simple desire: to bring soulful, handcrafted objects into modern homes. It started with a sketchbook, a love for earthy materials, and a vision to create a platform for artisans to share their craft.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            <Image
+              src="https://picsum.photos/seed/idea-1/500/500"
+              alt="Sketchbook with pottery designs"
+              width={500}
+              height={500}
+              data-ai-hint="pottery sketch"
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+            />
+            <Image
+              src="https://picsum.photos/seed/idea-2/500/500"
+              alt="Pile of raw clay"
+              width={500}
+              height={500}
+              data-ai-hint="raw clay"
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "First Partnerships",
+      content: (
+        <div>
+          <p className="text-muted-foreground text-sm md:text-sm font-normal mb-8">
+            We sought out our first maker partners—artisans who shared our passion for quality and design. These initial collaborations helped shape our first collection and defined the collaborative spirit of Sol & Clay.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+             <Image
+              src="https://picsum.photos/seed/partner-1/500/500"
+              alt="Two artisans collaborating in a studio"
+              width={500}
+              height={500}
+              data-ai-hint="artisan collaboration"
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+            />
+             <Image
+              src="https://picsum.photos/seed/partner-2/500/500"
+              alt="Close-up of hands working on pottery"
+              width={500}
+              height={500}
+              data-ai-hint="hands pottery"
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "The Launch",
+      content: (
+        <div>
+          <p className="text-muted-foreground text-sm md:text-sm font-normal mb-8">
+            With our first collection ready, we launched the Sol & Clay website. It was the culmination of countless hours of design, craft, and collaboration, finally ready to be shared with the world.
+          </p>
+          <div className="grid grid-cols-1 gap-4">
+             <Image
+              src="https://picsum.photos/seed/launch-1/1000/500"
+              alt="Beautifully arranged pottery from the first collection"
+              width={1000}
+              height={500}
+              data-ai-hint="pottery collection"
+              className="rounded-lg object-cover h-40 md:h-60 w-full shadow-md"
+            />
+          </div>
+        </div>
+      ),
+    },
+];
+
 
 export default function AboutPage() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'about-hero');
@@ -95,6 +178,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <Timeline data={timelineData} />
 
       <section className="bg-secondary/30 py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
