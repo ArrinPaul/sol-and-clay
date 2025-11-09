@@ -19,24 +19,16 @@ const timelineData = [
       content: (
         <div>
           <p className="text-muted-foreground text-sm md:text-base font-normal mb-8">
-            Sol & Clay was born from a simple desire: to bring soulful, handcrafted objects into modern homes. It started with a sketchbook, a love for earthy materials, and a vision to create a platform for artisans to share their craft.
+            Sol & Clay was born from a love for earthy materials and a vision for soulful, modern homes. It all started with sketches of handcrafted objects and a desire to give artisans a platform to share their craft.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <Image
-              src="https://picsum.photos/seed/idea-1/500/500"
+              src="https://picsum.photos/seed/idea-1/1000/500"
               alt="Sketchbook with pottery designs"
-              width={500}
+              width={1000}
               height={500}
               data-ai-hint="pottery sketch"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
-            />
-            <Image
-              src="https://picsum.photos/seed/idea-2/500/500"
-              alt="Pile of raw clay"
-              width={500}
-              height={500}
-              data-ai-hint="raw clay"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
+              className="rounded-lg object-cover h-40 md:h-60 w-full shadow-md"
             />
           </div>
         </div>
