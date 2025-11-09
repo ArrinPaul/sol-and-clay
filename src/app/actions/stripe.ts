@@ -1,6 +1,6 @@
 
 'use server';
-
+import 'dotenv/config';
 import Stripe from 'stripe';
 import { headers } from 'next/headers';
 import { WithId } from '@/firebase';
