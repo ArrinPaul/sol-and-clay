@@ -23,6 +23,10 @@ import { Star } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const testimonialsPlugin = useRef(
+    Autoplay({ delay: 3500, stopOnInteraction: true })
+  );
 
   return (
     <div className="flex flex-col">
@@ -82,16 +86,13 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
-              plugins={[
-                Autoplay({
-                  delay: 2000,
-                  stopOnInteraction: true,
-                }),
-              ]}
+              plugins={[plugin.current]}
               opts={{
                 align: 'start',
                 loop: true,
               }}
+              onMouseEnter={plugin.current.stop}
+              onMouseLeave={plugin.current.reset}
               className="mx-auto w-full max-w-sm md:max-w-3xl lg:max-w-5xl"
             >
               <CarouselContent>
@@ -223,16 +224,13 @@ export default function Home() {
           </FadeIn>
           <FadeIn className="mt-12">
             <Carousel
-              plugins={[
-                Autoplay({
-                  delay: 3500,
-                  stopOnInteraction: true,
-                }),
-              ]}
+              plugins={[testimonialsPlugin.current]}
               opts={{
                 align: 'start',
                 loop: true,
               }}
+              onMouseEnter={testimonialsPlugin.current.stop}
+              onMouseLeave={testimonialsPlugin.current.reset}
               className="mx-auto w-full max-w-sm md:max-w-2xl lg:max-w-4xl"
             >
               <CarouselContent>
