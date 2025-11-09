@@ -60,7 +60,9 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
 
   const handleAddToCart = async () => {
     if (!user || !cartRef) {
-      router.push('/login');
+      // Store current page URL to redirect back after login
+      const currentUrl = window.location.pathname;
+      router.push(`/login?redirect_url=${encodeURIComponent(currentUrl)}`);
       return;
     }
 
@@ -107,7 +109,9 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
 
   const handleBuyNow = async () => {
     if (!user) {
-      router.push('/login');
+      // Store current page URL to redirect back after login
+      const currentUrl = window.location.pathname;
+      router.push(`/login?redirect_url=${encodeURIComponent(currentUrl)}`);
       return;
     }
 

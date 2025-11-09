@@ -1,4 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
 
 // Define public routes that don't require authentication
 const isPublicRoute = createRouteMatcher([
@@ -27,10 +28,20 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  // Protect routes that require authentication
-  if (isProtectedRoute(request)) {
-    await auth.protect();
+  const { userId } = await auth();
+  const { pathname, search } = request.nextUrl;
+
+  // If accessing a protected route without authentication
+  if (isProtectedRoute(request) && !userId) {
+    // Store the original URL (with query params) to redirect back after login
+    const fullPath = pathname + search;
+    const signInUrl = new URL('/login', request.url);
+    signInUrl.searchParams.set('redirect_url', fullPath);
+    return NextResponse.redirect(signInUrl);
   }
+
+  // No need to call auth.protect() here - we already checked userId above
+  // This prevents double authentication checks
 });
 
 export const config = {

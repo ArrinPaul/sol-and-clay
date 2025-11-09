@@ -10,8 +10,13 @@ export const metadata = {
   description: 'Create a new account to start shopping and collaborating with Sol & Clay.',
 };
 
-export default async function SignUpPage() {
+export default async function SignUpPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ redirect_url?: string }>;
+}) {
   const { userId } = await auth();
+  const params = await searchParams;
   
   // If user is already logged in, redirect to home
   if (userId) {
@@ -19,6 +24,7 @@ export default async function SignUpPage() {
   }
 
   const bgImage = PlaceHolderImages.find((img) => img.id === 'signup-bg');
+  const redirectUrl = params.redirect_url ? decodeURIComponent(params.redirect_url) : '/';
 
   return (
     <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2">
@@ -33,42 +39,43 @@ export default async function SignUpPage() {
           />
         )}
       </div>
-      <div className="flex items-center justify-center py-12">
+      <div className="flex items-center justify-center py-12 px-4">
         <SignUp 
           appearance={{
             baseTheme: "light",
             elements: {
               rootBox: "mx-auto w-full max-w-md",
-              card: "bg-white shadow-2xl border-2 border-orange-200 rounded-xl",
-              headerTitle: "font-headline text-3xl font-bold text-amber-900",
-              headerSubtitle: "text-amber-700",
-              socialButtonsBlockButton: "border-2 border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 transition-all",
-              socialButtonsBlockButtonText: "text-amber-900 font-semibold",
-              dividerLine: "bg-amber-200",
-              dividerText: "text-amber-700 font-semibold",
-              formFieldLabel: "text-amber-900 font-semibold",
-              formFieldInput: "bg-orange-50 border-2 border-orange-200 text-amber-900 placeholder-amber-600 focus:border-amber-600 focus:ring-amber-500 rounded-lg",
-              formButtonPrimary: "bg-amber-900 text-white font-bold shadow-lg hover:bg-amber-800 hover:shadow-lg transition-all rounded-lg",
-              footerActionLink: "text-amber-700 hover:text-amber-900 font-semibold",
-              footerActionText: "text-amber-600",
-              identifierInputField: "bg-orange-50 border-2 border-orange-200 text-amber-900 placeholder-amber-600 focus:border-amber-600",
+              card: "bg-background shadow-2xl border-2 border-border rounded-xl",
+              headerTitle: "font-headline text-3xl font-bold text-primary",
+              headerSubtitle: "text-secondary-foreground",
+              socialButtonsBlockButton: "border-2 border-border bg-secondary/50 hover:bg-secondary text-foreground transition-all",
+              socialButtonsBlockButtonText: "text-foreground font-semibold",
+              dividerLine: "bg-border",
+              dividerText: "text-muted-foreground font-semibold",
+              formFieldLabel: "text-foreground font-semibold",
+              formFieldInput: "bg-secondary/30 border-2 border-border text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary rounded-lg",
+              formButtonPrimary: "bg-primary text-primary-foreground font-bold shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all rounded-lg",
+              footerActionLink: "text-primary hover:text-primary/80 font-semibold",
+              footerActionText: "text-muted-foreground",
+              identifierInputField: "bg-secondary/30 border-2 border-border text-foreground placeholder-muted-foreground focus:border-primary",
             },
             variables: {
-              colorPrimary: "#5a3e36",
-              colorBackground: "#f8f4f0",
-              colorInputBackground: "#fff7ed",
-              colorInputBorder: "#fed7aa",
+              colorPrimary: "#332219",
+              colorBackground: "#F8F4F0",
+              colorInputBackground: "#F8F4F0",
+              colorInputBorder: "#E5E0DB",
               colorInputText: "#332219",
-              colorText: "#5a3e36",
-              colorTextSecondary: "#92400e",
+              colorText: "#332219",
+              colorTextSecondary: "#5A3E36",
               colorDanger: "#dc2626",
               colorSuccess: "#16a34a",
               colorWarning: "#d97706",
-              colorShimmer: "#fbbf24",
-              fontFamily: "ui-rounded, sans-serif",
+              colorShimmer: "#F7C7C7",
+              fontFamily: "Inter, sans-serif",
             }
           }}
           signInUrl="/login"
+          afterSignUpUrl={redirectUrl}
         />
       </div>
     </div>
