@@ -24,10 +24,10 @@ import { Star } from 'lucide-react';
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
   const collectionsPlugin = useRef(
-    Autoplay({ delay: 2500, stopOnInteraction: true })
+    Autoplay({ delay: 3500, stopOnInteraction: true })
   );
   const testimonialsPlugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
+    Autoplay({ delay: 5000, stopOnInteraction: true })
   );
 
   return (
