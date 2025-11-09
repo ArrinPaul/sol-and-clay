@@ -2,7 +2,6 @@
 import { notFound } from 'next/navigation';
 import { collections, products as allProducts } from '@/lib/data';
 import CollectionDetailPage from './collection-detail-page';
-import { use } from 'react';
 
 type Props = {
   params: { slug: string };
