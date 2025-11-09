@@ -84,7 +84,7 @@ export default function Home() {
             <Carousel
               plugins={[
                 Autoplay({
-                  delay: 3000,
+                  delay: 2000,
                   stopOnInteraction: true,
                 }),
               ]}
@@ -225,7 +225,7 @@ export default function Home() {
             <Carousel
               plugins={[
                 Autoplay({
-                  delay: 5000,
+                  delay: 3500,
                   stopOnInteraction: true,
                 }),
               ]}
