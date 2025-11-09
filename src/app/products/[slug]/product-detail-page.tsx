@@ -1,3 +1,4 @@
+
 'use client';
 
 import { type FC, useState } from 'react';
@@ -33,6 +34,9 @@ import {
   writeBatch,
 } from 'firebase/firestore';
 import type { Product } from '@/lib/types';
+import { createCheckoutSession } from '@/app/actions/stripe';
+import { getStripe } from '@/lib/stripe';
+import { WithId } from '@/firebase';
 
 type Props = {
   product: Product;
@@ -44,6 +48,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   const router = useRouter();
   const { toast } = useToast();
   const [isAdding, setIsAdding] = useState(false);
+  const [isBuying, setIsBuying] = useState(false);
 
   const cartRef = useMemoFirebase(
     () =>
@@ -97,6 +102,47 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
       });
     } finally {
       setIsAdding(false);
+    }
+  };
+
+  const handleBuyNow = async () => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    setIsBuying(true);
+
+    const item: WithId<any> = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity: 1,
+      imageId: product.images[0],
+      slug: product.slug,
+    };
+
+    try {
+      const { sessionId } = await createCheckoutSession([item]);
+      const stripe = await getStripe();
+      if (!stripe) {
+        throw new Error('Stripe.js not loaded');
+      }
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error: any) {
+      console.error('Checkout error:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Checkout Failed',
+        description:
+          error.message || 'Could not proceed to checkout. Please try again.',
+      });
+    } finally {
+      setIsBuying(false);
     }
   };
 
@@ -217,9 +263,15 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
                 size="lg"
                 variant="secondary"
                 className="flex-1"
-                disabled={product.stock === 0}
+                disabled={isBuying || product.stock === 0}
+                onClick={handleBuyNow}
               >
-                <Zap className="mr-2" /> Buy Now
+                {isBuying ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Zap className="mr-2" />
+                )}
+                {isBuying ? 'Processing...' : 'Buy Now'}
               </Button>
             </div>
 
