@@ -1,5 +1,6 @@
 'use client';
 
+import { use, type FC } from 'react';
 import { notFound, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -30,11 +31,12 @@ import { collection, doc, getDocs, query, where } from 'firebase/firestore';
 import { useState } from 'react';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export default function ProductDetailPage({ params }: Props) {
-  const product = allProducts.find((p) => p.slug === params.slug);
+const ProductDetailPage: FC<Props> = ({ params }) => {
+  const { slug } = use(params);
+  const product = allProducts.find((p) => p.slug === slug);
   const { user } = useUser();
   const firestore = useFirestore();
   const router = useRouter();
@@ -283,3 +285,4 @@ export default function ProductDetailPage({ params }: Props) {
     </div>
   );
 }
+export default ProductDetailPage;

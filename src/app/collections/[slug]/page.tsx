@@ -1,4 +1,6 @@
 
+'use client';
+import { use, type FC } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,26 +11,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: Props) {
-  const collection = collections.find((c) => c.slug === params.slug);
-
-  if (!collection) {
-    return {
-      title: 'Collection Not Found',
-    };
-  }
-
-  return {
-    title: `${collection.title} - Sol & Clay`,
-    description: collection.story,
-  };
-}
-
-export default function CollectionSubPage({ params }: Props) {
-  const collection = collections.find((c) => c.slug === params.slug);
+const CollectionSubPage: FC<Props> = ({ params }) => {
+  const { slug } = use(params);
+  const collection = collections.find((c) => c.slug === slug);
 
   if (!collection) {
     notFound();
@@ -144,7 +132,8 @@ export default function CollectionSubPage({ params }: Props) {
       </section>
     </div>
   );
-}
+};
+export default CollectionSubPage;
 
 export async function generateStaticParams() {
   return collections.map((collection) => ({
