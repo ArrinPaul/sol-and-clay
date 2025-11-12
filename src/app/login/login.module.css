@@ -1,0 +1,162 @@
+.clerkContainer {
+  background: hsl(var(--background));
+  border: 2px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.clerkTitle {
+  font-family: "Cormorant Garamond", serif;
+  color: hsl(var(--primary));
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.clerkSubtitle {
+  color: hsl(var(--secondary-foreground));
+}
+
+.clerkLabel {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+
+.clerkInput,
+.clerkTextarea {
+  background-color: hsl(var(--secondary)) / 0.3;
+  border: 2px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  border-radius: 0.5rem;
+}
+
+.clerkInput::placeholder,
+.clerkTextarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.clerkButtonPrimary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: bold;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.clerkButtonPrimary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.clerkButtonSecondary {
+  border: 2px solid hsl(var(--border));
+  background-color: hsl(var(--secondary)) / 0.5;
+  color: hsl(var(--foreground));
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.clerkButtonSecondary:hover {
+  background-color: hsl(var(--secondary));
+}
+
+.clerkLink {
+  color: hsl(var(--primary));
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.clerkLink:hover {
+  color: hsl(var(--primary) / 0.8);
+}
+
+.clerkDivider {
+  background-color: hsl(var(--border));
+}
+
+.clerkDividerText {
+  color: hsl(var(--muted-foreground));
+  font-weight: 600;
+}
+
+/* Apply to Clerk components via global styles */
+:global(.clerk-container) {
+  background: hsl(var(--background));
+  border: 2px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+:global(.clerk-element__title) {
+  font-family: "Cormorant Garamond", serif;
+  color: hsl(var(--primary));
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+:global(.clerk-element__subtitle) {
+  color: hsl(var(--secondary-foreground));
+}
+
+:global(.clerk-element__label) {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+
+:global(.clerk-element__input),
+:global(.clerk-element__textarea) {
+  background-color: hsl(var(--secondary)) / 0.3;
+  border: 2px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  border-radius: 0.5rem;
+}
+
+:global(.clerk-element__input::placeholder),
+:global(.clerk-element__textarea::placeholder) {
+  color: hsl(var(--muted-foreground));
+}
+
+:global(.clerk-element__button--primary) {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: bold;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+:global(.clerk-element__button--primary:hover) {
+  background-color: hsl(var(--primary) / 0.9);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+:global(.clerk-element__button--secondary) {
+  border: 2px solid hsl(var(--border));
+  background-color: hsl(var(--secondary)) / 0.5;
+  color: hsl(var(--foreground));
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+:global(.clerk-element__button--secondary:hover) {
+  background-color: hsl(var(--secondary));
+}
+
+:global(.clerk-element__link) {
+  color: hsl(var(--primary));
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+:global(.clerk-element__link:hover) {
+  color: hsl(var(--primary) / 0.8);
+}
+
+:global(.clerk-element__divider) {
+  background-color: hsl(var(--border));
+}
+
+:global(.clerk-element__divider__text) {
+  color: hsl(var(--muted-foreground));
+  font-weight: 600;
+}
