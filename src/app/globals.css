@@ -5,77 +5,77 @@
 
 @layer base {
   :root {
-    --background: 28 33% 96%; /* Off-White: #F8F4F0 */
-    --foreground: 20 38% 14%; /* Deep Clay Brown: #332219 */
+    --background: 28 35% 98%; /* Softer Off-White: #FAF7F4 */
+    --foreground: 25 30% 28%; /* Warm Medium Brown: #614D3F */
 
-    --card: 28 33% 96%;
-    --card-foreground: 20 38% 14%;
+    --card: 28 35% 96%;
+    --card-foreground: 25 30% 28%;
 
-    --popover: 28 33% 96%;
-    --popover-foreground: 20 38% 14%;
+    --popover: 28 35% 96%;
+    --popover-foreground: 25 30% 28%;
 
-    --primary: 20 38% 14%; /* Deep Clay Brown: #332219 */
-    --primary-foreground: 28 33% 96%; /* Off-White: #F8F4F0 */
+    --primary: 30 28% 42%; /* Warm Terra Cotta Brown: #8B6F5C */
+    --primary-foreground: 28 35% 98%; /* Softer Off-White: #FAF7F4 */
 
-    --secondary: 17 26% 28%; /* Warm Walnut Brown: #5A3E36 */
-    --secondary-foreground: 28 33% 96%;
+    --secondary: 25 35% 65%; /* Soft Caramel: #C5A88B */
+    --secondary-foreground: 25 30% 28%;
 
-    --muted: 28 33% 92%;
-    --muted-foreground: 20 38% 34%;
+    --muted: 28 30% 94%;
+    --muted-foreground: 25 25% 45%;
 
-    --accent: 0 73% 88%; /* Soft Pastel Pink: #F7C7C7 */
-    --accent-foreground: 20 38% 14%;
+    --accent: 15 55% 75%; /* Warm Terracotta: #DFB5A0 */
+    --accent-foreground: 25 30% 28%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 28 33% 88%;
-    --input: 28 33% 90%;
-    --ring: 20 38% 14%;
+    --border: 28 25% 90%;
+    --input: 28 25% 92%;
+    --ring: 30 28% 42%;
 
     --radius: 0.5rem;
 
-    --chart-1: 183 55% 73%; /* Soft Teal */
-    --chart-2: 0 73% 88%; /* Pastel Pink */
-    --chart-3: 17 26% 28%; /* Walnut */
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-1: 183 45% 65%; /* Muted Teal */
+    --chart-2: 15 55% 75%; /* Warm Terracotta */
+    --chart-3: 25 35% 65%; /* Soft Caramel */
+    --chart-4: 43 60% 68%;
+    --chart-5: 27 70% 70%;
   }
 
   .dark {
-    --background: 18 30% 12%; /* Umber */
-    --foreground: 28 33% 96%; /* Off-White */
+    --background: 25 28% 16%; /* Softer Dark Brown */
+    --foreground: 28 35% 95%; /* Warm Off-White */
 
-    --card: 18 30% 12%;
-    --card-foreground: 28 33% 96%;
+    --card: 25 25% 20%;
+    --card-foreground: 28 35% 95%;
 
-    --popover: 18 30% 12%;
-    --popover-foreground: 28 33% 96%;
+    --popover: 25 25% 20%;
+    --popover-foreground: 28 35% 95%;
 
-    --primary: 28 33% 96%;
-    --primary-foreground: 18 30% 12%;
+    --primary: 30 35% 55%; /* Warm Caramel */
+    --primary-foreground: 25 28% 16%;
 
-    --secondary: 17 26% 28%;
-    --secondary-foreground: 28 33% 96%;
+    --secondary: 25 30% 35%;
+    --secondary-foreground: 28 35% 95%;
 
-    --muted: 17 26% 20%;
-    --muted-foreground: 28 33% 80%;
+    --muted: 25 20% 25%;
+    --muted-foreground: 28 25% 75%;
     
-    --accent: 0 73% 88%; /* Soft Pastel Pink: #F7C7C7 */
-    --accent-foreground: 20 38% 14%;
+    --accent: 15 50% 65%; /* Warm Terracotta */
+    --accent-foreground: 25 28% 16%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 17 26% 20%;
-    --input: 17 26% 20%;
-    --ring: 28 33% 96%;
+    --border: 25 20% 28%;
+    --input: 25 20% 28%;
+    --ring: 30 35% 55%;
     
-    --chart-1: 183 55% 73%; /* Soft Teal */
-    --chart-2: 0 73% 88%; /* Pastel Pink */
-    --chart-3: 17 26% 40%; /* Walnut */
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: 183 45% 60%; /* Muted Teal */
+    --chart-2: 15 50% 65%; /* Warm Terracotta */
+    --chart-3: 25 30% 45%; /* Medium Brown */
+    --chart-4: 280 55% 60%;
+    --chart-5: 340 65% 55%;
   }
 }
 

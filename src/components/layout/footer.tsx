@@ -16,41 +16,105 @@ const PinterestIcon = ({ className }: { className?: string }) => (
 
 export function Footer() {
   return (
-    <footer className="border-t bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+    <footer className="border-t border-border/50 bg-gradient-to-b from-background to-accent/5">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Brand Section */}
+          <div className="space-y-4">
             <Logo />
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              Artisanal home décor for the modern, soulful home. Every piece tells a story shaped by hands, inspired by earth.
+            </p>
+            <div className="flex items-center space-x-4 pt-4">
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
+                <Instagram className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
+                <PinterestIcon className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
+                <Twitter className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
+                <Github className="h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Shop Links */}
+          <div>
+            <h3 className="font-headline text-lg font-semibold text-foreground mb-4">Shop</h3>
+            <nav className="flex flex-col space-y-3 text-sm">
+              <Link href="/collections" className="text-muted-foreground hover:text-primary transition-colors">
+                All Collections
+              </Link>
+              <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
+                New Arrivals
+              </Link>
+              <Link href="/cart" className="text-muted-foreground hover:text-primary transition-colors">
+                Shopping Cart
+              </Link>
+              <Link href="/checkout" className="text-muted-foreground hover:text-primary transition-colors">
+                Checkout
+              </Link>
+            </nav>
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h3 className="font-headline text-lg font-semibold text-foreground mb-4">Company</h3>
+            <nav className="flex flex-col space-y-3 text-sm">
+              <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                About Us
+              </Link>
+              <Link href="/collaborate" className="text-muted-foreground hover:text-primary transition-colors">
+                Collaborate
+              </Link>
+              <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                Contact
+              </Link>
+              <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">
+                FAQ
+              </Link>
+            </nav>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="font-headline text-lg font-semibold text-foreground mb-4">Stay Connected</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Subscribe to receive updates, access to exclusive deals, and more.
+            </p>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-3 py-2 text-sm rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+              <button className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+                Join
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-border/50">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} Sol & Clay. All rights reserved.
             </p>
-          </div>
-
-          <nav className="flex items-center gap-4 text-sm font-medium">
-            <Link href="/collections" className="text-muted-foreground hover:text-primary">
-              Collections
-            </Link>
-            <Link href="/about" className="text-muted-foreground hover:text-primary">
-              About
-            </Link>
-            <Link href="/contact" className="text-muted-foreground hover:text-primary">
-              Contact
-            </Link>
-          </nav>
-
-          <div className="flex items-center space-x-4">
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Instagram className="h-5 w-5" />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <PinterestIcon className="h-5 w-5" />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Twitter className="h-5 w-5" />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Github className="h-5 w-5" />
-            </Link>
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <Link href="/shipping" className="hover:text-primary transition-colors">
+                Shipping Policy
+              </Link>
+              <Link href="/privacy" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-primary transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>

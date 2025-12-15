@@ -65,14 +65,14 @@ export function AuraBackground() {
     const colors =
       theme === 'dark'
         ? [
-            'hsl(20, 38%, 14%, 0.2)', // Deep Clay Brown
-            'hsl(17, 26%, 28%, 0.2)', // Warm Walnut
-            'hsl(183, 55%, 73%, 0.05)', // Soft Teal
+            'hsl(30, 28%, 42%, 0.15)', // Warm Terra Cotta Brown
+            'hsl(25, 35%, 65%, 0.12)', // Soft Caramel
+            'hsl(183, 45%, 65%, 0.08)', // Muted Teal
           ]
         : [
-            'hsl(20, 38%, 14%, 0.05)', // Deep Clay Brown
-            'hsl(28, 33%, 96%, 0.1)', // Off-white
-            'hsl(0, 73%, 88%, 0.1)', // Pastel Pink
+            'hsl(30, 28%, 42%, 0.06)', // Warm Terra Cotta Brown
+            'hsl(15, 55%, 75%, 0.08)', // Warm Terracotta
+            'hsl(25, 35%, 65%, 0.06)', // Soft Caramel
           ];
 
     let animationFrameId: number;

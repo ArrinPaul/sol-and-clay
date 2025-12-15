@@ -70,60 +70,87 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <FadeIn>
-        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl">
-          Get in Touch
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
-          We’d love to hear from you — whether you’re looking to collaborate,
-          customize, or just say hello.
-        </p>
-      </FadeIn>
+    <div>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-accent/10 to-background py-20 md:py-28">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <div className="text-center">
+              <span className="inline-block mb-4 rounded-full bg-primary/10 px-6 py-2 backdrop-blur-sm text-sm font-semibold tracking-wide text-primary">
+                Contact Us
+              </span>
+              <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl lg:text-7xl">
+                Get in Touch
+              </h1>
+              <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
+                We'd love to hear from you — whether you're looking to collaborate,
+                customize, or just say hello.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
 
-      <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2">
-        <FadeIn direction="left">
-          <h2 className="font-headline text-3xl font-bold">Contact Info</h2>
-          <div className="mt-6 space-y-6 text-muted-foreground">
-            <div className="flex items-start gap-4">
-              <Mail className="mt-1 h-6 w-6 text-primary" />
-              <div>
-                <h3 className="font-semibold text-foreground">Email</h3>
-                <a href="mailto:hello@solandclay.com" className="hover:underline">
-                  hello@solandclay.com
-                </a>
+      {/* Contact Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+            <FadeIn direction="left">
+              <div className="space-y-10">
+                <div>
+                  <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8">Contact Info</h2>
+                  <div className="space-y-8">
+                    <div className="flex items-start gap-5 p-6 rounded-xl border-2 border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
+                        <Mail className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-lg mb-1">Email</h3>
+                        <a href="mailto:hello@solandclay.com" className="text-muted-foreground hover:text-primary transition-colors">
+                          hello@solandclay.com
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-5 p-6 rounded-xl border-2 border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
+                        <Phone className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-lg mb-1">Phone</h3>
+                        <span className="text-muted-foreground">+91-XXXX-XXX-XXX</span>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-5 p-6 rounded-xl border-2 border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
+                        <Instagram className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-lg mb-1">Instagram</h3>
+                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                          @solandclay
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-5 p-6 rounded-xl border-2 border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
+                        <PinterestIcon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-lg mb-1">Pinterest</h3>
+                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                          @solandclay
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Phone className="mt-1 h-6 w-6 text-primary" />
-              <div>
-                <h3 className="font-semibold text-foreground">Phone</h3>
-                <span>+91-XXXX-XXX-XXX</span>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Instagram className="mt-1 h-6 w-6 text-primary" />
-              <div>
-                <h3 className="font-semibold text-foreground">Instagram</h3>
-                <a href="#" className="hover:underline">
-                  @solandclay
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <PinterestIcon className="mt-1 h-6 w-6 text-primary" />
-              <div>
-                <h3 className="font-semibold text-foreground">Pinterest</h3>
-                <a href="#" className="hover:underline">
-                  @solandclay
-                </a>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-        <FadeIn direction="right" delay="delay-200">
-          <Card>
-            <CardContent className="p-6">
+            </FadeIn>
+            
+            <FadeIn direction="right" delay="delay-200">
+              <Card className="border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-xl">
+                <CardContent className="p-8">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -211,6 +238,8 @@ export default function ContactPage() {
           </Card>
         </FadeIn>
       </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -89,25 +89,29 @@ export default function AboutPage() {
 
   return (
     <div>
-      <section className="relative h-[60vh] min-h-[400px] w-full bg-secondary/30">
+      <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
             alt={heroImage.description}
             fill
-            className="object-cover opacity-20"
+            className="object-cover brightness-75"
             priority
             data-ai-hint={heroImage.imageHint}
           />
         )}
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
           <FadeIn direction="down">
-            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
+            <span className="inline-block mb-4 rounded-full bg-primary/10 px-6 py-2 backdrop-blur-sm text-sm font-semibold tracking-wide text-primary">
+              About Sol & Clay
+            </span>
+            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl md:text-7xl drop-shadow-sm">
               Our Story
             </h1>
           </FadeIn>
           <FadeIn direction="up" delay="delay-200">
-            <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
+            <p className="mt-6 max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed">
               At Sol & Clay, we build collections around strong visual ideas.
               Each piece is designed with intention and made with care —
               functional, soulful, and alive.
@@ -116,55 +120,64 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-32 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <h2 className="text-center font-headline text-4xl font-bold text-foreground">
-              Our Philosophy
-            </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
-              We value craft, collaboration, and character over mass
-              production. Every item is made with intention and care.
-            </p>
-          </FadeIn>
-          <div className="mt-16 grid gap-12 md:grid-cols-3">
-            <FadeIn className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                <Sparkles className="h-8 w-8" />
-              </div>
-              <h3 className="mt-6 font-headline text-2xl font-semibold">
-                Craft
-              </h3>
-              <p className="mt-2 text-muted-foreground">
-                We partner with independent makers who pour their heart and
-                skill into every piece, ensuring exceptional quality and
-                uniqueness.
+            <div className="text-center mb-16">
+              <span className="inline-block mb-4 text-sm font-semibold tracking-wider uppercase text-primary">Our Values</span>
+              <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
+                Our Philosophy
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground leading-relaxed">
+                We value craft, collaboration, and character over mass
+                production. Every item is made with intention and care.
               </p>
+            </div>
+          </FadeIn>
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            <FadeIn className="text-center">
+              <div className="p-8 rounded-2xl border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary">
+                  <Sparkles className="h-10 w-10" />
+                </div>
+                <h3 className="mt-8 font-headline text-2xl font-semibold text-foreground">
+                  Craft
+                </h3>
+                <p className="mt-4 text-muted-foreground leading-relaxed">
+                  We partner with independent makers who pour their heart and
+                  skill into every piece, ensuring exceptional quality and
+                  uniqueness in each creation.
+                </p>
+              </div>
             </FadeIn>
             <FadeIn className="text-center" delay="delay-200">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                <Users className="h-8 w-8" />
+              <div className="p-8 rounded-2xl border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary">
+                  <Users className="h-10 w-10" />
+                </div>
+                <h3 className="mt-8 font-headline text-2xl font-semibold text-foreground">
+                  Collaboration
+                </h3>
+                <p className="mt-4 text-muted-foreground leading-relaxed">
+                  We are a platform for artisans to thrive, fostering a community
+                  that values creativity and shared storytelling through design.
+                </p>
               </div>
-              <h3 className="mt-6 font-headline text-2xl font-semibold">
-                Collaboration
-              </h3>
-              <p className="mt-2 text-muted-foreground">
-                We are a platform for artisans to thrive, fostering a community
-                that values creativity and shared storytelling.
-              </p>
             </FadeIn>
             <FadeIn className="text-center" delay="delay-400">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                <Target className="h-8 w-8" />
+              <div className="p-8 rounded-2xl border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary">
+                  <Target className="h-10 w-10" />
+                </div>
+                <h3 className="mt-8 font-headline text-2xl font-semibold text-foreground">
+                  Character
+                </h3>
+                <p className="mt-4 text-muted-foreground leading-relaxed">
+                  We curate objects that are not only beautiful but also
+                  meaningful, designed to bring warmth and soul into your
+                  everyday life and spaces.
+                </p>
               </div>
-              <h3 className="mt-6 font-headline text-2xl font-semibold">
-                Character
-              </h3>
-              <p className="mt-2 text-muted-foreground">
-                We curate objects that are not only beautiful but also
-                meaningful, designed to bring warmth and soul into your
-                everyday life.
-              </p>
             </FadeIn>
           </div>
         </div>
@@ -172,18 +185,69 @@ export default function AboutPage() {
 
       <Timeline data={timelineData} />
 
-      <section className="bg-secondary/30 py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center">
+      <section className="bg-gradient-to-b from-accent/10 to-background py-20 md:py-32">
+        <div className="container mx-auto px-4">
           <FadeIn>
-            <h2 className="text-center font-headline text-4xl font-bold text-foreground">
-              Our Craft Process
-            </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground">
-              Clay → Shape → Glaze → Fire → Home. From sketch to kiln, we work
-              with artisans who transform ideas into timeless décor. Our
-              process is a dialogue between design and material, ensuring every
-              piece reflects our shared vision and the maker&apos;s unique touch.
-            </p>
+            <div className="text-center mb-12">
+              <span className="inline-block mb-4 text-sm font-semibold tracking-wider uppercase text-primary">The Process</span>
+              <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
+                Our Craft Process
+              </h2>
+              <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground leading-relaxed">
+                From sketch to kiln, we work with artisans who transform ideas into timeless décor. 
+                Our process is a dialogue between design and material, ensuring every piece reflects 
+                our shared vision and the maker&apos;s unique touch.
+              </p>
+            </div>
+            
+            <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-center">
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
+                    1
+                  </div>
+                  <p className="mt-3 font-headline text-xl font-semibold">Clay</p>
+                </div>
+                <div className="text-3xl text-primary">→</div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
+                    2
+                  </div>
+                  <p className="mt-3 font-headline text-xl font-semibold">Shape</p>
+                </div>
+                <div className="text-3xl text-primary">→</div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
+                    3
+                  </div>
+                  <p className="mt-3 font-headline text-xl font-semibold">Glaze</p>
+                </div>
+                <div className="text-3xl text-primary">→</div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
+                    4
+                  </div>
+                  <p className="mt-3 font-headline text-xl font-semibold">Fire</p>
+                </div>
+                <div className="text-3xl text-primary">→</div>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground font-bold text-lg shadow-lg">
+                  ♥
+                </div>
+                <p className="mt-3 font-headline text-xl font-semibold">Home</p>
+              </div>
+            </div>
           </FadeIn>
         </div>
       </section>
