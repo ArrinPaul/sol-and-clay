@@ -88,34 +88,19 @@ export default function AboutPage() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'about-hero');
 
   return (
-    <div>
-      <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover brightness-75"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
-          <FadeIn direction="down">
-            <span className="inline-block mb-4 rounded-full bg-primary/10 px-6 py-2 backdrop-blur-sm text-sm font-semibold tracking-wide text-primary">
-              About Sol & Clay
-            </span>
-            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl md:text-7xl drop-shadow-sm">
-              Our Story
-            </h1>
-          </FadeIn>
-          <FadeIn direction="up" delay="delay-200">
-            <p className="mt-6 max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed">
-              At Sol & Clay, we build collections around strong visual ideas.
-              Each piece is designed with intention and made with care —
-              functional, soulful, and alive.
-            </p>
+    <div className="min-h-screen pt-24 pb-20">
+      {/* Hero Section */}
+      <section className="pb-20">
+        <div className="container mx-auto px-6">
+          <FadeIn>
+            <div className="max-w-4xl">
+              <h1 className="font-headline text-5xl md:text-6xl font-normal text-foreground mb-6">
+                <span className="block tracking-[0.05em]">W e  A r e</span>
+              </h1>
+              <p className="text-xl md:text-2xl lg:text-3xl font-light text-foreground leading-relaxed max-w-4xl tracking-wide">
+                Sol & Clay is a boutique studio specializing in artisanal home décor. We bridge the gap between makers and design-conscious homes, offering curated collections that celebrate craft, material, and meaningful design.
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>

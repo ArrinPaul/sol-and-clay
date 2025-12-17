@@ -16,106 +16,62 @@ const PinterestIcon = ({ className }: { className?: string }) => (
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/50 bg-gradient-to-b from-background to-accent/5">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand Section */}
-          <div className="space-y-4">
+    <footer className="border-t border-border bg-muted/20">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Logo & About */}
+          <div className="md:col-span-2 space-y-4">
             <Logo />
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Artisanal home décor for the modern, soulful home. Every piece tells a story shaped by hands, inspired by earth.
+            <p className="text-muted-foreground max-w-md">
+              Curated collection of artisanal home décor. Handcrafted with care by skilled makers.
             </p>
-            <div className="flex items-center space-x-4 pt-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
-                <PinterestIcon className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
-                <Github className="h-5 w-5" />
-              </Link>
-            </div>
           </div>
 
-          {/* Shop Links */}
+          {/* Quick Links */}
           <div>
-            <h3 className="font-headline text-lg font-semibold text-foreground mb-4">Shop</h3>
-            <nav className="flex flex-col space-y-3 text-sm">
-              <Link href="/collections" className="text-muted-foreground hover:text-primary transition-colors">
-                All Collections
+            <h3 className="text-sm font-medium text-foreground mb-4">
+              Explore
+            </h3>
+            <nav className="flex flex-col space-y-3">
+              <Link href="/collections" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Collections
               </Link>
-              <Link href="/products" className="text-muted-foreground hover:text-primary transition-colors">
-                New Arrivals
+              <Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                About
               </Link>
-              <Link href="/cart" className="text-muted-foreground hover:text-primary transition-colors">
-                Shopping Cart
-              </Link>
-              <Link href="/checkout" className="text-muted-foreground hover:text-primary transition-colors">
-                Checkout
-              </Link>
-            </nav>
-          </div>
-
-          {/* Company Links */}
-          <div>
-            <h3 className="font-headline text-lg font-semibold text-foreground mb-4">Company</h3>
-            <nav className="flex flex-col space-y-3 text-sm">
-              <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                About Us
-              </Link>
-              <Link href="/collaborate" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="/collaborate" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Collaborate
               </Link>
-              <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Contact
-              </Link>
-              <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">
-                FAQ
               </Link>
             </nav>
           </div>
 
-          {/* Newsletter */}
+          {/* Social Links */}
           <div>
-            <h3 className="font-headline text-lg font-semibold text-foreground mb-4">Stay Connected</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Subscribe to receive updates, access to exclusive deals, and more.
-            </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-3 py-2 text-sm rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <button className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
-                Join
-              </button>
+            <h3 className="text-sm font-medium text-foreground mb-4">
+              Follow
+            </h3>
+            <div className="flex gap-4">
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Pinterest">
+                <PinterestIcon className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
+                <Twitter className="h-5 w-5" />
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border/50">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Sol & Clay. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <Link href="/shipping" className="hover:text-primary transition-colors">
-                Shipping Policy
-              </Link>
-              <Link href="/privacy" className="hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-primary transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+        <div className="pt-8 border-t border-border">
+          <p className="text-sm text-muted-foreground text-center">
+            © {new Date().getFullYear()} Sol & Clay. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

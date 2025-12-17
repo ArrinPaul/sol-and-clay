@@ -43,48 +43,44 @@ const howItWorks = [
 export default function CollaboratePage() {
   return (
     <div>
-      <section className="relative bg-gradient-to-b from-accent/10 via-background to-background py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSJyZ2JhKDEzOSwxMTEsOTIsMC4wNSkiLz48L2c+PC9zdmc+')] opacity-50"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <FadeIn direction="down">
-            <span className="inline-block mb-4 rounded-full bg-primary/10 px-6 py-2 backdrop-blur-sm text-sm font-semibold tracking-wide text-primary">
-              Partnership Opportunities
-            </span>
-            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              Collaborate With Us
-            </h1>
-          </FadeIn>
-          <FadeIn direction="up" delay="delay-200">
-            <p className="mx-auto mt-6 max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed">
-              We collaborate with studios that share our love for material and
-              meaning. If you are an artisan who values soulful, modern design,
-              we would love to hear from you.
-            </p>
+      <section className="pt-24 pb-12">
+        <div className="container mx-auto px-6">
+          <FadeIn>
+            <div className="max-w-4xl">
+              <h1 className="font-headline text-5xl md:text-6xl font-normal text-foreground mb-4">
+                Collaborate With Us
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                We partner with artisans who share our passion for quality craftsmanship and thoughtful design.
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-gradient-to-b from-background to-accent/5">
-        <div className="container mx-auto px-4">
-          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
+      <section className="py-16 md:py-20 bg-muted/20">
+        <div className="container mx-auto px-6">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <FadeIn>
               <div>
-                <span className="inline-block mb-4 text-sm font-semibold tracking-wider uppercase text-primary">How It Works</span>
-                <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
-                  The Partnership Model
+                <h2 className="text-3xl md:text-4xl font-normal text-foreground mb-3">
+                  How It Works
                 </h2>
+                <p className="text-muted-foreground mb-8">
+                  Our partnership model is designed to be fair, transparent, and mutually beneficial.
+                </p>
               </div>
-              <div className="mt-10 space-y-6">
+              <div className="space-y-6">
                 {howItWorks.map((item, index) => (
-                  <div key={index} className="flex gap-5 p-6 rounded-xl border-2 border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 hover:-translate-y-1">
-                    <div className="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary font-bold text-lg shadow-md">
-                      <span>{index + 1}</span>
+                  <div key={index} className="flex gap-4 p-5 border border-border bg-background hover:border-primary/50 transition-all">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center text-primary font-medium">
+                      {index + 1}
                     </div>
                     <div>
-                      <h3 className="font-headline text-xl font-semibold text-foreground">
+                      <h3 className="text-lg font-medium text-foreground mb-1">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-muted-foreground leading-relaxed">
+                      <p className="text-sm text-muted-foreground">
                         {item.description}
                       </p>
                     </div>
@@ -92,15 +88,15 @@ export default function CollaboratePage() {
                 ))}
               </div>
 
-              <div className="mt-16">
-                <h3 className="font-headline text-3xl font-bold text-foreground mb-8">
-                  Benefits for Studios
+              <div className="mt-12">
+                <h3 className="text-2xl font-medium text-foreground mb-6">
+                  Benefits
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-accent/10 hover:bg-accent/20 transition-colors">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground mt-0.5">
-                        <Check className="h-4 w-4" />
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground mt-0.5">
+                        <Check className="h-3 w-3" />
                       </div>
                       <span className="text-muted-foreground leading-relaxed">{benefit}</span>
                     </div>

@@ -159,54 +159,60 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        isScrolled ? 'border-b border-border/50 bg-background/95 backdrop-blur-md shadow-sm' : 'border-b border-transparent bg-background/50 backdrop-blur-sm',
+        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b border-border/40',
+        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-sm' : 'bg-background/60 backdrop-blur-sm',
         isHidden ? '-translate-y-full' : 'translate-y-0'
       )}
     >
-      <div className="container mx-auto flex h-18 items-center px-4 py-3">
+      <div className="container mx-auto flex h-16 items-center justify-between px-6">
         {/* Logo */}
-        <div className="flex items-center gap-4">
-            <div className="md:hidden">
-            <Sheet>
-                <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-primary/10">
-                    <Menu className="h-6 w-6" />
-                    <span className="sr-only">Toggle Menu</span>
-                </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] bg-background/95 backdrop-blur-md">
-                <div className="p-6">
-                    <Link href="/" className="mb-8 flex items-center">
-                    <Logo />
-                    </Link>
-                    <nav className="flex flex-col space-y-3 mb-4">
-                    {renderNavLinks(true)}
-                    </nav>
-                    <div className="mt-8 pt-8 border-t border-border">
-                      <div className="flex gap-2">
-                        {renderAuthAndCart()}
-                      </div>
-                    </div>
-                </div>
-                </SheetContent>
-            </Sheet>
-            </div>
-            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-              <Logo />
-            </Link>
-        </div>
-
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Logo />
+        </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex flex-1 items-center justify-center space-x-1">
-          <nav className="flex items-center space-x-1">
-            {renderNavLinks()}
-          </nav>
-        </div>
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-        <div className="flex items-center justify-end gap-2">
-            {renderAuthAndCart()}
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+          {renderAuthAndCart()}
+          
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-transparent">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full bg-background">
+                <div className="flex flex-col h-full pt-12">
+                  <nav className="flex flex-col space-y-8">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-3xl font-headline font-bold text-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

@@ -72,19 +72,15 @@ export default function ContactPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-accent/10 to-background py-20 md:py-28">
-        <div className="container mx-auto px-4">
+      <section className="pt-24 pb-12">
+        <div className="container mx-auto px-6">
           <FadeIn>
-            <div className="text-center">
-              <span className="inline-block mb-4 rounded-full bg-primary/10 px-6 py-2 backdrop-blur-sm text-sm font-semibold tracking-wide text-primary">
+            <div className="max-w-4xl">
+              <h1 className="font-headline text-5xl md:text-6xl font-normal text-foreground mb-4">
                 Contact Us
-              </span>
-              <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl lg:text-7xl">
-                Get in Touch
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
-                We'd love to hear from you — whether you're looking to collaborate,
-                customize, or just say hello.
+              <p className="text-lg text-muted-foreground">
+                We'd love to hear from you. Get in touch for collaborations, inquiries, or just to say hello.
               </p>
             </div>
           </FadeIn>
@@ -92,15 +88,14 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <FadeIn direction="left">
-              <div className="space-y-10">
+              <div className="space-y-8">
                 <div>
-                  <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8">Contact Info</h2>
-                  <div className="space-y-8">
+                  <h2 className="text-2xl font-medium mb-6">Get In Touch</h2>
+                  <div className="space-y-6">
                     <div className="flex items-start gap-5 p-6 rounded-xl border-2 border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
                         <Mail className="h-6 w-6" />
