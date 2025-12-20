@@ -10,8 +10,8 @@ interface FirebaseClientProviderProps {
 
 export function FirebaseClientProvider({ children }: FirebaseClientProviderProps) {
   const firebaseServices = useMemo(() => {
-    // Initialize Firebase on the client side for Firestore only
-    // Authentication is handled by Clerk
+    // Initialize Firebase on the client side for Firestore
+    // Authentication is handled by Firebase Auth
     return initializeFirebase();
   }, []); // Empty dependency array ensures this runs only once on mount
 

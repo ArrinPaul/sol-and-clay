@@ -1,48 +1,46 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-// Define public routes that don't require authentication
-const isPublicRoute = createRouteMatcher([
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/login(.*)',
-  '/signup(.*)',
-  '/forgot-password(.*)',
+// Public routes that don't require authentication
+const publicRoutes = [
+  '/sign-in',
+  '/sign-up',
+  '/login',
+  '/signup',
+  '/forgot-password',
   '/',
   '/about',
   '/contact',
   '/faq',
-  '/collections(.*)',
-  '/products(.*)',
+  '/collections',
+  '/products',
   '/shipping',
-  '/api/webhooks/(.*)',
-]);
+  '/api/webhooks',
+];
 
-// Define protected routes that require authentication
-const isProtectedRoute = createRouteMatcher([
+// Protected routes that require authentication
+const protectedRoutes = [
   '/cart',
-  '/checkout(.*)',
+  '/checkout',
   '/collaborate',
-  '/admin(.*)',
+  '/admin',
   '/profile',
-]);
+];
 
-export default clerkMiddleware(async (auth, request) => {
-  const { userId } = await auth();
-  const { pathname, search } = request.nextUrl;
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-  // If accessing a protected route without authentication
-  if (isProtectedRoute(request) && !userId) {
-    // Store the original URL (with query params) to redirect back after login
-    const fullPath = pathname + search;
-    const signInUrl = new URL('/login', request.url);
-    signInUrl.searchParams.set('redirect_url', fullPath);
-    return NextResponse.redirect(signInUrl);
+  // Check if route is protected
+  const isProtected = protectedRoutes.some(route => pathname.startsWith(route));
+
+  if (isProtected) {
+    // Firebase auth will be checked client-side
+    // This middleware just passes through
+    return NextResponse.next();
   }
 
-  // No need to call auth.protect() here - we already checked userId above
-  // This prevents double authentication checks
-});
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [

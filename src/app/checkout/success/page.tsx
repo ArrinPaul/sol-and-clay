@@ -7,19 +7,19 @@ import { Button } from '@/components/ui/button';
 import { FadeIn } from '@/components/utils/fade-in';
 import { CheckCircle, Home } from 'lucide-react';
 import { useFirestore, useMemoFirebase } from '@/firebase';
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@/firebase/hooks/use-auth';
 import { collection, getDocs, writeBatch } from 'firebase/firestore';
 
 export const dynamic = 'force-dynamic';
 
 export default function CheckoutSuccessPage() {
-  const { user } = useUser();
+  const { user } = useAuth();
   const firestore = useFirestore();
 
   const cartRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.id, 'cartItems')
+        ? collection(firestore, 'users', user.uid, 'cartItems')
         : null,
     [user, firestore]
   );

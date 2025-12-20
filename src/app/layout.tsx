@@ -8,7 +8,6 @@ import { Footer } from '@/components/layout/footer';
 import { AuraBackground } from '@/components/background/aura-background';
 import { FirebaseClientProvider } from '@/firebase';
 import { ThemeProvider } from '@/components/theme-provider';
-import { ClerkProvider } from '@clerk/nextjs';
 
 const cormorant = Cormorant_Garamond({
   variable: '--font-headline',
@@ -43,24 +42,22 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <ClerkProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            disableTransitionOnChange
-          >
-            <FirebaseClientProvider>
-              <AuraBackground />
-              <div className="relative z-10 flex min-h-screen flex-col">
-                <Header />
-                <main className="flex-grow">{children}</main>
-                <Footer />
-              </div>
-              <Toaster />
-            </FirebaseClientProvider>
-          </ThemeProvider>
-        </ClerkProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <FirebaseClientProvider>
+            <AuraBackground />
+            <div className="relative z-10 flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </FirebaseClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

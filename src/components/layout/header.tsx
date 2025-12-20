@@ -8,12 +8,14 @@ import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { useUser, SignOutButton } from '@clerk/nextjs';
 import {
   useFirestore,
   useCollection,
   useMemoFirebase,
 } from '@/firebase';
+import { useAuth } from '@/firebase/hooks/use-auth';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase/config';
 import { collection } from 'firebase/firestore';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
@@ -37,20 +39,20 @@ export function Header() {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const { user, isLoaded } = useUser();
+  const { user, loading } = useAuth();
   const firestore = useFirestore();
 
   const cartItemsRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.id, 'cartItems')
+        ? collection(firestore, 'users', user.uid, 'cartItems')
         : null,
     [user, firestore]
   );
   const { data: cartItems } = useCollection(cartItemsRef);
 
   const cartItemCount = cartItems?.length ?? 0;
-  const userInitial = user?.firstName?.charAt(0).toUpperCase() ?? user?.lastName?.charAt(0).toUpperCase() ?? '?';
+  const userInitial = user?.email?.charAt(0).toUpperCase() ?? '?';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +90,7 @@ export function Header() {
 
   const renderAuthAndCart = () => (
     <>
-      {!isLoaded ? (
+      {loading ? (
         <div className="h-10 w-10 animate-pulse rounded-full bg-muted"></div>
       ) : user ? (
         <DropdownMenu>
@@ -98,10 +100,6 @@ export function Header() {
               className="relative h-10 w-10 rounded-full"
             >
               <Avatar>
-                <AvatarImage
-                  src={user.imageUrl ?? ''}
-                  alt={user.fullName ?? ''}
-                />
                 <AvatarFallback>{userInitial}</AvatarFallback>
               </Avatar>
             </Button>
@@ -110,10 +108,7 @@ export function Header() {
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">
-                  {user.fullName}
-                </p>
-                <p className="text-xs leading-none text-muted-foreground">
-                  {user.primaryEmailAddress?.emailAddress}
+                  {user.email}
                 </p>
               </div>
             </DropdownMenuLabel>
@@ -125,12 +120,19 @@ export function Header() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <SignOutButton redirectUrl="/login">
-              <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-              </DropdownMenuItem>
-            </SignOutButton>
+            <DropdownMenuItem
+              className="text-destructive cursor-pointer"
+              onClick={async () => {
+                try {
+                  await signOut(auth);
+                } catch (error) {
+                  console.error('Sign out error:', error);
+                }
+              }}
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Log out</span>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (

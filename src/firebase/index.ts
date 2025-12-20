@@ -6,7 +6,7 @@ import { getFirestore } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 
 // Firebase initialization for Firestore only
-// Authentication is handled by Clerk
+// Authentication is handled by Firebase Auth
 export function initializeFirebase() {
   if (!getApps().length) {
     // Always initialize explicitly with the provided firebaseConfig object.

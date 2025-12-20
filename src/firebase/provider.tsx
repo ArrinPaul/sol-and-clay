@@ -5,8 +5,8 @@ import { FirebaseApp } from 'firebase/app';
 import { Firestore } from 'firebase/firestore';
 import { FirebaseErrorListener } from '@/components/FirebaseErrorListener'
 
-// Firebase provider now only handles Firestore
-// Authentication is managed by Clerk
+// Firebase provider handles Firestore
+// Authentication is managed by Firebase Auth
 interface FirebaseProviderProps {
   children: ReactNode;
   firebaseApp: FirebaseApp;
@@ -31,7 +31,7 @@ export const FirebaseContext = createContext<FirebaseContextState | undefined>(u
 
 /**
  * FirebaseProvider manages and provides Firebase Firestore service.
- * Authentication is handled separately by Clerk.
+ * Authentication is handled separately by Firebase Auth.
  */
 export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
   children,

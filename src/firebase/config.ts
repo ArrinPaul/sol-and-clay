@@ -1,5 +1,4 @@
-// Firebase configuration for Firestore Database only
-// Authentication is handled by Clerk
+// Firebase configuration for Firestore Database and Authentication
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyBY2pTjYBMnN-kwG9idsHE99Hthv_0HDIU",
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "studio-3230139571-ae1a2.firebaseapp.com",

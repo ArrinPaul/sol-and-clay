@@ -14,21 +14,21 @@ import {
   deleteDocumentNonBlocking,
   useToast,
 } from '@/firebase';
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@/firebase/hooks/use-auth';
 import { collection, doc } from 'firebase/firestore';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { getStripe } from '@/lib/stripe';
 import type { CartItem } from '@/lib/types';
 
 export default function CartPage() {
-  const { user, isLoaded } = useUser();
+  const { user, loading } = useAuth();
   const firestore = useFirestore();
   const { toast } = useToast();
 
   const cartItemsRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.id, 'cartItems')
+        ? collection(firestore, 'users', user.uid, 'cartItems')
         : null,
     [user, firestore]
   );
@@ -45,7 +45,7 @@ export default function CartPage() {
 
   const handleRemoveItem = (itemId: string) => {
     if (!user) return;
-    const itemRef = doc(firestore, 'users', user.id, 'cartItems', itemId);
+    const itemRef = doc(firestore, 'users', user.uid, 'cartItems', itemId);
     deleteDocumentNonBlocking(itemRef);
   };
 
@@ -81,7 +81,7 @@ export default function CartPage() {
     }
   };
 
-  const isLoading = !isLoaded || isCartLoading;
+  const isLoading = loading || isCartLoading;
 
   if (isLoading) {
     return (

@@ -24,7 +24,7 @@ import {
   useToast,
   useMemoFirebase,
 } from '@/firebase';
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@/firebase/hooks/use-auth';
 import {
   collection,
   doc,
@@ -43,7 +43,7 @@ type Props = {
 };
 
 const ProductDetailPageClient: FC<Props> = ({ product }) => {
-  const { user } = useUser();
+  const { user } = useAuth();
   const firestore = useFirestore();
   const router = useRouter();
   const { toast } = useToast();
@@ -53,7 +53,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   const cartRef = useMemoFirebase(
     () =>
       user && firestore
-        ? collection(firestore, 'users', user.id, 'cartItems')
+        ? collection(firestore, 'users', user.uid, 'cartItems')
         : null,
     [user, firestore]
   );
