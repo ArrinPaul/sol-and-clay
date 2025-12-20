@@ -66,7 +66,7 @@ export function Header() {
       }
       setLastScrollY(currentScrollY);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
@@ -142,12 +142,12 @@ export function Header() {
         </Button>
       )}
 
-      <Button variant="ghost" size="icon" asChild className="relative hover:bg-primary/10 transition-colors">
+      <Button variant="ghost" size="icon" asChild className="relative text-brown-darkest hover:text-gold-luxury transition-colors">
         <Link href="/cart">
           <ShoppingBag className="h-5 w-5" />
           <span className="sr-only">Cart</span>
           {cartItemCount > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md animate-pulse">
+            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-gold text-xs font-bold text-brown-darkest shadow-gold-glow">
               {cartItemCount}
             </span>
           )}
@@ -159,8 +159,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b border-border/40',
-        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-sm' : 'bg-background/60 backdrop-blur-sm',
+        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b',
+        isScrolled ? 'bg-cream/98 backdrop-blur-md shadow-luxury border-brown-light/20' : 'bg-cream/80 backdrop-blur-sm border-transparent',
         isHidden ? '-translate-y-full' : 'translate-y-0'
       )}
     >
@@ -171,12 +171,12 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-brown-darkest hover:text-gold-luxury transition-colors tracking-wide uppercase"
             >
               {link.label}
             </Link>
@@ -186,7 +186,7 @@ export function Header() {
         {/* Right Side */}
         <div className="flex items-center gap-4">
           {renderAuthAndCart()}
-          
+
           {/* Mobile Menu */}
           <div className="md:hidden">
             <Sheet>

@@ -1,10 +1,9 @@
-
-
 import Image from 'next/image';
+import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
-import { Sparkles, Users, Target } from 'lucide-react';
-import { Timeline } from '@/components/ui/timeline';
+import { Sparkles, Users, Target, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export const metadata = {
   title: 'Our Story - Sol & Clay',
@@ -12,155 +11,86 @@ export const metadata = {
     'Sol & Clay builds collections around strong visual ideas. Each piece is handcrafted and carries a story of design and touch.',
 };
 
-const timelineData = [
-    {
-      title: "The Idea",
-      content: (
-        <div>
-          <p className="text-muted-foreground text-sm md:text-base font-normal mb-8">
-            Sol & Clay was born from a love for earthy materials and a vision for soulful, modern homes. It all started with sketches of handcrafted objects and a desire to give artisans a platform to share their craft.
-          </p>
-          <div className="grid grid-cols-1 gap-4">
-            <Image
-              src="https://picsum.photos/seed/pottery-sketch/1000/500"
-              alt="Sketchbook with pottery designs"
-              width={1000}
-              height={500}
-              data-ai-hint="pottery sketch"
-              className="rounded-lg object-cover h-40 md:h-60 w-full shadow-md"
-            />
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "First Partnerships",
-      content: (
-        <div>
-          <p className="text-muted-foreground text-sm md:text-sm font-normal mb-8">
-            We sought out our first maker partners—artisans who shared our passion for quality and design. These initial collaborations helped shape our first collection and defined the collaborative spirit of Sol & Clay.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-             <Image
-              src="https://picsum.photos/seed/partner-1/500/500"
-              alt="Two artisans collaborating in a studio"
-              width={500}
-              height={500}
-              data-ai-hint="artisan collaboration"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
-            />
-             <Image
-              src="https://picsum.photos/seed/partner-2/500/500"
-              alt="Close-up of hands working on pottery"
-              width={500}
-              height={500}
-              data-ai-hint="hands pottery"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-md"
-            />
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "The Launch",
-      content: (
-        <div>
-          <p className="text-muted-foreground text-sm md:text-sm font-normal mb-8">
-            With our first collection ready, we launched the Sol & Clay website. It was the culmination of countless hours of design, craft, and collaboration, finally ready to be shared with the world.
-          </p>
-          <div className="grid grid-cols-1 gap-4">
-             <Image
-              src="https://picsum.photos/seed/launch-1/1000/500"
-              alt="Beautifully arranged pottery from the first collection"
-              width={1000}
-              height={500}
-              data-ai-hint="pottery collection"
-              className="rounded-lg object-cover h-40 md:h-60 w-full shadow-md"
-            />
-          </div>
-        </div>
-      ),
-    },
-];
-
-
 export default function AboutPage() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'about-hero');
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pb-20">
-        <div className="container mx-auto px-6">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-beige-light via-cream to-beige-warm">
+        <div className="container-luxury">
           <FadeIn>
             <div className="max-w-4xl">
-              <h1 className="font-headline text-5xl md:text-6xl font-normal text-foreground mb-6">
-                <span className="block tracking-[0.05em]">W e  A r e</span>
+              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-6">
+                Our Story
+              </p>
+              <h1 className="font-headline text-6xl md:text-7xl lg:text-8xl font-bold text-brown-darkest leading-tight mb-8">
+                Where Artistry Meets Purpose
               </h1>
-              <p className="text-xl md:text-2xl lg:text-3xl font-light text-foreground leading-relaxed max-w-4xl tracking-wide">
-                Sol & Clay is a boutique studio specializing in artisanal home décor. We bridge the gap between makers and design-conscious homes, offering curated collections that celebrate craft, material, and meaningful design.
+              <p className="text-xl md:text-2xl text-brown-dark leading-relaxed max-w-3xl">
+                Sol & Clay is a boutique studio specializing in artisanal home décor. We bridge the gap between master makers and design-conscious homes, offering curated collections that celebrate craft, material, and meaningful design.
               </p>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-gradient-to-b from-background to-accent/10">
-        <div className="container mx-auto px-4">
+      {/* Philosophy Section */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="container-luxury">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="inline-block mb-4 text-sm font-semibold tracking-wider uppercase text-primary">Our Values</span>
-              <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
+              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-4">
                 Our Philosophy
+              </p>
+              <h2 className="font-headline text-5xl md:text-6xl font-bold text-brown-darkest mb-6">
+                The Values We Live By
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-                We value craft, collaboration, and character over mass
-                production. Every item is made with intention and care.
+              <p className="text-xl text-brown-dark max-w-2xl mx-auto">
+                We value craft, collaboration, and character over mass production. Every item is made with intention and care.
               </p>
             </div>
           </FadeIn>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            <FadeIn className="text-center">
-              <div className="p-8 rounded-2xl border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary">
-                  <Sparkles className="h-10 w-10" />
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <FadeIn>
+              <div className="p-10 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
+                <div className="w-16 h-16 flex items-center justify-center bg-gradient-gold text-brown-darkest mb-8 group-hover:scale-110 transition-transform">
+                  <Sparkles className="h-8 w-8" />
                 </div>
-                <h3 className="mt-8 font-headline text-2xl font-semibold text-foreground">
-                  Craft
+                <h3 className="font-headline text-2xl font-semibold text-brown-darkest mb-4">
+                  Exceptional Craft
                 </h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  We partner with independent makers who pour their heart and
-                  skill into every piece, ensuring exceptional quality and
-                  uniqueness in each creation.
+                <p className="text-brown-dark leading-relaxed">
+                  We partner with independent makers who pour their heart and skill into every piece, ensuring exceptional quality and uniqueness in each creation.
                 </p>
               </div>
             </FadeIn>
-            <FadeIn className="text-center" delay="delay-200">
-              <div className="p-8 rounded-2xl border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary">
-                  <Users className="h-10 w-10" />
+
+            <FadeIn delay="delay-200">
+              <div className="p-10 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
+                <div className="w-16 h-16 flex items-center justify-center bg-gradient-gold text-brown-darkest mb-8 group-hover:scale-110 transition-transform">
+                  <Users className="h-8 w-8" />
                 </div>
-                <h3 className="mt-8 font-headline text-2xl font-semibold text-foreground">
-                  Collaboration
+                <h3 className="font-headline text-2xl font-semibold text-brown-darkest mb-4">
+                  True Collaboration
                 </h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  We are a platform for artisans to thrive, fostering a community
-                  that values creativity and shared storytelling through design.
+                <p className="text-brown-dark leading-relaxed">
+                  We are a platform for artisans to thrive, fostering a community that values creativity and shared storytelling through design.
                 </p>
               </div>
             </FadeIn>
-            <FadeIn className="text-center" delay="delay-400">
-              <div className="p-8 rounded-2xl border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/30 text-primary">
-                  <Target className="h-10 w-10" />
+
+            <FadeIn delay="delay-400">
+              <div className="p-10 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
+                <div className="w-16 h-16 flex items-center justify-center bg-gradient-gold text-brown-darkest mb-8 group-hover:scale-110 transition-transform">
+                  <Target className="h-8 w-8" />
                 </div>
-                <h3 className="mt-8 font-headline text-2xl font-semibold text-foreground">
-                  Character
+                <h3 className="font-headline text-2xl font-semibold text-brown-darkest mb-4">
+                  Enduring Character
                 </h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  We curate objects that are not only beautiful but also
-                  meaningful, designed to bring warmth and soul into your
-                  everyday life and spaces.
+                <p className="text-brown-dark leading-relaxed">
+                  We curate objects that are not only beautiful but also meaningful, designed to bring warmth and soul into your everyday life.
                 </p>
               </div>
             </FadeIn>
@@ -168,69 +98,120 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Timeline data={timelineData} />
+      {/* Story Section */}
+      <section className="py-24 md:py-32 bg-brown-darkest text-cream">
+        <div className="container-luxury">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn>
+              <div>
+                <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-6">
+                  The Beginning
+                </p>
+                <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
+                  Born from a Love for Earth & Fire
+                </h2>
+                <p className="text-beige-warm text-lg leading-relaxed mb-6">
+                  Sol & Clay was born from a love for earthy materials and a vision for soulful, modern homes. It all started with sketches of handcrafted objects and a desire to give artisans a platform to share their craft.
+                </p>
+                <p className="text-beige-warm text-lg leading-relaxed mb-8">
+                  We sought out our first maker partners—artisans who shared our passion for quality and design. These initial collaborations helped shape our first collection and defined the collaborative spirit of Sol & Clay.
+                </p>
+                <Link href="/collaborate">
+                  <Button size="lg" className="bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold px-8 py-6">
+                    Join Our Community
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+            </FadeIn>
 
-      <section className="bg-gradient-to-b from-accent/10 to-background py-20 md:py-32">
-        <div className="container mx-auto px-4">
+            <FadeIn delay="delay-200">
+              <div className="relative">
+                <div className="aspect-[4/5] bg-brown-dark overflow-hidden">
+                  {heroImage && (
+                    <Image
+                      src={heroImage.imageUrl}
+                      alt="Artisan at work"
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+                <div className="absolute -bottom-8 -left-8 bg-gold-luxury/10 border border-gold-luxury/30 p-8 backdrop-blur-sm">
+                  <div className="text-5xl font-headline font-bold text-gold-luxury mb-2">15+</div>
+                  <div className="text-beige-warm">Years of Craftsmanship</div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-24 md:py-32 bg-beige-light">
+        <div className="container-luxury">
           <FadeIn>
-            <div className="text-center mb-12">
-              <span className="inline-block mb-4 text-sm font-semibold tracking-wider uppercase text-primary">The Process</span>
-              <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
-                Our Craft Process
+            <div className="text-center mb-16">
+              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-4">
+                The Process
+              </p>
+              <h2 className="font-headline text-5xl md:text-6xl font-bold text-brown-darkest mb-6">
+                From Earth to Home
               </h2>
-              <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground leading-relaxed">
-                From sketch to kiln, we work with artisans who transform ideas into timeless décor. 
-                Our process is a dialogue between design and material, ensuring every piece reflects 
-                our shared vision and the maker&apos;s unique touch.
+              <p className="text-xl text-brown-dark max-w-3xl mx-auto">
+                From sketch to kiln, we work with artisans who transform ideas into timeless décor. Our process is a dialogue between design and material.
               </p>
             </div>
-            
-            <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-center">
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
-                    1
+          </FadeIn>
+
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {[
+              { step: '1', label: 'Clay' },
+              { step: '2', label: 'Shape' },
+              { step: '3', label: 'Glaze' },
+              { step: '4', label: 'Fire' },
+              { step: '♥', label: 'Home', isLast: true },
+            ].map((item, index) => (
+              <FadeIn key={item.label} delay={`delay-${index * 100}`}>
+                <div className="flex items-center gap-6">
+                  <div className="flex flex-col items-center">
+                    <div className={`w-20 h-20 flex items-center justify-center font-bold text-2xl shadow-luxury ${item.isLast ? 'bg-gold-luxury text-brown-darkest' : 'bg-brown-darkest text-cream'}`}>
+                      {item.step}
+                    </div>
+                    <p className="mt-4 font-headline text-xl font-semibold text-brown-darkest">{item.label}</p>
                   </div>
-                  <p className="mt-3 font-headline text-xl font-semibold">Clay</p>
+                  {!item.isLast && (
+                    <div className="text-3xl text-gold-luxury hidden md:block">→</div>
+                  )}
                 </div>
-                <div className="text-3xl text-primary">→</div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
-                    2
-                  </div>
-                  <p className="mt-3 font-headline text-xl font-semibold">Shape</p>
-                </div>
-                <div className="text-3xl text-primary">→</div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
-                    3
-                  </div>
-                  <p className="mt-3 font-headline text-xl font-semibold">Glaze</p>
-                </div>
-                <div className="text-3xl text-primary">→</div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg">
-                    4
-                  </div>
-                  <p className="mt-3 font-headline text-xl font-semibold">Fire</p>
-                </div>
-                <div className="text-3xl text-primary">→</div>
-              </div>
-              
-              <div className="flex flex-col items-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground font-bold text-lg shadow-lg">
-                  ♥
-                </div>
-                <p className="mt-3 font-headline text-xl font-semibold">Home</p>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 md:py-32 bg-gradient-to-br from-brown-darkest to-brown-dark text-cream">
+        <div className="container-luxury">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
+                Ready to Explore?
+              </h2>
+              <p className="text-beige-warm text-xl mb-12 leading-relaxed">
+                Discover our curated collections of handcrafted ceramics and find the perfect piece for your home.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link href="/collections">
+                  <Button size="lg" className="bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold px-10 py-7 text-lg">
+                    Browse Collections
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline" className="border-2 border-cream text-cream hover:bg-cream hover:text-brown-darkest px-10 py-7 text-lg">
+                    Get In Touch
+                  </Button>
+                </Link>
               </div>
             </div>
           </FadeIn>

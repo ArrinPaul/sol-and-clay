@@ -1,7 +1,6 @@
-
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
-import { Github, Twitter, Instagram } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 const PinterestIcon = ({ className }: { className?: string }) => (
   <svg
@@ -10,68 +9,86 @@ const PinterestIcon = ({ className }: { className?: string }) => (
     fill="currentColor"
     className={className}
   >
-    <path d="M12.017 10.922c.399.02.793.04 1.18.06.443.022.886.046 1.32.07.45.024.885.05 1.3.08.383.027.757.057 1.112.09.115.01.22.023.314.036.02.003.03.007.032.008.018.002.03.007.035.01.118.008.225.02.315.033.01.002.016.003.02.005.152.02.29.044.414.07.003 0 .004.002.005.002.13.028.248.06.35.093.012.003.02.008.026.01.092.03.172.064.24.1.004.002.006.005.008.006.07.036.128.075.174.115.002.002.003.003.004.004.103.09.186.187.247.288.002.004.004.007.005.01.05.084.088.17.114.256.002.005.002.01.003.014.028.09.046.183.053.275.002.02.002.04.002.056.002.106-.008.21-.03.313.0 0 .002 0 .002-.002.017-.116.03-.23.04-.343.003-.02.004-.038.004-.055.01-.15.013-.3.013-.452 0-.25-.02-.5-.058-.737-.005-.022-.01-.044-.015-.065-.04-.18-.1-.358-.18-.528-.002-.005-.005-.01-.007-.014-.085-.175-.19-.342-.31-.5-.002-.003-.005-.005-.007-.008-.13-.17-.28-.328-.45-.47-.004-.003-.008-.007-.012-.01-.17-.14-.36-.26-.56-.36-.003-.002-.005-.003-.008-.005-.2-.1-.41-.18-.63-.24-.003-.002-.007-.002-.01-.003-.22-.06-.45-.1-.68-.13-.03-.004-.06-.007-.08-.01-.46-.06-.92-.1-1.38-.11-.03-.002-.07-.002-.1-.002-.48-.01-.96-.01-1.44-.01-.2 0-.4 0-.6.003l-2.1.08-3.92 1.07-5.4 2.5-1.5 1.44-2.1 3.63-1.6 5.8.3 1.28.9 2.45 1.7 3.5.25.32.5.63.8.96.02.02.04.04.06.06.25.3.5.6.8.9.1.1.2.2.3.3.18.2.37.38.55.56.28.28.55.55.8.8.18.17.34.34.5.5.03.03.05.06.07.08.3.32.6.63.85.95.12.15.22.3.3.44.02.02.03.05.05.07.2.3.4.6.55.9.1.18.2.36.3.54.02.04.04.08.06.12.12.28.23.56.33.84.02.05.04.1.06.15.08.25.15.5.2.75.02.07.03.14.04.2.03.18.06.36.08.54.02.14.02.28.02.42 0 .15-.01.3-.02.44-.1.82-.4 1.63-.8 2.37-.05.1-.1.2-.16.3-.4.7-.9 1.35-1.5 1.9-.12.1-.24.2-.36.3-.6.5-1.2.9-1.9.9-1.1 0-2.1-.8-2.5-1.9-.1-.2-.1-.4-.2-.6 0-.02-.02-.04-.03-.06-.1-.3-.2-.6-.2-.9 0-.2.02-.4.04-.6.02-.1.05-.2.08-.3.3-.8.2-1.7-.2-2.5-.2.4-.4.8-.6 1.2-.1.2-.2.4-.3.5-.2.4-.3.8-.5 1.2-.1.2-.2.4-.3-.6-.1-.2-.3-.4-.4-.6-.1-.2-.2-.3-.3-.5-.1-.1-.2-.3-.3-.4-.1-.1-.2-.2-.2-.3-.2-.3-.4-.6-.6-.9-.1-.1-.2-.2-.3-.3-1-1.2-1.5-2.8-1.4-4.3 0-.1 0-.2-.02-.3-.12-1.1.2-2.2.8-3.2.1-.14.2-.28.3-.4.6-1 1.4-1.8 2.4-2.4.08-.05.16-.1.24-.15.9-.5 1.8-.8 2.8-.9.1 0 .2 0 .3-.02.3-.02.6-.04.9-.05zm-1.07-2.06c.01.002.02.003.03.005.01 0 .02.002.03.003.01 0 .02.002.03.003.01 0 .02 0 .03-.002l.03-.002.03-.003.03-.003.02-.003c.01 0 .02-.002.03-.003l.03-.002.03-.003.02-.002.02-.002.02-.002.02-.002h.02c.8-.02 1.6-.02 2.4 0 .07 0 .14 0 .2.002.02 0 .03.002.05.002.2.005.4.01.6.02.1.002.18.005.28.008.2.01.4.02.6.04.1.01.2.02.3.03l.28.03c.2.02.4.04.6.06.1.01.2.02.3.03l.26.03c.2.02.4.05.58.08.1.01.18.03.27.04.18.03.35.05.52.08.08.01.17.03.25.04.17.03.33.06.5.1.08.02.16.03.24.05.16.03.32.07.47.1.07.02.15.03.22.05.14.03.28.07.42.1.07.02.14.03.2.05.13.03.26.07.38.1.06.02.12.03.18.05.12.03.23.07.35.1.06.01.1.03.16.04.1.03.2.06.3.08.05.01.1.03.14.04.1.03.18.06.27.09.04.01.08.03.12.04.08.03.16.05.24.08.04.01.08.03.1.04.08.03.15.06.22.08.03.01.07.02.1.03.07.02.14.05.2.07.03.01.06.02.08.03.06.02.12.04.18.06.03.01.05.02.08.03.06.02.1.04.16.06.02.01.05.02.07.03.05.02.08.03.12.05.02.01.03.02.05.03.08.03.15.06.22.09l.1.04c.06.03.1.05.16.08.02.01.03.02.05.03l.08.04c.04.02.08.04.1.06l.06.04c.03.02.05.03.07.05l.04.03c.01.01.02.02.02.02.08.06.15.12.22.18.01.01.01.01.02.02a6.4 6.4 0 0 1 1.7 5.5c-.3 2.4-1.6 4.3-3.6 5.6-1.5 1-3.2 1.3-5 1-1-.2-1.9-.6-2.7-1.3-.8-.7-1.3-1.6-1.6-2.6-.3-1.1-.3-2.3 0-3.4.2-.8.5-1.5.9-2.2.4-.7.8-1.4 1.2-2.1.3-.5.6-1 1-1.5.2-.2.3-.5.5-.7.4-.5.8-1 1.2-1.5.1-.1.2-.2.3-.3.4-.5.8-.9 1.1-1.4.1-.1.2-.3.3-.4.3-.4.6-.8.8-1.2.1-.2.2-.3.3-.5.2-.4.4-.7.5-1.1.1-.2.2-.4.2-.6.1-.2.2-.4.3-.7.1-.2.1-.4.2-.6.1-.2.1-.4.1-.6 0-.5-.1-.9-.4-1.3-.3-.4-.7-.7-1.2-.8-.4-.1-.8 0-1.2.2-.4.2-.8.5-1 .8-.2.3-.4.6-.5.9-.1.3-.2.6-.2.9 0 .2.02.4.04.6.02.1.05.2.08.3.3.8.2 1.7-.2 2.5-.2.4-.4.8-.6 1.2-.1.2-.2.4-.3.5-.2.4-.3.8-.5 1.2-.1.2-.2.4-.3-.6-.1-.2-.3-.4-.4-.6-.1-.2-.2-.3-.3-.5-.1-.1-.2-.3-.3-.4-.1-.1-.2-.2-.2-.3-.2-.3-.4-.6-.6-.9-.1-.1-.2-.2-.3-.3-1-1.2-1.5-2.8-1.4-4.3z" />
+    <path d="M12 0a12 12 0 0 0-4.37 23.17c-.05-.96-.01-2.12.22-3.18l1.57-6.64s-.4-.8-.4-1.98c0-1.86 1.08-3.24 2.42-3.24 1.14 0 1.69.86 1.69 1.88 0 1.15-.73 2.86-1.11 4.45-.31 1.32.66 2.4 1.96 2.4 2.35 0 3.93-3.02 3.93-6.59 0-2.72-1.83-4.76-5.15-4.76-3.76 0-6.07 2.8-6.07 5.92 0 1.08.32 1.84.82 2.42.23.27.26.38.18.69-.06.23-.2.8-.26 1.02-.08.32-.34.44-.63.32-1.75-.71-2.56-2.62-2.56-4.76 0-3.54 2.98-7.8 8.88-7.8 4.74 0 7.86 3.44 7.86 7.15 0 4.91-2.73 8.59-6.75 8.59-1.36 0-2.63-.73-3.07-1.56l-.89 3.51c-.28 1.11-.86 2.18-1.41 3 1.26.38 2.6.58 3.99.58A12 12 0 1 0 12 0z" />
   </svg>
 );
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/20">
-      <div className="container mx-auto px-6 py-16">
+    <footer className="bg-brown-darkest text-cream border-t border-gold-luxury/20">
+      <div className="container-luxury py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Logo & About */}
-          <div className="md:col-span-2 space-y-4">
-            <Logo />
-            <p className="text-muted-foreground max-w-md">
-              Curated collection of artisanal home décor. Handcrafted with care by skilled makers.
+          <div className="md:col-span-2 space-y-6">
+            <Logo className="text-cream text-3xl" />
+            <p className="text-beige-warm max-w-md leading-relaxed">
+              Where craft meets elegance. Discover handcrafted ceramics that transform everyday moments into mindful rituals. Each piece tells a story of artistry, heritage, and timeless design.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-medium text-foreground mb-4">
+            <h3 className="text-sm font-semibold text-gold-luxury mb-6 uppercase tracking-wider">
               Explore
             </h3>
-            <nav className="flex flex-col space-y-3">
-              <Link href="/collections" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <nav className="flex flex-col space-y-4">
+              <Link href="/collections" className="text-sm text-beige-warm hover:text-gold-luxury transition-colors">
                 Collections
               </Link>
-              <Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                About
+              <Link href="/about" className="text-sm text-beige-warm hover:text-gold-luxury transition-colors">
+                Our Story
               </Link>
-              <Link href="/collaborate" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link href="/collaborate" className="text-sm text-beige-warm hover:text-gold-luxury transition-colors">
                 Collaborate
               </Link>
-              <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link href="/contact" className="text-sm text-beige-warm hover:text-gold-luxury transition-colors">
                 Contact
               </Link>
             </nav>
           </div>
 
-          {/* Social Links */}
+          {/* Connect */}
           <div>
-            <h3 className="text-sm font-medium text-foreground mb-4">
-              Follow
+            <h3 className="text-sm font-semibold text-gold-luxury mb-6 uppercase tracking-wider">
+              Connect
             </h3>
-            <div className="flex gap-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
+            <div className="flex gap-4 mb-6">
+              <Link
+                href="#"
+                className="text-beige-warm hover:text-gold-luxury transition-colors group"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Pinterest">
-                <PinterestIcon className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
+              <Link
+                href="#"
+                className="text-beige-warm hover:text-gold-luxury transition-colors group"
+                aria-label="Pinterest"
+              >
+                <PinterestIcon className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </Link>
             </div>
+            <Link href="/contact" className="inline-block text-sm text-beige-warm hover:text-gold-luxury transition-colors">
+              hello@solandclay.com
+            </Link>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border">
-          <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} Sol & Clay. All rights reserved.
-          </p>
+        <div className="pt-8 border-t border-gold-luxury/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-beige-warm">
+              © {new Date().getFullYear()} Sol & Clay. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <Link href="/shipping" className="text-sm text-beige-warm hover:text-gold-luxury transition-colors">
+                Shipping Policy
+              </Link>
+              <Link href="/faq" className="text-sm text-beige-warm hover:text-gold-luxury transition-colors">
+                FAQ
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

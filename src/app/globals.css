@@ -1,81 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
 @layer base {
   :root {
-    --background: 28 35% 98%; /* Softer Off-White: #FAF7F4 */
-    --foreground: 25 30% 28%; /* Warm Medium Brown: #614D3F */
-
-    --card: 28 35% 96%;
-    --card-foreground: 25 30% 28%;
-
-    --popover: 28 35% 96%;
-    --popover-foreground: 25 30% 28%;
-
-    --primary: 30 28% 42%; /* Warm Terra Cotta Brown: #8B6F5C */
-    --primary-foreground: 28 35% 98%; /* Softer Off-White: #FAF7F4 */
-
-    --secondary: 25 35% 65%; /* Soft Caramel: #C5A88B */
-    --secondary-foreground: 25 30% 28%;
-
-    --muted: 28 30% 94%;
-    --muted-foreground: 25 25% 45%;
-
-    --accent: 15 55% 75%; /* Warm Terracotta: #DFB5A0 */
-    --accent-foreground: 25 30% 28%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 28 25% 90%;
-    --input: 28 25% 92%;
-    --ring: 30 28% 42%;
-
-    --radius: 0.5rem;
-
-    --chart-1: 183 45% 65%; /* Muted Teal */
-    --chart-2: 15 55% 75%; /* Warm Terracotta */
-    --chart-3: 25 35% 65%; /* Soft Caramel */
-    --chart-4: 43 60% 68%;
-    --chart-5: 27 70% 70%;
+    --background: 43 30% 97%;
+    --foreground: 20 50% 12%;
+    --card: 43 25% 95%;
+    --card-foreground: 20 50% 12%;
+    --popover: 43 30% 97%;
+    --popover-foreground: 20 50% 12%;
+    --primary: 43 65% 52%;
+    --primary-foreground: 20 50% 10%;
+    --secondary: 35 25% 90%;
+    --secondary-foreground: 20 50% 15%;
+    --muted: 35 20% 92%;
+    --muted-foreground: 25 20% 40%;
+    --accent: 35 65% 52%;
+    --accent-foreground: 20 50% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 43 65% 52%;
+    --radius: 0rem;
+    --chart-1: 25 75% 47%;
+    --chart-2: 35 65% 52%;
+    --chart-3: 45 55% 60%;
+    --chart-4: 20 50% 35%;
+    --chart-5: 15 45% 45%;
+    --sidebar-background: 20 50% 10%;
+    --sidebar-foreground: 43 30% 95%;
+    --sidebar-primary: 43 65% 52%;
+    --sidebar-primary-foreground: 20 50% 10%;
+    --sidebar-accent: 35 25% 20%;
+    --sidebar-accent-foreground: 43 30% 95%;
+    --sidebar-border: 35 20% 25%;
+    --sidebar-ring: 43 65% 52%;
   }
 
   .dark {
-    --background: 25 28% 16%; /* Softer Dark Brown */
-    --foreground: 28 35% 95%; /* Warm Off-White */
-
-    --card: 25 25% 20%;
-    --card-foreground: 28 35% 95%;
-
-    --popover: 25 25% 20%;
-    --popover-foreground: 28 35% 95%;
-
-    --primary: 30 35% 55%; /* Warm Caramel */
-    --primary-foreground: 25 28% 16%;
-
-    --secondary: 25 30% 35%;
-    --secondary-foreground: 28 35% 95%;
-
-    --muted: 25 20% 25%;
-    --muted-foreground: 28 25% 75%;
-    
-    --accent: 15 50% 65%; /* Warm Terracotta */
-    --accent-foreground: 25 28% 16%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 25 20% 28%;
-    --input: 25 20% 28%;
-    --ring: 30 35% 55%;
-    
-    --chart-1: 183 45% 60%; /* Muted Teal */
-    --chart-2: 15 50% 65%; /* Warm Terracotta */
-    --chart-3: 25 30% 45%; /* Medium Brown */
-    --chart-4: 280 55% 60%;
-    --chart-5: 340 65% 55%;
+    --background: 20 50% 8%;
+    --foreground: 43 30% 95%;
+    --card: 20 45% 12%;
+    --card-foreground: 43 30% 95%;
+    --popover: 20 50% 8%;
+    --popover-foreground: 43 30% 95%;
+    --primary: 43 65% 52%;
+    --primary-foreground: 20 50% 10%;
+    --secondary: 25 30% 18%;
+    --secondary-foreground: 43 30% 90%;
+    --muted: 25 25% 20%;
+    --muted-foreground: 40 15% 65%;
+    --accent: 35 65% 52%;
+    --accent-foreground: 20 50% 10%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 38 20% 22%;
+    --input: 38 20% 22%;
+    --ring: 43 65% 52%;
+    --chart-1: 25 75% 50%;
+    --chart-2: 35 65% 55%;
+    --chart-3: 45 55% 62%;
+    --chart-4: 20 50% 40%;
+    --chart-5: 15 45% 48%;
+    --sidebar-background: 20 50% 6%;
+    --sidebar-foreground: 43 30% 95%;
+    --sidebar-primary: 43 65% 52%;
+    --sidebar-primary-foreground: 20 50% 10%;
+    --sidebar-accent: 35 25% 15%;
+    --sidebar-accent-foreground: 43 30% 95%;
+    --sidebar-border: 35 20% 18%;
+    --sidebar-ring: 43 65% 52%;
   }
 }
 
@@ -83,18 +86,48 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: 'liga' 1, 'calt' 1;
+    @apply bg-background text-foreground font-body antialiased;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight;
-  }
-  
-  p {
-    @apply leading-relaxed;
+
+  ::selection {
+    @apply bg-gold-luxury/30 text-brown-darkest;
   }
 }
 
-    
+@layer components {
+  .container-luxury {
+    @apply max-w-8xl mx-auto px-6 lg:px-8;
+  }
+
+  .btn-luxury {
+    @apply bg-gradient-gold text-brown-darkest font-semibold px-8 py-4 hover:shadow-gold-glow transition-all duration-300 hover:scale-[1.02];
+  }
+
+  .card-luxury {
+    @apply bg-beige-light border border-brown-light/20 hover:shadow-luxury transition-all duration-300;
+  }
+
+  .divider-gold {
+    @apply h-px bg-gradient-to-r from-transparent via-gold-luxury/50 to-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-gold bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .font-headline {
+    font-family: var(--font-playfair), serif;
+  }
+
+  .font-body {
+    font-family: var(--font-inter), sans-serif;
+  }
+}
