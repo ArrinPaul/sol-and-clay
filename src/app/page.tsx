@@ -6,37 +6,110 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
-import { collections, testimonials } from '@/lib/data';
-import { Star } from 'lucide-react';
+import { collections } from '@/lib/data';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-main');
 
+  // All 10 product images for collage
+  const collageImages = [
+    '/images/28b07e9c9a08ab7f0323ded71fb0ff10.jpg',
+    '/images/28be913f8ed6858237e8f63c27a76cc5.jpg',
+    '/images/46656ca3dce3c405dbf6c115edcbfd27.jpg',
+    '/images/472e4913fb497e74e5c54e30df76aef0.jpg',
+    '/images/5aef65772d79235ad0abc7f3eaa548f7.jpg',
+    '/images/6f32cb02c9e8fc994cf3357915272b24.jpg',
+    '/images/d537eee6b7d672fd3121a3ffd813fd1b.jpg',
+    '/images/e9e3819959e15ab391044bf4b51b9b19.jpg',
+    '/images/efd405d37f3b49d1a1c91273aed85736.jpg',
+    '/images/f26bed75b258ee68fd86a2fa349e5350.jpg',
+  ];
+
   return (
     <div className="flex flex-col">
+      {/* Animated Image Collage Section with Horizontal Scroll and Varied Sizes */}
+      <section className="relative w-full bg-white py-8 md:py-16">
+        {/* Top Row - Horizontal Scrolling with Varied Sizes */}
+        <div className="mb-8 md:mb-12 overflow-hidden">
+          <div className="flex gap-3 md:gap-6 pb-4" style={{ animation: 'scrollLeft 40s linear infinite' }}>
+            {[...collageImages.slice(0, 5), ...collageImages.slice(0, 5), ...collageImages.slice(0, 5)].map((img, index) => {
+              const sizes = ['h-40 md:h-64', 'h-48 md:h-72', 'h-40 md:h-64', 'h-56 md:h-80', 'h-40 md:h-64'];
+              const sizeClass = sizes[index % 5];
+              return (
+                <div 
+                  key={index}
+                  className={`relative flex-shrink-0 w-40 md:w-72 ${sizeClass} overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500`}
+                >
+                  <Image
+                    src={img}
+                    alt={`Product ${(index % 5) + 1}`}
+                    fill
+                    className="object-cover hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 768px) 160px, 288px"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Center Logo with Pulsing Animation */}
+        <FadeIn delay="delay-500">
+          <div className="text-center mb-8 md:mb-12 py-6">
+            <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-black tracking-tight animate-pulse-slow">
+              Sol & Clay
+            </h1>
+          </div>
+        </FadeIn>
+
+        {/* Bottom Row - Horizontal Scrolling (Reverse Direction) with Varied Sizes */}
+        <div className="overflow-hidden">
+          <div className="flex gap-3 md:gap-6 pb-4" style={{ animation: 'scrollRight 40s linear infinite' }}>
+            {[...collageImages.slice(5, 10), ...collageImages.slice(5, 10), ...collageImages.slice(5, 10)].map((img, index) => {
+              const sizes = ['h-56 md:h-80', 'h-40 md:h-64', 'h-48 md:h-72', 'h-40 md:h-64', 'h-44 md:h-68'];
+              const sizeClass = sizes[index % 5];
+              return (
+                <div 
+                  key={index + 5}
+                  className={`relative flex-shrink-0 w-40 md:w-72 ${sizeClass} overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500`}
+                >
+                  <Image
+                    src={img}
+                    alt={`Product ${(index % 5) + 6}`}
+                    fill
+                    className="object-cover hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 768px) 160px, 288px"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className="relative min-h-[95vh] w-full flex items-center bg-gradient-to-br from-beige-light via-cream to-beige-warm">
+      <section className="relative min-h-[95vh] w-full flex items-center bg-gradient-to-br from-beige-light via-beige-primary to-beige-warm">
         <div className="container-luxury py-32">
           <FadeIn>
             <div className="max-w-4xl">
-              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-6">
+              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
                 Handcrafted Excellence
               </p>
-              <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-brown-darkest leading-[1.1] mb-8">
+              <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1] mb-8">
                 Where Craft Meets Timeless Elegance
               </h1>
-              <p className="text-xl md:text-2xl text-brown-dark leading-relaxed max-w-2xl mb-12">
+              <p className="text-base md:text-lg text-brown-primary leading-relaxed max-w-2xl mb-12">
                 Discover handcrafted ceramics that transform everyday moments into mindful rituals. Each piece tells a story of artistry, heritage, and uncompromising quality.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/collections">
-                  <Button size="lg" className="bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold px-10 py-7 text-lg transition-all hover:scale-105">
+                  <Button size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-10 py-7 text-lg transition-all hover:scale-105">
                     Explore Collections
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/about">
-                  <Button size="lg" variant="outline" className="border-2 border-brown-darkest text-brown-darkest hover:bg-brown-darkest hover:text-cream px-10 py-7 text-lg transition-all">
+                  <Button size="lg" variant="outline" className="border-2 border-black text-black hover:bg-black hover:text-beige-primary px-10 py-7 text-lg transition-all">
                     Our Story
                   </Button>
                 </Link>
@@ -47,17 +120,17 @@ export default function Home() {
       </section>
 
       {/* Featured Collections */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-24 md:py-32 bg-beige-warm">
         <div className="container-luxury">
           <FadeIn>
             <div className="text-center mb-16">
-              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-4">
+              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-4">
                 Curated Selection
               </p>
-              <h2 className="font-headline text-5xl md:text-6xl font-bold text-brown-darkest mb-6">
+              <h2 className="font-headline text-5xl md:text-6xl font-bold text-black mb-6">
                 Featured Collections
               </h2>
-              <p className="text-xl text-brown-dark max-w-2xl mx-auto">
+              <p className="text-xl text-brown-primary max-w-2xl mx-auto">
                 Explore our signature collections, each thoughtfully curated to bring warmth and character to your home.
               </p>
             </div>
@@ -72,9 +145,9 @@ export default function Home() {
                 <FadeIn key={collection.id} delay={`delay-${index * 100}`}>
                   <Link
                     href={`/collections/${collection.slug}`}
-                    className="group block card-luxury"
+                    className="group block bg-beige-light rounded-lg overflow-hidden shadow-md hover:shadow-luxury transition-all duration-300"
                   >
-                    <div className="relative aspect-[3/4] w-full overflow-hidden bg-beige-warm mb-6">
+                    <div className="relative aspect-[3/4] w-full overflow-hidden bg-beige-warm">
                       {image && (
                         <Image
                           src={image.imageUrl}
@@ -85,16 +158,16 @@ export default function Home() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-brown-darkest/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <div className="space-y-3">
-                      <h3 className="font-headline text-2xl font-semibold text-brown-darkest group-hover:text-gold-luxury transition-colors">
+                    <div className="space-y-3 p-6 bg-beige-light">
+                      <h3 className="font-headline text-2xl font-semibold text-black group-hover:text-brown-primary transition-colors">
                         {collection.title}
                       </h3>
-                      <p className="text-brown-dark leading-relaxed">
+                      <p className="text-brown-primary leading-relaxed">
                         {collection.description}
                       </p>
-                      <div className="flex items-center gap-2 text-gold-luxury font-medium group-hover:gap-3 transition-all">
+                      <div className="flex items-center gap-2 text-brown-primary font-medium group-hover:gap-3 transition-all">
                         <span>View Collection</span>
                         <ArrowRight className="h-4 w-4" />
                       </div>
@@ -107,7 +180,7 @@ export default function Home() {
 
           <div className="text-center mt-16">
             <Link href="/collections">
-              <Button size="lg" variant="outline" className="border-2 border-brown-darkest text-brown-darkest hover:bg-brown-darkest hover:text-cream px-10 py-6 text-lg">
+              <Button size="lg" variant="outline" className="border-2 border-black text-black hover:bg-black hover:text-beige-primary px-10 py-6 text-lg">
                 View All Collections
               </Button>
             </Link>
@@ -116,12 +189,12 @@ export default function Home() {
       </section>
 
       {/* Craftsmanship Section */}
-      <section className="py-24 md:py-32 bg-brown-darkest text-cream">
+      <section className="py-24 md:py-32 bg-brown-dark text-beige-primary">
         <div className="container-luxury">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
               <div>
-                <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-6">
+                <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
                   Our Philosophy
                 </p>
                 <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
@@ -134,7 +207,7 @@ export default function Home() {
                   From the careful selection of clay to the final polish, every step is executed with intentionality and care. We believe in slow creation, where time becomes an ingredient in beauty.
                 </p>
                 <Link href="/about">
-                  <Button size="lg" className="bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold px-10 py-6 text-lg">
+                  <Button size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-10 py-6 text-lg">
                     Learn Our Story
                   </Button>
                 </Link>
@@ -143,7 +216,7 @@ export default function Home() {
             <FadeIn delay="delay-200">
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-6">
-                  <div className="aspect-[3/4] bg-brown-dark rounded-sm overflow-hidden">
+                  <div className="aspect-[3/4] bg-brown-primary rounded-sm overflow-hidden">
                     {heroImage && (
                       <Image
                         src={heroImage.imageUrl}
@@ -156,12 +229,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="space-y-6 pt-12">
-                  <div className="bg-gold-luxury/10 p-8 rounded-sm border border-gold-luxury/20">
-                    <div className="text-4xl font-headline font-bold text-gold-luxury mb-2">15+</div>
+                  <div className="bg-brown-primary/10 p-8 rounded-sm border border-brown-primary/20">
+                    <div className="text-4xl font-headline font-bold text-brown-primary mb-2">15+</div>
                     <div className="text-beige-warm">Years of Craftsmanship</div>
                   </div>
-                  <div className="bg-gold-luxury/10 p-8 rounded-sm border border-gold-luxury/20">
-                    <div className="text-4xl font-headline font-bold text-gold-luxury mb-2">100%</div>
+                  <div className="bg-brown-primary/10 p-8 rounded-sm border border-brown-primary/20">
+                    <div className="text-4xl font-headline font-bold text-brown-primary mb-2">100%</div>
                     <div className="text-beige-warm">Handmade</div>
                   </div>
                 </div>
@@ -171,59 +244,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 md:py-32 bg-beige-light">
-        <div className="container-luxury">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-4">
-                Customer Stories
-              </p>
-              <h2 className="font-headline text-5xl md:text-6xl font-bold text-brown-darkest">
-                What Our Collectors Say
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <FadeIn key={testimonial.id} delay={`delay-${index * 100}`}>
-                <div className="bg-white p-8 rounded-sm shadow-luxury">
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-gold-luxury text-gold-luxury" />
-                    ))}
-                  </div>
-                  <blockquote className="text-brown-dark text-lg leading-relaxed mb-6 italic">
-                    &quot;{testimonial.quote}&quot;
-                  </blockquote>
-                  <div className="text-brown-darkest font-semibold">— {testimonial.author}</div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-brown-darkest to-brown-dark text-cream">
-        <div className="container-luxury">
+      <section className="py-24 md:py-32 bg-gradient-to-br from-brown-dark to-brown-primary text-beige-primary">
+        <div className="container-luxury px-6 sm:px-8">
           <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8 leading-tight">
                 Let&apos;s Create Together
               </h2>
-              <p className="text-beige-warm text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-beige-warm text-base sm:text-lg md:text-xl mb-10 md:mb-12 leading-relaxed">
                 Are you an artisan looking to share your craft with the world? We&apos;re always seeking talented makers to collaborate with.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href="/collaborate">
-                  <Button size="lg" className="bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold px-10 py-7 text-lg">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+                <Link href="/collaborate" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-8 sm:px-10 py-6 md:py-7 text-base md:text-lg">
                     Start Collaborating
                   </Button>
                 </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="outline" className="border-2 border-cream text-cream hover:bg-cream hover:text-brown-darkest px-10 py-7 text-lg">
+                <Link href="/contact" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full bg-beige-light text-brown-primary hover:bg-beige-primary font-semibold px-8 sm:px-10 py-6 md:py-7 text-base md:text-lg transition-all">
                     Get In Touch
                   </Button>
                 </Link>

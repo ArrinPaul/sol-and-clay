@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useEffect } from 'react';
@@ -15,9 +14,9 @@ class Orb {
   constructor(canvasWidth: number, canvasHeight: number, color: string) {
     this.x = Math.random() * canvasWidth;
     this.y = Math.random() * canvasHeight;
-    this.radius = Math.random() * 200 + 150; // Orbs are large
-    this.xVelocity = (Math.random() - 0.5) * 0.3;
-    this.yVelocity = (Math.random() - 0.5) * 0.3;
+    this.radius = Math.random() * 250 + 200;
+    this.xVelocity = (Math.random() - 0.5) * 0.2;
+    this.yVelocity = (Math.random() - 0.5) * 0.2;
     this.color = color;
   }
 
@@ -62,18 +61,19 @@ export function AuraBackground() {
     const context = canvas.getContext('2d', { willReadFrequently: false });
     if (!context) return;
 
+    // Luxury brown and gold color palette
     const colors =
       theme === 'dark'
         ? [
-            'hsl(30, 28%, 42%, 0.15)', // Warm Terra Cotta Brown
-            'hsl(25, 35%, 65%, 0.12)', // Soft Caramel
-            'hsl(183, 45%, 65%, 0.08)', // Muted Teal
-          ]
+          'rgba(212, 175, 55, 0.08)',
+          'rgba(107, 68, 35, 0.12)',
+          'rgba(184, 115, 51, 0.10)',
+        ]
         : [
-            'hsl(30, 28%, 42%, 0.06)', // Warm Terra Cotta Brown
-            'hsl(15, 55%, 75%, 0.08)', // Warm Terracotta
-            'hsl(25, 35%, 65%, 0.06)', // Soft Caramel
-          ];
+          'rgba(212, 175, 55, 0.06)',
+          'rgba(139, 111, 71, 0.08)',
+          'rgba(232, 220, 196, 0.12)',
+        ];
 
     let animationFrameId: number;
     let orbs: Orb[] = [];
@@ -98,7 +98,7 @@ export function AuraBackground() {
 
     const animate = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
-      context.globalCompositeOperation = 'lighter'; // Additive blending
+      context.globalCompositeOperation = 'lighter';
 
       orbs.forEach((orb) => {
         orb.update(canvas.width, canvas.height);
@@ -121,10 +121,8 @@ export function AuraBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 h-full w-full opacity-50"
+      className="fixed inset-0 z-0 h-full w-full opacity-40"
       style={{ isolation: 'isolate' }}
     />
   );
 }
-
-    

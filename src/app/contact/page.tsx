@@ -57,17 +57,17 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-beige-light via-cream to-beige-warm">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-beige-primary via-white to-beige-warm">
         <div className="container-luxury">
           <FadeIn>
             <div className="max-w-4xl">
-              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-6">
+              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
                 Get In Touch
               </p>
-              <h1 className="font-headline text-6xl md:text-7xl font-bold text-brown-darkest mb-6">
+              <h1 className="font-headline text-6xl md:text-7xl font-bold text-black mb-6">
                 Let&apos;s Start a Conversation
               </h1>
-              <p className="text-xl text-brown-dark max-w-2xl">
+              <p className="text-xl text-brown-primary max-w-2xl">
                 We&apos;d love to hear from you. Whether it&apos;s about collaborations, custom orders, or simply to say hello.
               </p>
             </div>
@@ -83,49 +83,49 @@ export default function ContactPage() {
             <FadeIn>
               <div className="space-y-8">
                 <div>
-                  <h2 className="font-headline text-3xl font-bold text-brown-darkest mb-8">
+                  <h2 className="font-headline text-3xl font-bold text-black mb-8">
                     Contact Information
                   </h2>
                   <div className="space-y-6">
-                    <div className="flex items-start gap-5 p-6 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
-                      <div className="w-14 h-14 flex items-center justify-center bg-gradient-gold text-brown-darkest flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <div className="flex items-start gap-5 p-6 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
+                      <div className="w-14 h-14 flex items-center justify-center bg-brown-primary text-beige-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                         <Mail className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-brown-darkest text-lg mb-1">Email</h3>
-                        <a href="mailto:hello@solandclay.com" className="text-brown-dark hover:text-gold-luxury transition-colors">
+                        <h3 className="font-semibold text-black text-lg mb-1">Email</h3>
+                        <a href="mailto:hello@solandclay.com" className="text-brown-primary hover:text-brown-dark transition-colors">
                           hello@solandclay.com
                         </a>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-5 p-6 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
-                      <div className="w-14 h-14 flex items-center justify-center bg-gradient-gold text-brown-darkest flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <div className="flex items-start gap-5 p-6 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
+                      <div className="w-14 h-14 flex items-center justify-center bg-brown-primary text-beige-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                         <Phone className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-brown-darkest text-lg mb-1">Phone</h3>
-                        <span className="text-brown-dark">+91 98765 43210</span>
+                        <h3 className="font-semibold text-black text-lg mb-1">Phone</h3>
+                        <span className="text-brown-primary">+91 98765 43210</span>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-5 p-6 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
-                      <div className="w-14 h-14 flex items-center justify-center bg-gradient-gold text-brown-darkest flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <div className="flex items-start gap-5 p-6 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
+                      <div className="w-14 h-14 flex items-center justify-center bg-brown-primary text-beige-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                         <MapPin className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-brown-darkest text-lg mb-1">Studio Location</h3>
-                        <span className="text-brown-dark">Koramangala, Bangalore, India</span>
+                        <h3 className="font-semibold text-black text-lg mb-1">Studio Location</h3>
+                        <span className="text-brown-primary">Koramangala, Bangalore, India</span>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-5 p-6 bg-beige-light border border-gold-luxury/20 hover:shadow-luxury transition-all duration-300 group">
-                      <div className="w-14 h-14 flex items-center justify-center bg-gradient-gold text-brown-darkest flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <div className="flex items-start gap-5 p-6 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
+                      <div className="w-14 h-14 flex items-center justify-center bg-brown-primary text-beige-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                         <Instagram className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-brown-darkest text-lg mb-1">Follow Us</h3>
-                        <a href="#" className="text-brown-dark hover:text-gold-luxury transition-colors">
+                        <h3 className="font-semibold text-black text-lg mb-1">Follow Us</h3>
+                        <a href="#" className="text-brown-primary hover:text-brown-dark transition-colors">
                           @solandclay
                         </a>
                       </div>
@@ -137,8 +137,8 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <FadeIn delay="delay-200">
-              <div className="bg-beige-light p-10 border border-gold-luxury/20">
-                <h2 className="font-headline text-3xl font-bold text-brown-darkest mb-8">
+              <div className="bg-beige-primary p-10 border border-brown-primary/20">
+                <h2 className="font-headline text-3xl font-bold text-black mb-8">
                   Send a Message
                 </h2>
                 <Form {...form}>
@@ -151,11 +151,11 @@ export default function ContactPage() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-brown-darkest font-medium">Name</FormLabel>
+                          <FormLabel className="text-black font-medium">Name</FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Your Name"
-                              className="bg-white border-brown-light/30 focus:border-gold-luxury"
+                              className="bg-white border-brown-primary/30 focus:border-brown-primary"
                               {...field}
                             />
                           </FormControl>
@@ -168,12 +168,12 @@ export default function ContactPage() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-brown-darkest font-medium">Email</FormLabel>
+                          <FormLabel className="text-black font-medium">Email</FormLabel>
                           <FormControl>
                             <Input
                               type="email"
                               placeholder="you@example.com"
-                              className="bg-white border-brown-light/30 focus:border-gold-luxury"
+                              className="bg-white border-brown-primary/30 focus:border-brown-primary"
                               {...field}
                             />
                           </FormControl>
@@ -186,11 +186,11 @@ export default function ContactPage() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-brown-darkest font-medium">Message</FormLabel>
+                          <FormLabel className="text-black font-medium">Message</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="Tell us about your inquiry or custom order..."
-                              className="min-h-[150px] bg-white border-brown-light/30 focus:border-gold-luxury"
+                              className="min-h-[150px] bg-white border-brown-primary/30 focus:border-brown-primary"
                               {...field}
                             />
                           </FormControl>
@@ -203,12 +203,12 @@ export default function ContactPage() {
                       name="image"
                       render={({ field: { onChange } }) => (
                         <FormItem>
-                          <FormLabel className="text-brown-darkest font-medium">Attach Image (Optional)</FormLabel>
+                          <FormLabel className="text-black font-medium">Attach Image (Optional)</FormLabel>
                           <FormControl>
                             <Input
                               type="file"
                               accept="image/png, image/jpeg, image/webp"
-                              className="bg-white border-brown-light/30"
+                              className="bg-white border-brown-primary/30"
                               onChange={(e) => {
                                 onChange(e.target.files?.[0]);
                               }}
@@ -221,7 +221,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold py-6 text-lg"
+                      className="w-full bg-brown-primary text-beige-primary hover:shadow-brown font-semibold py-6 text-lg"
                       disabled={isSubmitting}
                     >
                       {isSubmitting && (

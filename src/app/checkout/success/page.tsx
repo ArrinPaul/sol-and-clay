@@ -10,6 +10,8 @@ import { useFirestore, useMemoFirebase } from '@/firebase';
 import { useUser } from '@clerk/nextjs';
 import { collection, getDocs, writeBatch } from 'firebase/firestore';
 
+export const dynamic = 'force-dynamic';
+
 export default function CheckoutSuccessPage() {
   const { user } = useUser();
   const firestore = useFirestore();
@@ -34,7 +36,7 @@ export default function CheckoutSuccessPage() {
         await batch.commit();
       }
     };
-    
+
     // We get the session_id from the URL to confirm it was a success
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('session_id')) {

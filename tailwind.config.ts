@@ -14,29 +14,21 @@ const config: Config = {
         body: ["var(--font-inter)", "sans-serif"],
       },
       colors: {
-        // Luxury Brown Palette
+        // Primary Color Palette
         brown: {
-          darkest: "#2E1810",
-          dark: "#4B2E2E",
-          medium: "#6B4423",
-          light: "#8B6F47",
+          primary: "#5c3c26",
+          dark: "#3d2819",
+          light: "#8b6f47",
         },
-        // Gold Accents
-        gold: {
-          luxury: "#D4AF37",
-          light: "#E8C55B",
-          dark: "#B8963A",
-        },
-        // Warm Neutrals
-        cream: "#FAF6F0",
         beige: {
-          light: "#F5EFE6",
-          warm: "#E8DCC4",
+          primary: "#fffaeb",
+          light: "#fffef7",
+          warm: "#f5efe0",
         },
-        // Copper Rose
-        copper: {
-          rose: "#B87333",
-        },
+        // Black and White
+        black: "#000000",
+        white: "#ffffff",
+
         // Shadcn compatibility
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -93,12 +85,12 @@ const config: Config = {
         "8xl": "1400px",
       },
       boxShadow: {
-        luxury: "0 4px 20px rgba(46, 24, 16, 0.08)",
-        "gold-glow": "0 0 20px rgba(212, 175, 55, 0.3)",
+        luxury: "0 4px 20px rgba(0, 0, 0, 0.08)",
+        brown: "0 0 20px rgba(92, 60, 38, 0.15)",
       },
       backgroundImage: {
-        "gradient-gold": "linear-gradient(135deg, #D4AF37 0%, #E8C55B 50%, #D4AF37 100%)",
-        "gradient-brown": "linear-gradient(135deg, #2E1810 0%, #4B2E2E 100%)",
+        "gradient-brown": "linear-gradient(135deg, #5c3c26 0%, #8b6f47 100%)",
+        "gradient-beige": "linear-gradient(135deg, #fffaeb 0%, #f5efe0 100%)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -131,7 +123,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;

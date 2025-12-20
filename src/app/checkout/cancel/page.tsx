@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { FadeIn } from '@/components/utils/fade-in';
 import { XCircle, ShoppingCart } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function CheckoutCancelPage() {
   return (
     <div className="container mx-auto px-4 py-12">

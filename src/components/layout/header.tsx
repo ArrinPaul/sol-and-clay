@@ -142,12 +142,12 @@ export function Header() {
         </Button>
       )}
 
-      <Button variant="ghost" size="icon" asChild className="relative text-brown-darkest hover:text-gold-luxury transition-colors">
+      <Button variant="ghost" size="icon" asChild className="relative text-black hover:text-brown-primary transition-colors">
         <Link href="/cart">
           <ShoppingBag className="h-5 w-5" />
           <span className="sr-only">Cart</span>
           {cartItemCount > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-gold text-xs font-bold text-brown-darkest shadow-gold-glow">
+            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-brown-primary text-xs font-bold text-beige-primary shadow-brown">
               {cartItemCount}
             </span>
           )}
@@ -160,7 +160,7 @@ export function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b',
-        isScrolled ? 'bg-cream/98 backdrop-blur-md shadow-luxury border-brown-light/20' : 'bg-cream/80 backdrop-blur-sm border-transparent',
+        isScrolled ? 'bg-beige-primary/98 backdrop-blur-md shadow-luxury border-brown-primary/20' : 'bg-beige-primary/80 backdrop-blur-sm border-transparent',
         isHidden ? '-translate-y-full' : 'translate-y-0'
       )}
     >
@@ -176,7 +176,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-brown-darkest hover:text-gold-luxury transition-colors tracking-wide uppercase"
+              className="text-sm font-medium text-black hover:text-brown-primary transition-colors tracking-wide uppercase"
             >
               {link.label}
             </Link>

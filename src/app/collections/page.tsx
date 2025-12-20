@@ -15,17 +15,17 @@ export default function CollectionsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-beige-light via-cream to-beige-warm">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-beige-primary via-white to-beige-warm">
         <div className="container-luxury">
           <FadeIn>
             <div className="max-w-4xl">
-              <p className="text-gold-luxury font-medium tracking-wider uppercase text-sm mb-6">
+              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
                 Explore Our Work
               </p>
-              <h1 className="font-headline text-6xl md:text-7xl font-bold text-brown-darkest mb-6">
+              <h1 className="font-headline text-6xl md:text-7xl font-bold text-black mb-6">
                 Collections
               </h1>
-              <p className="text-xl text-brown-dark max-w-2xl leading-relaxed">
+              <p className="text-xl text-brown-primary max-w-2xl leading-relaxed">
                 Every collection begins with a story — a fusion of design and craft. Explore our curated series, each one inspired by texture, pattern, and emotion.
               </p>
             </div>
@@ -58,18 +58,18 @@ export default function CollectionsPage() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-brown-darkest/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="flex items-center gap-2 text-cream font-medium">
+                        <span className="flex items-center gap-2 text-beige-primary font-medium">
                           Explore Collection <ArrowRight className="h-4 w-4" />
                         </span>
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <h2 className="font-headline text-2xl font-semibold text-brown-darkest group-hover:text-gold-luxury transition-colors">
+                      <h2 className="font-headline text-2xl font-semibold text-black group-hover:text-brown-primary transition-colors">
                         {collection.title}
                       </h2>
-                      <p className="text-brown-dark leading-relaxed line-clamp-2">
+                      <p className="text-brown-primary leading-relaxed line-clamp-2">
                         {collection.description}
                       </p>
                     </div>
@@ -82,7 +82,7 @@ export default function CollectionsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-brown-darkest text-cream">
+      <section className="py-24 bg-black text-beige-primary">
         <div className="container-luxury">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
@@ -92,7 +92,7 @@ export default function CollectionsPage() {
               <p className="text-beige-warm text-xl mb-8 leading-relaxed">
                 Our artisans can create bespoke pieces tailored to your vision. Get in touch to discuss your custom order.
               </p>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-gold-luxury hover:text-gold-light transition-colors font-medium text-lg">
+              <Link href="/contact" className="inline-flex items-center gap-2 text-brown-primary hover:text-brown-light transition-colors font-medium text-lg">
                 Contact Us <ArrowRight className="h-5 w-5" />
               </Link>
             </div>

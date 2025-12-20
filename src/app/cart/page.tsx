@@ -86,21 +86,21 @@ export default function CartPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64 min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin text-gold-luxury" />
+        <Loader2 className="h-8 w-8 animate-spin text-brown-primary" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-beige-light">
+    <div className="min-h-screen bg-beige-primary">
       {/* Header */}
-      <section className="pt-32 pb-8 bg-gradient-to-br from-beige-light via-cream to-beige-warm">
+      <section className="pt-32 pb-8 bg-gradient-to-br from-beige-primary via-white to-beige-warm">
         <div className="container-luxury">
           <FadeIn>
-            <h1 className="font-headline text-5xl md:text-6xl font-bold text-brown-darkest mb-4">
+            <h1 className="font-headline text-5xl md:text-6xl font-bold text-black mb-4">
               Your Cart
             </h1>
-            <p className="text-brown-dark text-lg">
+            <p className="text-brown-primary text-lg">
               Review your items and proceed to checkout.
             </p>
           </FadeIn>
@@ -110,17 +110,17 @@ export default function CartPage() {
       <section className="py-12">
         <div className="container-luxury">
           {!user || !cartItems || cartItems.length === 0 ? (
-            <FadeIn className="flex flex-col items-center justify-center text-center border-2 border-dashed border-brown-light/30 bg-white py-24">
-              <div className="bg-gold-luxury/10 rounded-full p-6 mb-6">
-                <ShoppingBag className="h-12 w-12 text-gold-luxury" />
+            <FadeIn className="flex flex-col items-center justify-center text-center border-2 border-dashed border-brown-primary/30 bg-white py-24">
+              <div className="bg-brown-primary/10 rounded-full p-6 mb-6">
+                <ShoppingBag className="h-12 w-12 text-brown-primary" />
               </div>
-              <h2 className="font-headline text-3xl font-bold text-brown-darkest mb-4">
+              <h2 className="font-headline text-3xl font-bold text-black mb-4">
                 Your Cart is Empty
               </h2>
-              <p className="text-brown-dark mb-8 max-w-md">
+              <p className="text-brown-primary mb-8 max-w-md">
                 Looks like you haven&apos;t added any beautiful items yet. Explore our curated collections to find the perfect piece.
               </p>
-              <Button asChild size="lg" className="bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold px-8">
+              <Button asChild size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-8">
                 <Link href="/collections">
                   Explore Collections
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -137,7 +137,7 @@ export default function CartPage() {
                       (img) => img.id === item.imageId
                     );
                     return (
-                      <div key={item.id} className="flex items-center p-6 bg-white border border-brown-light/20 hover:shadow-luxury transition-all">
+                      <div key={item.id} className="flex items-center p-6 bg-white border border-brown-primary/20 hover:shadow-luxury transition-all">
                         <div className="relative h-24 w-24 overflow-hidden bg-beige-warm flex-shrink-0">
                           {image && (
                             <Link href={`/products/${item.slug}`}>
@@ -152,19 +152,19 @@ export default function CartPage() {
                           )}
                         </div>
                         <div className="ml-6 flex-1">
-                          <Link href={`/products/${item.slug}`} className="hover:text-gold-luxury transition-colors">
-                            <h3 className="font-headline text-xl font-semibold text-brown-darkest">{item.title}</h3>
+                          <Link href={`/products/${item.slug}`} className="hover:text-brown-primary transition-colors">
+                            <h3 className="font-headline text-xl font-semibold text-black">{item.title}</h3>
                           </Link>
-                          <p className="text-gold-luxury font-medium mt-1">
+                          <p className="text-brown-primary font-medium mt-1">
                             ${item.price.toFixed(2)}
                           </p>
                         </div>
                         <div className="flex items-center gap-6">
-                          <p className="text-brown-dark">Qty: {item.quantity}</p>
+                          <p className="text-brown-primary">Qty: {item.quantity}</p>
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="text-brown-dark hover:text-red-600 hover:bg-red-50"
+                            className="text-brown-primary hover:text-red-600 hover:bg-red-50"
                             onClick={() => handleRemoveItem(item.id)}
                           >
                             <X className="h-5 w-5" />
@@ -179,33 +179,33 @@ export default function CartPage() {
               {/* Order Summary */}
               <div className="lg:col-span-1">
                 <FadeIn delay="delay-200">
-                  <div className="bg-white p-8 border border-brown-light/20 sticky top-24">
-                    <h2 className="font-headline text-2xl font-bold text-brown-darkest mb-6">
+                  <div className="bg-white p-8 border border-brown-primary/20 sticky top-24">
+                    <h2 className="font-headline text-2xl font-bold text-black mb-6">
                       Order Summary
                     </h2>
                     <div className="space-y-4">
-                      <div className="flex justify-between text-brown-dark">
+                      <div className="flex justify-between text-brown-primary">
                         <span>Subtotal</span>
                         <span>${subtotal.toFixed(2)}</span>
                       </div>
-                      <div className="flex justify-between text-brown-dark">
+                      <div className="flex justify-between text-brown-primary">
                         <span>Shipping</span>
                         <span>${shipping.toFixed(2)}</span>
                       </div>
-                      <Separator className="bg-brown-light/20" />
-                      <div className="flex justify-between font-bold text-xl text-brown-darkest">
+                      <Separator className="bg-brown-primary/20" />
+                      <div className="flex justify-between font-bold text-xl text-black">
                         <span>Total</span>
                         <span>${total.toFixed(2)}</span>
                       </div>
                     </div>
                     <Button
-                      className="w-full mt-8 bg-gradient-gold text-brown-darkest hover:shadow-gold-glow font-semibold h-14 text-lg"
+                      className="w-full mt-8 bg-brown-primary text-beige-primary hover:shadow-brown font-semibold h-14 text-lg"
                       size="lg"
                       onClick={handleCheckout}
                     >
                       Proceed to Checkout
                     </Button>
-                    <p className="text-center text-sm text-brown-dark mt-4">
+                    <p className="text-center text-sm text-brown-primary mt-4">
                       Secure checkout powered by Stripe
                     </p>
                   </div>
