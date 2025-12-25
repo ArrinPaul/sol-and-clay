@@ -30,6 +30,7 @@ import {
 const navLinks = [
   { href: '/collections', label: 'Collections' },
   { href: '/collaborate', label: 'Collaborate' },
+  { href: '/customise', label: 'Customise' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];

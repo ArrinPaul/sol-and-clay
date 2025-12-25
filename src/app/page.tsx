@@ -31,7 +31,7 @@ export default function Home() {
       <section className="relative w-full bg-white py-8 md:py-16">
         {/* Top Row - Horizontal Scrolling with Varied Sizes */}
         <div className="mb-8 md:mb-12 overflow-hidden">
-          <div className="flex gap-3 md:gap-6 pb-4" style={{ animation: 'scrollLeft 40s linear infinite' }}>
+          <div className="flex gap-3 md:gap-6 pb-4" style={{ animation: 'scrollLeft 20s linear infinite' }}>
             {[...collageImages.slice(0, 5), ...collageImages.slice(0, 5), ...collageImages.slice(0, 5)].map((img, index) => {
               const sizes = ['h-40 md:h-64', 'h-48 md:h-72', 'h-40 md:h-64', 'h-56 md:h-80', 'h-40 md:h-64'];
               const sizeClass = sizes[index % 5];
@@ -64,7 +64,7 @@ export default function Home() {
 
         {/* Bottom Row - Horizontal Scrolling (Reverse Direction) with Varied Sizes */}
         <div className="overflow-hidden">
-          <div className="flex gap-3 md:gap-6 pb-4" style={{ animation: 'scrollRight 40s linear infinite' }}>
+          <div className="flex gap-3 md:gap-6 pb-4" style={{ animation: 'scrollRight 20s linear infinite' }}>
             {[...collageImages.slice(5, 10), ...collageImages.slice(5, 10), ...collageImages.slice(5, 10)].map((img, index) => {
               const sizes = ['h-56 md:h-80', 'h-40 md:h-64', 'h-48 md:h-72', 'h-40 md:h-64', 'h-44 md:h-68'];
               const sizeClass = sizes[index % 5];
@@ -92,25 +92,14 @@ export default function Home() {
         <div className="container-luxury py-32">
           <FadeIn>
             <div className="max-w-4xl">
-              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
-                Handcrafted Excellence
-              </p>
               <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1] mb-8">
-                Where Craft Meets Timeless Elegance
+                Classic ceramics, made with potters across India
               </h1>
-              <p className="text-base md:text-lg text-brown-primary leading-relaxed max-w-2xl mb-12">
-                Discover handcrafted ceramics that transform everyday moments into mindful rituals. Each piece tells a story of artistry, heritage, and uncompromising quality.
-              </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/collections">
                   <Button size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-10 py-7 text-lg transition-all hover:scale-105">
-                    Explore Collections
+                    Explore the collection
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link href="/about">
-                  <Button size="lg" variant="outline" className="border-2 border-black text-black hover:bg-black hover:text-beige-primary px-10 py-7 text-lg transition-all">
-                    Our Story
                   </Button>
                 </Link>
               </div>
@@ -119,25 +108,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Process Section */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="container-luxury">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <FadeIn>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="aspect-[3/4] bg-beige-warm rounded-sm overflow-hidden">
+                  {heroImage && (
+                    <Image
+                      src={heroImage.imageUrl}
+                      alt="Ceramic making process"
+                      width={400}
+                      height={533}
+                      className="object-cover w-full h-full"
+                    />
+                  )}
+                </div>
+                <div className="aspect-[3/4] bg-beige-warm rounded-sm overflow-hidden mt-8">
+                  {heroImage && (
+                    <Image
+                      src={heroImage.imageUrl}
+                      alt="Studio environment"
+                      width={400}
+                      height={533}
+                      className="object-cover w-full h-full"
+                    />
+                  )}
+                </div>
+              </div>
+            </FadeIn>
+            <FadeIn delay="delay-200">
+              <div>
+                <h2 className="font-headline text-4xl md:text-5xl font-bold text-black mb-6">
+                  Classic ceramic pieces, made slowly
+                </h2>
+                <p className="text-lg text-brown-primary leading-relaxed mb-6">
+                  We work with independent ceramic studios across India to create functional pieces for everyday use.
+                </p>
+                <p className="text-lg text-brown-primary leading-relaxed">
+                  Each collection begins with a concept and comes alive through the hands of skilled makers.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Collections */}
       <section className="py-24 md:py-32 bg-beige-warm">
         <div className="container-luxury">
           <FadeIn>
             <div className="text-center mb-16">
-              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-4">
-                Curated Selection
-              </p>
               <h2 className="font-headline text-5xl md:text-6xl font-bold text-black mb-6">
-                Featured Collections
+                Our First Collection
               </h2>
-              <p className="text-xl text-brown-primary max-w-2xl mx-auto">
-                Explore our signature collections, each thoughtfully curated to bring warmth and character to your home.
-              </p>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {collections.slice(0, 6).map((collection, index) => {
+          <div className="grid grid-cols-1 gap-8 lg:gap-12 max-w-2xl mx-auto">
+            {collections.slice(0, 1).map((collection, index) => {
               const image = PlaceHolderImages.find(
                 (img) => img.id === collection.imageId
               );
@@ -178,12 +208,10 @@ export default function Home() {
             })}
           </div>
 
-          <div className="text-center mt-16">
-            <Link href="/collections">
-              <Button size="lg" variant="outline" className="border-2 border-black text-black hover:bg-black hover:text-beige-primary px-10 py-6 text-lg">
-                View All Collections
-              </Button>
-            </Link>
+          <div className="text-center mt-12">
+            <p className="text-brown-primary text-lg">
+              More collections coming soon.
+            </p>
           </div>
         </div>
       </section>
@@ -194,21 +222,18 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
               <div>
-                <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
-                  Our Philosophy
-                </p>
                 <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
-                  Artistry in Every Detail
+                  Our approach
                 </h2>
                 <p className="text-beige-warm text-lg leading-relaxed mb-6">
-                  Each piece in our collection is a testament to the marriage of ancient techniques and contemporary design. Our artisans pour decades of expertise into every curve, every glaze, creating functional art that elevates daily rituals into moments of mindfulness.
+                  Sol & Clay brings together design direction and independent ceramic studios.
                 </p>
                 <p className="text-beige-warm text-lg leading-relaxed mb-8">
-                  From the careful selection of clay to the final polish, every step is executed with intentionality and care. We believe in slow creation, where time becomes an ingredient in beauty.
+                  We focus on thoughtful concepts, functional use, and strong storytelling, while the making stays with the people who do it best.
                 </p>
                 <Link href="/about">
                   <Button size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-10 py-6 text-lg">
-                    Learn Our Story
+                    Read more about us →
                   </Button>
                 </Link>
               </div>
@@ -259,7 +284,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
                 <Link href="/collaborate" className="w-full sm:w-auto">
                   <Button size="lg" className="w-full bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-8 sm:px-10 py-6 md:py-7 text-base md:text-lg">
-                    Start Collaborating
+                    Collaborate with us
                   </Button>
                 </Link>
                 <Link href="/contact" className="w-full sm:w-auto">

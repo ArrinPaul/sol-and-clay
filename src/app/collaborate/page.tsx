@@ -10,33 +10,21 @@ export const metadata = {
     'We collaborate with studios that share our love for material and meaning.',
 };
 
-const benefits = [
-  'Increased visibility and reach to a design-focused audience.',
-  'Shared storytelling to highlight your craft and process.',
-  'An additional, reliable source of income.',
-  'A safe space for creative experimentation and growth.',
-];
-
 const howItWorks = [
   {
-    title: 'Design & Direction',
+    title: 'Ideation',
     description:
-      'All collections are designed and directed by Sol & Clay to ensure brand cohesion.',
+      'Sol & Clay identifies a product idea or theme based on consumer interest and design direction.',
   },
   {
-    title: 'Production',
+    title: 'Studio Collaboration',
     description:
-      'Your studio handles the production, bringing our shared vision to life.',
+      'We work closely with a selected studio to shape the collection — balancing our concept with the studio\'s craft style.',
   },
   {
-    title: 'Co-Branding',
+    title: 'Bringing It to Life',
     description:
-      'Every collaboration is co-credited, celebrating the partnership between maker and brand.',
-  },
-  {
-    title: 'Revenue Sharing',
-    description:
-      'We believe in fair and flexible partnerships that benefit everyone involved.',
+      'The studio produces the collection, while Sol & Clay handles photography, storytelling, and launch.',
   },
 ];
 
@@ -87,22 +75,6 @@ export default function CollaboratePage() {
                   </div>
                 ))}
               </div>
-
-              <div className="mt-12">
-                <h3 className="text-2xl font-medium text-foreground mb-6">
-                  Benefits
-                </h3>
-                <div className="space-y-3">
-                  {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground mt-0.5">
-                        <Check className="h-3 w-3" />
-                      </div>
-                      <span className="text-muted-foreground leading-relaxed">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </FadeIn>
 
             <FadeIn delay="delay-400">
@@ -111,13 +83,12 @@ export default function CollaboratePage() {
                   <CardHeader className="pb-6">
                     <span className="inline-block mb-2 text-sm font-semibold tracking-wider uppercase text-primary">Apply Now</span>
                     <CardTitle className="font-headline text-3xl">
-                      Join as a Maker
+                      Are you a ceramic maker or studio?
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="mb-8 text-muted-foreground leading-relaxed">
-                      Tell us about your work. Our team will review your
-                      submission to see if we&apos;re a good fit for collaboration.
+                      If you&apos;re interested in collaborating on a future collection, we&apos;d love to hear from you.
                     </p>
                     <CollaborateForm />
                   </CardContent>

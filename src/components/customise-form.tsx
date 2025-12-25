@@ -17,7 +17,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { submitCollaborationRequest } from '@/app/actions/collaboration';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
@@ -25,15 +24,15 @@ const formSchema = z.object({
     .string()
     .min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  portfolio: z.string().url({ message: 'Please enter a valid URL.' }),
-  message: z
+  customisation: z
     .string()
-    .min(20, { message: 'Your message must be at least 20 characters.' })
-    .max(500, { message: 'Message cannot exceed 500 characters.' }),
-  image: z.instanceof(File).optional(),
+    .min(20, { message: 'Please describe what you would like to customise.' })
+    .max(500, { message: 'Description cannot exceed 500 characters.' }),
+  referenceImages: z.string().optional(),
+  timeline: z.string().optional(),
 });
 
-export function CollaborateForm() {
+export function CustomiseForm() {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -41,47 +40,24 @@ export function CollaborateForm() {
     defaultValues: {
       name: '',
       email: '',
-      portfolio: '',
-      message: '',
+      customisation: '',
+      referenceImages: '',
+      timeline: '',
     },
   });
 
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData();
-    formData.append('studioName', values.name);
-    formData.append('email', values.email);
-    formData.append('portfolioURL', values.portfolio);
-    formData.append('message', values.message);
-
-    // Add file if it exists
-    if (values.image) {
-      formData.append('image', values.image);
-    } else {
-      // Create a dummy file if image is not required or provided
-      const dummyFile = new File([''], 'dummy.txt', { type: 'text/plain' });
-      formData.append('image', dummyFile);
-    }
-
-    const result = await submitCollaborationRequest(formData);
-
-    if (result.success) {
-      toast({
-        title: 'Submission Received!',
-        description:
-          "Thank you for your interest. We'll review your submission and be in touch soon.",
-        variant: 'default',
-      });
-      form.reset();
-    } else {
-      toast({
-        title: 'Submission Failed',
-        description:
-          result.error || 'An unexpected error occurred. Please try again.',
-        variant: 'destructive',
-      });
-    }
+    // For now, just show a success message
+    // In production, this would send to a backend API
+    toast({
+      title: 'Request Submitted!',
+      description:
+        "Thank you for your custom order request. We'll review it and get back to you soon.",
+      variant: 'default',
+    });
+    form.reset();
   }
 
   return (
@@ -92,9 +68,9 @@ export function CollaborateForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name / Studio Name</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your name or studio name" {...field} />
+                <Input placeholder="Your name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -115,14 +91,14 @@ export function CollaborateForm() {
         />
         <FormField
           control={form.control}
-          name="portfolio"
+          name="customisation"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Portfolio / Instagram / Website</FormLabel>
+              <FormLabel>What would you like to customise?</FormLabel>
               <FormControl>
-                <Input
-                  type="url"
-                  placeholder="https://your-portfolio.com or Instagram URL"
+                <Textarea
+                  placeholder="Describe the custom piece you're looking for - size, color, design modifications, etc."
+                  className="min-h-[120px]"
                   {...field}
                 />
               </FormControl>
@@ -132,14 +108,29 @@ export function CollaborateForm() {
         />
         <FormField
           control={form.control}
-          name="message"
+          name="referenceImages"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Short message about your work</FormLabel>
+              <FormLabel>Reference images (optional)</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Tell us about your ceramic work and craft..."
-                  className="min-h-[120px]"
+                <Input
+                  placeholder="Link to reference images (e.g., Dropbox, Google Drive)"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="timeline"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Timeline (optional)</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="When do you need this by?"
                   {...field}
                 />
               </FormControl>
@@ -149,11 +140,10 @@ export function CollaborateForm() {
         />
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isSubmitting ? 'Submitting...' : 'Submit collaboration interest'}
+          {isSubmitting ? 'Submitting...' : 'Request a custom piece'}
         </Button>
       </form>
     </Form>
   );
 }
-
     
