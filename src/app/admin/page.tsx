@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -29,9 +30,22 @@ const getBadgeVariant = (status: string) => {
 };
 
 export default function AdminDashboardPage() {
+  const { sessionClaims } = auth();
+
+  // If the user does not have the admin role, show an unauthorized message.
+  // In a real app, you'd probably want to redirect them to the home page.
+  if (sessionClaims?.metadata.role !== "admin") {
+    return (
+      <div className="container mx-auto px-4 py-12 text-center">
+        <h1 className="text-2xl font-bold">Unauthorized</h1>
+        <p className="mt-4">You do not have permission to view this page.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="font-headline text-4xl font-bold text-foreground mb-8">
+      <h1 className="font-headline text-4xl font-bold text-dark-brown mb-8">
         Admin Dashboard
       </h1>
 

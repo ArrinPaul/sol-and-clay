@@ -43,7 +43,7 @@ export default function FAQPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <FadeIn>
-        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-dark-brown md:text-6xl">
           Frequently Asked Questions
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">

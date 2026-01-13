@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect } from 'react';
@@ -6,49 +5,27 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { FadeIn } from '@/components/utils/fade-in';
 import { CheckCircle, Home } from 'lucide-react';
-import { useFirestore, useMemoFirebase } from '@/firebase';
-import { useAuth } from '@/firebase/hooks/use-auth';
-import { collection, getDocs, writeBatch } from 'firebase/firestore';
+import { useCart } from '@/hooks/use-cart';
 
 export const dynamic = 'force-dynamic';
 
 export default function CheckoutSuccessPage() {
-  const { user } = useAuth();
-  const firestore = useFirestore();
-
-  const cartRef = useMemoFirebase(
-    () =>
-      user && firestore
-        ? collection(firestore, 'users', user.uid, 'cartItems')
-        : null,
-    [user, firestore]
-  );
+  const { clearCart } = useCart();
 
   // Clear the cart after a successful purchase
   useEffect(() => {
-    const clearCart = async () => {
-      if (cartRef) {
-        const querySnapshot = await getDocs(cartRef);
-        const batch = writeBatch(firestore);
-        querySnapshot.forEach((doc) => {
-          batch.delete(doc.ref);
-        });
-        await batch.commit();
-      }
-    };
-
     // We get the session_id from the URL to confirm it was a success
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('session_id')) {
       clearCart();
     }
-  }, [cartRef, firestore]);
+  }, [clearCart]);
 
   return (
     <div className="container mx-auto px-4 py-12">
       <FadeIn className="flex flex-col items-center justify-center text-center">
-        <CheckCircle className="h-24 w-24 text-green-500 mb-6" />
-        <h1 className="font-headline text-4xl font-bold text-foreground">
+        <CheckCircle className="h-24 w-24 text-brand-brown mb-6" />
+        <h1 className="font-headline text-4xl font-bold text-dark-brown">
           Thank You for Your Order!
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">

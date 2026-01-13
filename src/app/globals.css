@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
-
+/* ! @layer base, components, utilities ; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-playfair: 'Playfair Display', serif;
+  --font-headline: 'Playfair Display', serif;
   --font-inter: 'Inter', sans-serif;
 }
 
@@ -96,25 +95,25 @@
   }
 
   ::selection {
-    @apply bg-brown-primary/20 text-black;
+    @apply bg-brand-brown/20 text-black;
   }
 }
 
 @layer components {
   .container-luxury {
-    @apply max-w-8xl mx-auto px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .btn-luxury {
-    @apply bg-brown-primary text-beige-primary font-semibold px-8 py-4 hover:shadow-brown transition-all duration-300 hover:scale-[1.02];
+    @apply bg-brand-brown text-brand-beige font-semibold px-6 py-3 md:px-8 md:py-4 hover:shadow-brown transition-all duration-300 hover:scale-[1.02];
   }
 
   .card-luxury {
-    @apply bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300;
+    @apply bg-brand-beige border border-brand-brown/20 hover:shadow-luxury transition-all duration-300;
   }
 
   .divider-brown {
-    @apply h-px bg-gradient-to-r from-transparent via-brown-primary/50 to-transparent;
+    @apply h-px bg-gradient-to-r from-transparent via-brand-brown/50 to-transparent;
   }
 
   .text-gradient-brown {
@@ -124,7 +123,7 @@
 
 @layer utilities {
   .font-headline {
-    font-family: var(--font-playfair), serif;
+    font-family: var(--font-headline), serif;
   }
 
   .font-body {

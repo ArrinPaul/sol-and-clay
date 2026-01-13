@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
 import { Sparkles, Users, Target, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export const metadata = {
   title: 'Our Story - Sol & Clay',
@@ -17,36 +16,37 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-beige-primary via-white to-beige-warm">
+      <section className="pt-40 pb-20 bg-gradient-to-br from-brand-beige via-white to-accent-beige">
         <div className="container-luxury">
           <FadeIn>
-            <div className="max-w-4xl">
-              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-brand-brown font-medium tracking-widest uppercase text-sm mb-6 md:mb-8 letter-spacing-2">
                 Our Story
               </p>
-              <h1 className="font-headline text-6xl md:text-7xl lg:text-8xl font-bold text-black leading-tight mb-8">
+              <h1 className="font-headline text-6xl md:text-7xl lg:text-7xl font-bold text-dark-brown mb-8 leading-tight">
                 Where Artistry Meets Purpose
               </h1>
-              <p className="text-xl md:text-2xl text-brown-primary leading-relaxed max-w-3xl">
+              <p className="text-lg md:text-xl text-brand-brown max-w-2xl mx-auto leading-relaxed mb-2">
                 Sol & Clay is a boutique studio specializing in artisanal home décor. We bridge the gap between master makers and design-conscious homes, offering curated collections that celebrate craft, material, and meaningful design.
               </p>
+              <div className="h-1 w-24 bg-brand-brown mx-auto mt-8"></div>
             </div>
           </FadeIn>
         </div>
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container-luxury">
           <FadeIn>
             <div className="text-center mb-16">
-              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-4">
+              <p className="text-brand-brown font-medium tracking-wider uppercase text-sm mb-4">
                 Our Philosophy
               </p>
-              <h2 className="font-headline text-5xl md:text-6xl font-bold text-black mb-6">
+              <h2 className="font-headline text-5xl md:text-6xl font-bold text-dark-brown mb-6">
                 The Values We Live By
               </h2>
-              <p className="text-xl text-brown-primary max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-brand-brown max-w-2xl mx-auto">
                 We value craft, collaboration, and character over mass production. Every item is made with intention and care.
               </p>
             </div>
@@ -54,42 +54,42 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <FadeIn>
-              <div className="p-10 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
-                <div className="w-16 h-16 flex items-center justify-center bg-brown-primary text-beige-primary mb-8 group-hover:scale-110 transition-transform">
+              <div className="p-10 bg-brand-beige border border-brand-brown/20 hover:shadow-luxury transition-all duration-300 group">
+                <div className="w-16 h-16 flex items-center justify-center bg-brand-brown text-brand-beige mb-8 group-hover:scale-110 transition-transform">
                   <Sparkles className="h-8 w-8" />
                 </div>
-                <h3 className="font-headline text-2xl font-semibold text-black mb-4">
+                <h3 className="font-headline text-2xl font-semibold text-dark-brown mb-4">
                   Exceptional Craft
                 </h3>
-                <p className="text-brown-primary leading-relaxed">
+                <p className="text-brand-brown leading-relaxed">
                   We partner with independent makers who pour their heart and skill into every piece, ensuring exceptional quality and uniqueness in each creation.
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay="delay-200">
-              <div className="p-10 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
-                <div className="w-16 h-16 flex items-center justify-center bg-brown-primary text-beige-primary mb-8 group-hover:scale-110 transition-transform">
+              <div className="p-10 bg-brand-beige border border-brand-brown/20 hover:shadow-luxury transition-all duration-300 group">
+                <div className="w-16 h-16 flex items-center justify-center bg-brand-brown text-brand-beige mb-8 group-hover:scale-110 transition-transform">
                   <Users className="h-8 w-8" />
                 </div>
-                <h3 className="font-headline text-2xl font-semibold text-black mb-4">
+                <h3 className="font-headline text-2xl font-semibold text-dark-brown mb-4">
                   True Collaboration
                 </h3>
-                <p className="text-brown-primary leading-relaxed">
+                <p className="text-brand-brown leading-relaxed">
                   We are a platform for artisans to thrive, fostering a community that values creativity and shared storytelling through design.
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay="delay-400">
-              <div className="p-10 bg-beige-primary border border-brown-primary/20 hover:shadow-luxury transition-all duration-300 group">
-                <div className="w-16 h-16 flex items-center justify-center bg-brown-primary text-beige-primary mb-8 group-hover:scale-110 transition-transform">
+              <div className="p-10 bg-brand-beige border border-brand-brown/20 hover:shadow-luxury transition-all duration-300 group">
+                <div className="w-16 h-16 flex items-center justify-center bg-brand-brown text-brand-beige mb-8 group-hover:scale-110 transition-transform">
                   <Target className="h-8 w-8" />
                 </div>
-                <h3 className="font-headline text-2xl font-semibold text-black mb-4">
+                <h3 className="font-headline text-2xl font-semibold text-dark-brown mb-4">
                   Enduring Character
                 </h3>
-                <p className="text-brown-primary leading-relaxed">
+                <p className="text-brand-brown leading-relaxed">
                   We curate objects that are not only beautiful but also meaningful, designed to bring warmth and soul into your everyday life.
                 </p>
               </div>
@@ -99,35 +99,33 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="py-24 md:py-32 bg-black text-beige-primary">
+      <section className="py-16 md:py-20 bg-dark-brown text-brand-beige">
         <div className="container-luxury">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
               <div>
-                <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-6">
+                <p className="text-white font-medium tracking-wider uppercase text-sm mb-6">
                   The Beginning
                 </p>
-                <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
+                <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
                   Born from a Love for Earth & Fire
                 </h2>
-                <p className="text-beige-warm text-lg leading-relaxed mb-6">
+                <p className="text-accent-beige text-lg leading-relaxed mb-6">
                   Sol & Clay was born from a love for earthy materials and a vision for soulful, modern homes. It all started with sketches of handcrafted objects and a desire to give artisans a platform to share their craft.
                 </p>
-                <p className="text-beige-warm text-lg leading-relaxed mb-8">
+                <p className="text-accent-beige text-lg leading-relaxed mb-8">
                   We sought out our first maker partners—artisans who shared our passion for quality and design. These initial collaborations helped shape our first collection and defined the collaborative spirit of Sol & Clay.
                 </p>
-                <Link href="/collaborate">
-                  <Button size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-8 py-6">
-                    Join Our Community
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                <Link href="/collaborate" className="inline-flex items-center gap-2 text-brand-beige bg-dark-brown hover:bg-dark-brown/90 transition-colors font-medium text-lg px-6 py-3 rounded-lg border-2 border-brand-beige">
+                  Join Our Community
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
               </div>
             </FadeIn>
 
             <FadeIn delay="delay-200">
               <div className="relative">
-                <div className="aspect-[4/5] bg-brown-primary overflow-hidden">
+                <div className="aspect-[4/5] bg-brand-brown overflow-hidden">
                   {heroImage && (
                     <Image
                       src={heroImage.imageUrl}
@@ -137,10 +135,6 @@ export default function AboutPage() {
                     />
                   )}
                 </div>
-                <div className="absolute -bottom-8 -left-8 bg-brown-primary/10 border border-brown-primary/30 p-8 backdrop-blur-sm">
-                  <div className="text-5xl font-headline font-bold text-brown-primary mb-2">15+</div>
-                  <div className="text-beige-warm">Years of Craftsmanship</div>
-                </div>
               </div>
             </FadeIn>
           </div>
@@ -148,17 +142,17 @@ export default function AboutPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 md:py-32 bg-beige-primary">
+      <section className="py-16 md:py-20 bg-brand-beige">
         <div className="container-luxury">
           <FadeIn>
             <div className="text-center mb-16">
-              <p className="text-brown-primary font-medium tracking-wider uppercase text-sm mb-4">
+              <p className="text-brand-brown font-medium tracking-wider uppercase text-sm mb-4">
                 The Process
               </p>
-              <h2 className="font-headline text-5xl md:text-6xl font-bold text-black mb-6">
+              <h2 className="font-headline text-5xl md:text-6xl font-bold text-dark-brown mb-6">
                 From Earth to Home
               </h2>
-              <p className="text-xl text-brown-primary max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-brand-brown max-w-3xl mx-auto\">
                 From sketch to kiln, we work with artisans who transform ideas into timeless décor. Our process is a dialogue between design and material.
               </p>
             </div>
@@ -175,13 +169,13 @@ export default function AboutPage() {
               <FadeIn key={item.label} delay={`delay-${index * 100}`}>
                 <div className="flex items-center gap-6">
                   <div className="flex flex-col items-center">
-                    <div className={`w-20 h-20 flex items-center justify-center font-bold text-2xl shadow-luxury ${item.isLast ? 'bg-brown-primary text-beige-primary' : 'bg-black text-beige-primary'}`}>
+                    <div className={`w-20 h-20 flex items-center justify-center font-bold text-2xl shadow-luxury ${item.isLast ? 'bg-brand-brown text-brand-beige' : 'bg-dark-brown text-brand-beige'}`}>
                       {item.step}
                     </div>
-                    <p className="mt-4 font-headline text-xl font-semibold text-black">{item.label}</p>
+                    <p className="mt-4 font-headline text-xl font-semibold text-dark-brown">{item.label}</p>
                   </div>
                   {!item.isLast && (
-                    <div className="text-3xl text-brown-primary hidden md:block">→</div>
+                    <div className="text-3xl text-brand-brown hidden md:block">→</div>
                   )}
                 </div>
               </FadeIn>
@@ -191,26 +185,22 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-black to-brown-primary text-beige-primary">
+      <section className="py-16 md:py-20 bg-accent-beige text-dark-brown">
         <div className="container-luxury">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-headline text-5xl md:text-6xl font-bold mb-8">
+              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dark-brown\">
                 Ready to Explore?
               </h2>
-              <p className="text-beige-warm text-xl mb-12 leading-relaxed">
+              <p className="text-brand-brown text-lg md:text-xl mb-8 leading-relaxed\">
                 Discover our curated collections of handcrafted ceramics and find the perfect piece for your home.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href="/collections">
-                  <Button size="lg" className="bg-brown-primary text-beige-primary hover:shadow-brown font-semibold px-10 py-7 text-lg">
-                    Browse Collections
-                  </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/collections" className="inline-flex items-center gap-2 text-brand-beige bg-dark-brown hover:bg-dark-brown/90 transition-colors font-medium text-lg px-6 py-3 rounded-lg border-2 border-brand-beige justify-center">
+                  Browse Collections
                 </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="outline" className="border-2 border-beige-primary text-beige-primary hover:bg-beige-primary hover:text-black px-10 py-7 text-lg">
-                    Get In Touch
-                  </Button>
+                <Link href="/contact" className="inline-flex items-center gap-2 text-dark-brown bg-brand-beige hover:bg-brand-beige/90 transition-colors font-medium text-lg px-6 py-3 rounded-lg border-2 border-dark-brown justify-center">
+                  Get In Touch
                 </Link>
               </div>
             </div>

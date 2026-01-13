@@ -1,4 +1,3 @@
-
 'use client';
 
 import { type FC, useState } from 'react';
@@ -19,47 +18,27 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  useFirestore,
-  useToast,
-  useMemoFirebase,
-} from '@/firebase';
-import { useAuth } from '@/firebase/hooks/use-auth';
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  where,
-  writeBatch,
-} from 'firebase/firestore';
+import { useToast } from '@/hooks/use-toast';
+import { useCart } from '@/hooks/use-cart';
 import type { Product, CartItem } from '@/lib/types';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { getStripe } from '@/lib/stripe';
-import { WithId } from '@/firebase';
+import { useUser } from '@clerk/nextjs';
 
 type Props = {
   product: Product;
 };
 
 const ProductDetailPageClient: FC<Props> = ({ product }) => {
-  const { user } = useAuth();
-  const firestore = useFirestore();
+  const { isSignedIn } = useUser();
+  const { addToCart } = useCart();
   const router = useRouter();
   const { toast } = useToast();
   const [isAdding, setIsAdding] = useState(false);
   const [isBuying, setIsBuying] = useState(false);
 
-  const cartRef = useMemoFirebase(
-    () =>
-      user && firestore
-        ? collection(firestore, 'users', user.uid, 'cartItems')
-        : null,
-    [user, firestore]
-  );
-
   const handleAddToCart = async () => {
-    if (!user || !cartRef) {
+    if (!isSignedIn) {
       // Store current page URL to redirect back after login
       const currentUrl = window.location.pathname;
       router.push(`/login?redirect_url=${encodeURIComponent(currentUrl)}`);
@@ -68,28 +47,15 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
 
     setIsAdding(true);
 
-    const q = query(cartRef, where('productId', '==', product.id));
-
     try {
-      const querySnapshot = await getDocs(q);
-
-      if (querySnapshot.empty) {
-        // Add new item
-        const batch = writeBatch(firestore);
-        const newDocRef = doc(cartRef);
-        batch.set(newDocRef, {
-          productId: product.id,
-          title: product.title,
-          price: product.price,
-          quantity: 1,
-          imageId: product.images[0],
-          slug: product.slug,
-        });
-        await batch.commit();
-      } else {
-        // Item exists, so we don't add it again.
-        // A real app might update quantity here.
-      }
+      addToCart({
+        productId: product.id,
+        title: product.title,
+        price: product.price,
+        quantity: 1,
+        imageId: product.images[0],
+        slug: product.slug,
+      });
 
       toast({
         title: 'Added to Cart',
@@ -108,7 +74,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   };
 
   const handleBuyNow = async () => {
-    if (!user) {
+    if (!isSignedIn) {
       // Store current page URL to redirect back after login
       const currentUrl = window.location.pathname;
       router.push(`/login?redirect_url=${encodeURIComponent(currentUrl)}`);
@@ -117,8 +83,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
 
     setIsBuying(true);
 
-    const item: WithId<CartItem> = {
-      id: product.id,
+    const item: CartItem = {
       productId: product.id,
       title: product.title,
       price: product.price,
@@ -172,7 +137,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
         {/* Image Gallery */}
         <FadeIn>
@@ -207,7 +172,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
         {/* Product Details */}
         <FadeIn direction="left" delay="delay-200">
           <div className="flex flex-col">
-            <h1 className="font-headline text-4xl font-bold text-foreground">
+            <h1 className="font-headline text-4xl font-bold text-dark-brown">
               {product.title}
             </h1>
             <div className="mt-4 flex items-center gap-4">
@@ -228,7 +193,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
               </span>
               {renderAvailability()}
             </div>
-            <p className="mt-4 font-headline text-3xl text-foreground">
+            <p className="mt-4 font-headline text-3xl text-dark-brown">
               ${product.price.toFixed(2)}
             </p>
 
@@ -237,7 +202,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
             </div>
 
             <div className="mt-6 border-t pt-6">
-              <h3 className="font-semibold text-foreground">
+              <h3 className="font-semibold text-dark-brown">
                 Materials & Dimensions
               </h3>
               <ul className="mt-2 list-disc list-inside space-y-1 text-muted-foreground">
@@ -292,9 +257,9 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
       </div>
 
       {/* Related Products */}
-      <div className="my-16 md:my-24">
+      <div className="my-16">
         <FadeIn>
-          <h2 className="text-center font-headline text-4xl font-bold text-foreground mb-12">
+          <h2 className="text-center font-headline text-4xl font-bold text-dark-brown mb-12">
             Related Products
           </h2>
         </FadeIn>
@@ -330,7 +295,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
                           )}
                         </div>
                         <CardContent className="p-3">
-                          <h3 className="truncate font-headline text-lg font-semibold">
+                          <h3 className="truncate font-headline text-lg font-semibold text-dark-brown">
                             {relatedProduct.title}
                           </h3>
                           <p className="text-muted-foreground">

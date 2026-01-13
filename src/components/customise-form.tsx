@@ -68,9 +68,9 @@ export function CustomiseForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel className="text-black font-medium">Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your name" {...field} />
+                <Input placeholder="Your name" className="bg-white border-brand-brown/30 focus:border-brand-brown" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -81,9 +81,9 @@ export function CustomiseForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="text-black font-medium">Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="you@example.com" {...field} />
+                <Input type="email" placeholder="you@example.com" className="bg-white border-brand-brown/30 focus:border-brand-brown" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -94,11 +94,11 @@ export function CustomiseForm() {
           name="customisation"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>What would you like to customise?</FormLabel>
+              <FormLabel className="text-black font-medium">What would you like to customise?</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Describe the custom piece you're looking for - size, color, design modifications, etc."
-                  className="min-h-[120px]"
+                  className="min-h-[120px] bg-white border-brand-brown/30 focus:border-brand-brown"
                   {...field}
                 />
               </FormControl>
@@ -111,10 +111,11 @@ export function CustomiseForm() {
           name="referenceImages"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Reference images (optional)</FormLabel>
+              <FormLabel className="text-black font-medium">Reference images (optional)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Link to reference images (e.g., Dropbox, Google Drive)"
+                  className="bg-white border-brand-brown/30 focus:border-brand-brown"
                   {...field}
                 />
               </FormControl>
@@ -127,10 +128,11 @@ export function CustomiseForm() {
           name="timeline"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Timeline (optional)</FormLabel>
+              <FormLabel className="text-black font-medium">Timeline (optional)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="When do you need this by?"
+                  className="bg-white border-brand-brown/30 focus:border-brand-brown"
                   {...field}
                 />
               </FormControl>
@@ -138,7 +140,7 @@ export function CustomiseForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" className="w-full bg-brand-brown text-brand-beige hover:shadow-brown font-semibold py-6 text-lg" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {isSubmitting ? 'Submitting...' : 'Request a custom piece'}
         </Button>

@@ -34,7 +34,7 @@ const CollectionDetailPage: FC<Props> = ({ collection, products }) => {
         )}
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
           <FadeIn direction="down">
-            <h1 className="font-headline text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
+            <h1 className="font-headline text-5xl font-bold tracking-tight text-dark-brown sm:text-6xl">
               {collection.title}
             </h1>
           </FadeIn>
@@ -67,7 +67,7 @@ const CollectionDetailPage: FC<Props> = ({ collection, products }) => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <h2 className="text-center font-headline text-4xl font-bold text-foreground mb-12">
+            <h2 className="text-center font-headline text-4xl font-bold text-dark-brown mb-12">
               Shop This Collection
             </h2>
           </FadeIn>

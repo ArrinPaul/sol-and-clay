@@ -1,9 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '@/firebase/config';
+import { useUser, SignOutButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
@@ -12,44 +10,26 @@ import { Separator } from '@/components/ui/separator';
 
 export default function ProfilePage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, isLoaded } = useUser();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser) {
-        router.push('/login');
-      } else {
-        setUser(currentUser);
-        setLoading(false);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [router]);
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      router.push('/');
-    } catch (error) {
-      console.error('Sign out error:', error);
-    }
-  };
-
-  if (loading) {
+  if (!isLoaded) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  if (!user) {
+    router.push('/login');
+    return null;
   }
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header Section */}
-      <section className="bg-secondary/30 border-b border-border py-12 md:py-16">
+      <section className="bg-brand-beige border-b border-border py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="font-headline text-4xl md:text-5xl font-bold text-foreground mb-2">
-                Welcome back, {user?.email?.split('@')[0] || 'Artisan'}
+              <h1 className="font-headline text-4xl md:text-5xl font-bold text-dark-brown mb-2">
+                Welcome back, {user?.firstName || 'Artisan'}
               </h1>
               <p className="text-muted-foreground text-lg">
                 Manage your account and preferences
@@ -64,20 +44,20 @@ export default function ProfilePage() {
           {/* Sidebar - Account Info */}
           <div className="lg:col-span-4 space-y-6">
             <Card className="border-2 border-border shadow-lg">
-              <CardHeader className="bg-secondary/20">
-                <CardTitle className="font-headline text-2xl flex items-center gap-2 text-primary">
+              <CardHeader className="bg-brand-beige">
+                <CardTitle className="font-headline text-2xl flex items-center gap-2 text-dark-brown">
                   <UserIcon className="h-6 w-6" />
                   Account Details
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 pt-6">
-                <div className="flex items-center gap-4 p-4 bg-accent/10 rounded-lg">
-                  <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-2xl font-bold font-headline">
-                    {user?.email?.charAt(0).toUpperCase()}
+                <div className="flex items-center gap-4 p-4 bg-brand-beige rounded-lg">
+                  <div className="h-16 w-16 rounded-full bg-brand-brownflex items-center justify-center text-dark-brown-foreground text-2xl font-bold font-headline">
+                    {user?.firstName?.charAt(0).toUpperCase()}
                   </div>
                   <div>
                     <p className="font-semibold text-foreground text-lg">
-                      {user?.email}
+                      {user?.primaryEmailAddress?.emailAddress}
                     </p>
                     <p className="text-sm text-muted-foreground">Sol & Clay Member</p>
                   </div>
@@ -91,24 +71,25 @@ export default function ProfilePage() {
                     <div>
                       <p className="text-sm text-muted-foreground">Email Address</p>
                       <p className="font-medium text-foreground break-all">
-                        {user?.email}
+                        {user?.primaryEmailAddress?.emailAddress}
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <Separator />
-
-                <Button onClick={handleSignOut} variant="destructive" className="w-full" size="lg">
-                  <LogOut className="mr-2 h-5 w-5" />
-                  Sign Out
-                </Button>
+                <SignOutButton>
+                  <Button variant="destructive" className="w-full" size="lg">
+                    <LogOut className="mr-2 h-5 w-5" />
+                    Sign Out
+                  </Button>
+                </SignOutButton>
               </CardContent>
             </Card>
 
             <Card className="border-2 border-border">
-              <CardHeader className="bg-secondary/20">
-                <CardTitle className="font-headline text-xl text-primary">Quick Links</CardTitle>
+              <CardHeader className="bg-brand-beige">
+                <CardTitle className="font-headline text-xl text-dark-brown">Quick Links</CardTitle>
               </CardHeader>
               <CardContent className="pt-6 space-y-2">
                 <Button asChild variant="ghost" className="w-full justify-start text-left">
@@ -143,9 +124,9 @@ export default function ProfilePage() {
           <div className="lg:col-span-8 space-y-6">
             {/* Order History */}
             <Card className="border-2 border-border shadow-lg">
-              <CardHeader className="bg-secondary/20">
+              <CardHeader className="bg-brand-beige">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="font-headline text-2xl flex items-center gap-2 text-primary">
+                  <CardTitle className="font-headline text-2xl flex items-center gap-2 text-dark-brown">
                     <Package className="h-6 w-6" />
                     Account Settings
                   </CardTitle>
@@ -154,10 +135,10 @@ export default function ProfilePage() {
               </CardHeader>
               <CardContent className="pt-6">
                 <div className="text-center py-12">
-                  <div className="mx-auto w-24 h-24 rounded-full bg-secondary/30 flex items-center justify-center mb-4">
+                  <div className="mx-auto w-24 h-24 rounded-full bg-brand-beige flex items-center justify-center mb-4">
                     <Settings className="h-12 w-12 text-muted-foreground" />
                   </div>
-                  <h3 className="font-headline text-xl font-semibold text-foreground mb-2">
+                  <h3 className="font-headline text-xl font-semibold text-dark-brown mb-2">
                     Account Settings
                   </h3>
                   <p className="text-muted-foreground mb-6 max-w-md mx-auto">
@@ -174,8 +155,8 @@ export default function ProfilePage() {
 
             {/* Track Order */}
             <Card className="border-2 border-border">
-              <CardHeader className="bg-secondary/20">
-                <CardTitle className="font-headline text-2xl flex items-center gap-2 text-primary">
+              <CardHeader className="bg-brand-beige">
+                <CardTitle className="font-headline text-2xl flex items-center gap-2 text-dark-brown">
                   <Truck className="h-6 w-6" />
                   Track Your Order
                 </CardTitle>
@@ -207,8 +188,8 @@ export default function ProfilePage() {
 
             {/* User Details / Preferences */}
             <Card className="border-2 border-border">
-              <CardHeader className="bg-secondary/20">
-                <CardTitle className="font-headline text-2xl flex items-center gap-2 text-primary">
+              <CardHeader className="bg-brand-beige">
+                <CardTitle className="font-headline text-2xl flex items-center gap-2 text-dark-brown">
                   <Settings className="h-6 w-6" />
                   Account Preferences
                 </CardTitle>

@@ -1,31 +1,13 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, User, ShoppingBag, LogOut } from 'lucide-react';
+import { Menu, User, ShoppingBag } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import {
-  useFirestore,
-  useCollection,
-  useMemoFirebase,
-} from '@/firebase';
-import { useAuth } from '@/firebase/hooks/use-auth';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/firebase/config';
-import { collection } from 'firebase/firestore';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+import { useUser, UserButton } from '@clerk/nextjs';
 
 const navLinks = [
   { href: '/collections', label: 'Collections' },
@@ -39,21 +21,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  const { user, loading } = useAuth();
-  const firestore = useFirestore();
-
-  const cartItemsRef = useMemoFirebase(
-    () =>
-      user && firestore
-        ? collection(firestore, 'users', user.uid, 'cartItems')
-        : null,
-    [user, firestore]
-  );
-  const { data: cartItems } = useCollection(cartItemsRef);
-
-  const cartItemCount = cartItems?.length ?? 0;
-  const userInitial = user?.email?.charAt(0).toUpperCase() ?? '?';
+  const { isSignedIn, user } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,68 +42,10 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const renderNavLinks = (isMobile = false) =>
-    navLinks.map((link) => (
-      <Button key={link.href} variant="ghost" asChild className={cn(isMobile && 'w-full justify-start hover:bg-primary/10')}>
-        <Link
-          href={link.href}
-          className={cn(
-            'text-sm font-medium transition-all duration-200 hover:text-primary relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full',
-            isMobile && 'w-full justify-start after:content-none text-base'
-          )}
-        >
-          {link.label}
-        </Link>
-      </Button>
-    ));
-
   const renderAuthAndCart = () => (
     <>
-      {loading ? (
-        <div className="h-10 w-10 animate-pulse rounded-full bg-muted"></div>
-      ) : user ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="relative h-10 w-10 rounded-full"
-            >
-              <Avatar>
-                <AvatarFallback>{userInitial}</AvatarFallback>
-              </Avatar>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end" forceMount>
-            <DropdownMenuLabel className="font-normal">
-              <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  {user.email}
-                </p>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/profile">
-                <User className="mr-2 h-4 w-4" />
-                <span>My Profile</span>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              className="text-destructive cursor-pointer"
-              onClick={async () => {
-                try {
-                  await signOut(auth);
-                } catch (error) {
-                  console.error('Sign out error:', error);
-                }
-              }}
-            >
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>Log out</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      {isSignedIn ? (
+        <UserButton afterSignOutUrl="/" />
       ) : (
         <Button variant="ghost" size="icon" asChild>
           <Link href="/login">
@@ -145,15 +55,10 @@ export function Header() {
         </Button>
       )}
 
-      <Button variant="ghost" size="icon" asChild className="relative text-black hover:text-brown-primary transition-colors">
+      <Button variant="ghost" size="icon" asChild className="relative text-black hover:text-brand-brown transition-colors">
         <Link href="/cart">
           <ShoppingBag className="h-5 w-5" />
           <span className="sr-only">Cart</span>
-          {cartItemCount > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-brown-primary text-xs font-bold text-beige-primary shadow-brown">
-              {cartItemCount}
-            </span>
-          )}
         </Link>
       </Button>
     </>
@@ -163,11 +68,11 @@ export function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b',
-        isScrolled ? 'bg-beige-primary/98 backdrop-blur-md shadow-luxury border-brown-primary/20' : 'bg-beige-primary/80 backdrop-blur-sm border-transparent',
+        isScrolled ? 'bg-brand-beige/98 backdrop-blur-md shadow-luxury border-brand-brown/20' : 'bg-brand-beige/80 backdrop-blur-sm border-transparent',
         isHidden ? '-translate-y-full' : 'translate-y-0'
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-6">
+      <div className="container-luxury flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
           <Logo />
@@ -179,7 +84,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-black hover:text-brown-primary transition-colors tracking-wide uppercase"
+              className="text-sm font-medium text-black hover:text-brand-brown transition-colors tracking-wide uppercase"
             >
               {link.label}
             </Link>
@@ -201,12 +106,12 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-full bg-background">
                 <div className="flex flex-col h-full pt-12">
-                  <nav className="flex flex-col space-y-8">
+                  <nav className="flex flex-col space-y-4">
                     {navLinks.map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="text-3xl font-headline font-bold text-foreground hover:text-primary transition-colors"
+                        className="text-3xl font-headline font-bold text-dark-brown hover:text-dark-brown transition-colors"
                       >
                         {link.label}
                       </Link>

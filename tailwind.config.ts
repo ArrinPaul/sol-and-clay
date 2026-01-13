@@ -10,21 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        headline: ["var(--font-playfair)", "serif"],
-        body: ["var(--font-inter)", "sans-serif"],
+        headline: ["var(--font-headline)", "serif"],
+        body: ["var(--font-body)", "sans-serif"],
       },
       colors: {
-        // Primary Color Palette
-        brown: {
-          primary: "#5c3c26",
-          dark: "#3d2819",
-          light: "#8b6f47",
-        },
-        beige: {
-          primary: "#fffaeb",
-          light: "#fffef7",
-          warm: "#f5efe0",
-        },
+        'brand-brown': '#5c3c26',
+        'brand-beige': '#fffaeb',
+        'accent-brown': '#8b6f47',
+        'accent-beige': '#f5efe0',
+        'dark-brown': '#3d2819',
+        
         // Black and White
         black: "#000000",
         white: "#ffffff",

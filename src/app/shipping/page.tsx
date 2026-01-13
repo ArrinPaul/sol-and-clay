@@ -13,7 +13,7 @@ const ShippingPage: FC = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <FadeIn>
-        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+        <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-dark-brown md:text-6xl">
           Shipping & Returns
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
@@ -27,7 +27,7 @@ const ShippingPage: FC = () => {
             <Truck className="h-6 w-6" />
           </div>
           <div>
-            <h2 className="font-headline text-2xl font-semibold text-foreground">Shipping Information</h2>
+            <h2 className="font-headline text-2xl font-semibold text-dark-brown">Shipping Information</h2>
             <div className="prose prose-lg text-muted-foreground mt-4 max-w-none">
               <p>We carefully pack and ship all orders from our studio in Brooklyn, NY. We offer both domestic and international shipping options.</p>
               <ul>
@@ -44,7 +44,7 @@ const ShippingPage: FC = () => {
             <Undo className="h-6 w-6" />
           </div>
           <div>
-            <h2 className="font-headline text-2xl font-semibold text-foreground">Return Policy</h2>
+            <h2 className="font-headline text-2xl font-semibold text-dark-brown">Return Policy</h2>
             <div className="prose prose-lg text-muted-foreground mt-4 max-w-none">
               <p>We want you to love your Sol & Clay pieces. If you&apos;re not completely satisfied, we accept returns on most items within 30 days of delivery.</p>
               <p>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
@@ -58,7 +58,7 @@ const ShippingPage: FC = () => {
             <Package className="h-6 w-6" />
           </div>
           <div>
-            <h2 className="font-headline text-2xl font-semibold text-foreground">Packaging</h2>
+            <h2 className="font-headline text-2xl font-semibold text-dark-brown">Packaging</h2>
             <div className="prose prose-lg text-muted-foreground mt-4 max-w-none">
                 <p>We are committed to protecting both your order and our planet. Our packaging materials are 100% recyclable, and we use biodegradable fillers to ensure your items arrive safely and sustainably. We believe in conscious consumerism from start to finish.</p>
             </div>

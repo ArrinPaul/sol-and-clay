@@ -15,33 +15,37 @@ const PinterestIcon = ({ className }: { className?: string }) => (
 
 export function Footer() {
   return (
-    <footer className="bg-brown-dark text-beige-primary border-t border-brown-primary/30">
-      <div className="container-luxury py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Logo & About */}
-          <div className="md:col-span-2 space-y-6">
-            <Logo className="text-beige-primary text-3xl" />
-            <p className="text-beige-warm max-w-md leading-relaxed">
+    <footer className="bg-dark-brown text-white border-t border-brand-brown/30">
+      <div className="container-luxury py-8">
+        {/* Logo - Above Grid */}
+        <div className="mb-8 md:mb-12">
+          <Logo />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
+          {/* About */}
+          <div className="space-y-6">
+            <p className="text-white max-w-md leading-normal md:leading-relaxed">
               Where craft meets elegance. Discover handcrafted ceramics that transform everyday moments into mindful rituals. Each piece tells a story of artistry, heritage, and timeless design.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-semibold text-brown-primary mb-6 uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">
               Explore
             </h3>
             <nav className="flex flex-col space-y-4">
-              <Link href="/collections" className="text-sm text-beige-warm hover:text-brown-primary transition-colors">
+              <Link href="/collections" className="text-sm text-white hover:text-brand-brown transition-colors">
                 Collections
               </Link>
-              <Link href="/about" className="text-sm text-beige-warm hover:text-brown-primary transition-colors">
+              <Link href="/about" className="text-sm text-white hover:text-brand-brown transition-colors">
                 Our Story
               </Link>
-              <Link href="/collaborate" className="text-sm text-beige-warm hover:text-brown-primary transition-colors">
+              <Link href="/collaborate" className="text-sm text-white hover:text-brand-brown transition-colors">
                 Collaborate
               </Link>
-              <Link href="/contact" className="text-sm text-beige-warm hover:text-brown-primary transition-colors">
+              <Link href="/contact" className="text-sm text-white hover:text-brand-brown transition-colors">
                 Contact
               </Link>
             </nav>
@@ -49,42 +53,42 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h3 className="text-sm font-semibold text-brown-primary mb-6 uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">
               Connect
             </h3>
             <div className="flex gap-4 mb-6">
               <Link
                 href="#"
-                className="text-beige-warm hover:text-brown-primary transition-colors group"
+                className="text-white hover:text-brand-brown transition-colors group"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </Link>
               <Link
                 href="#"
-                className="text-beige-warm hover:text-brown-primary transition-colors group"
+                className="text-white hover:text-brand-brown transition-colors group"
                 aria-label="Pinterest"
               >
                 <PinterestIcon className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </Link>
             </div>
-            <Link href="/contact" className="inline-block text-sm text-beige-warm hover:text-brown-primary transition-colors">
+            <Link href="/contact" className="inline-block text-sm text-white hover:text-brand-brown transition-colors">
               hello@solandclay.com
             </Link>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-brown-primary/10">
+        <div className="pt-8 border-t border-brand-brown/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-beige-warm">
+            <p className="text-sm text-white">
               © {new Date().getFullYear()} Sol & Clay. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="/shipping" className="text-sm text-beige-warm hover:text-brown-primary transition-colors">
+              <Link href="/shipping" className="text-sm text-white hover:text-brand-brown transition-colors">
                 Shipping Policy
               </Link>
-              <Link href="/faq" className="text-sm text-beige-warm hover:text-brown-primary transition-colors">
+              <Link href="/faq" className="text-sm text-white hover:text-brand-brown transition-colors">
                 FAQ
               </Link>
             </div>

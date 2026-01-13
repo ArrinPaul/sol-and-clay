@@ -13,7 +13,7 @@ const NotFound: FC = () => {
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
-        <h1 className="mb-4 font-headline text-8xl font-bold text-primary">
+        <h1 className="mb-4 font-headline text-8xl font-bold text-dark-brown">
           404
         </h1>
         <h2 className="mb-2 font-headline text-3xl font-bold">
