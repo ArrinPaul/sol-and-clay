@@ -72,7 +72,7 @@ export default function AdminDashboardPage() {
                 <TableRow key={submission.id}>
                   <TableCell>
                     <div className="font-medium">{submission.studioName}</div>
-                    <a href={submission.portfolioURL} target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:underline">
+                    <a href={submission.portfolioURL} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-brown hover:underline">
                       Portfolio
                     </a>
                   </TableCell>

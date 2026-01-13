@@ -144,7 +144,7 @@ export default function CartPage() {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="text-brand-brown hover:text-red-600 hover:bg-red-50"
+                            className="text-brand-brown hover:text-dark-brown hover:bg-brand-beige"
                             onClick={() => removeFromCart(item.productId)}
                           >
                             <X className="h-5 w-5" />
@@ -173,7 +173,7 @@ export default function CartPage() {
                         <span>${shipping.toFixed(2)}</span>
                       </div>
                       <Separator className="bg-brand-brown/20" />
-                      <div className="flex justify-between font-bold text-xl text-black">
+                      <div className="flex justify-between font-bold text-xl text-dark-brown">
                         <span>Total</span>
                         <span>${total.toFixed(2)}</span>
                       </div>

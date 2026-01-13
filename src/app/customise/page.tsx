@@ -47,7 +47,7 @@ export default function CustomisePage() {
                         <FileText className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Tell Us Your Vision</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Tell Us Your Vision</h3>
                         <p className="text-brand-brown leading-relaxed">
                           Share your custom piece idea, including design preferences, materials, and intended use.
                         </p>
@@ -59,7 +59,7 @@ export default function CustomisePage() {
                         <Clock className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Review & Timeline</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Review & Timeline</h3>
                         <p className="text-brand-brown leading-relaxed">
                           We review your request and provide feasibility feedback along with production timelines.
                         </p>
@@ -71,7 +71,7 @@ export default function CustomisePage() {
                         <Handshake className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Collaboration</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Collaboration</h3>
                         <p className="text-brand-brown leading-relaxed">
                           Work directly with our artisans to bring your vision to life with the finest craftsmanship.
                         </p>

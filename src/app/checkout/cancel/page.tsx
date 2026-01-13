@@ -12,11 +12,11 @@ export default function CheckoutCancelPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <FadeIn className="flex flex-col items-center justify-center text-center">
-        <XCircle className="h-24 w-24 text-destructive mb-6" />
+        <XCircle className="h-24 w-24 text-brand-brown mb-6" />
         <h1 className="font-headline text-4xl font-bold text-dark-brown">
           Payment Cancelled
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-4 max-w-2xl text-lg text-brand-brown">
           Your order was not processed. Your cart has been saved, so you can
           try again anytime.
         </p>

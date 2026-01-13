@@ -28,7 +28,7 @@ export default function CheckoutSuccessPage() {
         <h1 className="font-headline text-4xl font-bold text-dark-brown">
           Thank You for Your Order!
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-4 max-w-2xl text-lg text-brand-brown">
           Your payment was successful. A confirmation email has been sent to you.
           We are now preparing your handcrafted items with care.
         </p>

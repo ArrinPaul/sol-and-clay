@@ -46,7 +46,7 @@ export default function FAQPage() {
         <h1 className="text-center font-headline text-5xl font-bold tracking-tight text-dark-brown md:text-6xl">
           Frequently Asked Questions
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">
+        <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-brand-brown">
           Have questions? We have answers. If you can&apos;t find what you&apos;re looking for, feel free to contact us.
         </p>
       </FadeIn>
@@ -59,7 +59,7 @@ export default function FAQPage() {
                 <AccordionTrigger className="text-left font-headline text-lg font-semibold">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-brand-brown">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

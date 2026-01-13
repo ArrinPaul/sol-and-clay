@@ -121,14 +121,14 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   const renderAvailability = () => {
     if (product.stock > 10) {
       return (
-        <Badge variant="secondary" className="bg-green-100 text-green-800">
+        <Badge variant="secondary" className="bg-brand-beige text-dark-brown">
           In Stock
         </Badge>
       );
     }
     if (product.stock > 0) {
       return (
-        <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
+        <Badge variant="secondary" className="bg-accent-beige text-dark-brown">
           Low Stock
         </Badge>
       );
@@ -137,8 +137,30 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="pt-40 pb-20 bg-gradient-to-br from-brand-beige via-white to-accent-beige">
+        <div className="container-luxury">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-brand-brown font-medium tracking-widest uppercase text-sm mb-6 md:mb-8 letter-spacing-2">
+                Artisan Collection
+              </p>
+              <h1 className="font-headline text-6xl md:text-7xl lg:text-7xl font-bold text-dark-brown mb-8 leading-tight">
+                {product.title}
+              </h1>
+              <p className="text-lg md:text-xl text-brand-brown max-w-2xl mx-auto leading-relaxed mb-2">
+                {product.story}
+              </p>
+              <div className="h-1 w-24 bg-brand-brown mx-auto mt-8"></div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="container-luxury">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
         {/* Image Gallery */}
         <FadeIn>
           <Carousel className="w-full">
@@ -172,7 +194,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
         {/* Product Details */}
         <FadeIn direction="left" delay="delay-200">
           <div className="flex flex-col">
-            <h1 className="font-headline text-4xl font-bold text-dark-brown">
+            <h1 className="font-headline text-3xl md:text-4xl font-bold text-dark-brown">
               {product.title}
             </h1>
             <div className="mt-4 flex items-center gap-4">
@@ -182,30 +204,30 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
                     key={i}
                     className={`h-5 w-5 ${
                       i < product.rating
-                        ? 'fill-yellow-500 text-yellow-500'
-                        : 'fill-muted text-muted-foreground'
+                        ? 'fill-brand-brown text-brand-brown'
+                        : 'fill-accent-beige text-brand-brown'
                     }`}
                   />
                 ))}
               </div>
-              <span className="text-muted-foreground">
+              <span className="text-brand-brown">
                 ({product.rating.toFixed(1)})
               </span>
               {renderAvailability()}
             </div>
-            <p className="mt-4 font-headline text-3xl text-dark-brown">
+            <p className="mt-4 font-headline text-2xl md:text-3xl text-dark-brown font-bold">
               ${product.price.toFixed(2)}
             </p>
 
-            <div className="prose prose-lg mt-6 text-muted-foreground">
+            <div className="mt-6 text-lg text-brand-brown leading-relaxed">
               <p>{product.story}</p>
             </div>
 
-            <div className="mt-6 border-t pt-6">
-              <h3 className="font-semibold text-dark-brown">
+            <div className="mt-6 border-t border-brand-brown/20 pt-6">
+              <h3 className="font-semibold text-dark-brown text-lg">
                 Materials & Dimensions
               </h3>
-              <ul className="mt-2 list-disc list-inside space-y-1 text-muted-foreground">
+              <ul className="mt-2 list-disc list-inside space-y-1 text-brand-brown">
                 <li>{product.materials}</li>
                 <li>{product.dimensions}</li>
               </ul>
@@ -214,7 +236,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="flex-1"
+                className="flex-1 bg-brand-brown text-brand-beige hover:shadow-brown font-semibold py-6 text-lg"
                 onClick={handleAddToCart}
                 disabled={isAdding || product.stock === 0}
               >
@@ -231,8 +253,7 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
               </Button>
               <Button
                 size="lg"
-                variant="secondary"
-                className="flex-1"
+                className="flex-1 bg-brand-beige text-dark-brown border-2 border-brand-brown hover:shadow-brown font-semibold py-6 text-lg"
                 disabled={isBuying || product.stock === 0}
                 onClick={handleBuyNow}
               >
@@ -245,74 +266,78 @@ const ProductDetailPageClient: FC<Props> = ({ product }) => {
               </Button>
             </div>
 
-            <p className="mt-6 text-center text-sm text-muted-foreground">
+            <p className="mt-6 text-center text-sm text-brand-brown">
               Want to personalize this piece?{' '}
-              <Link href="/contact" className="underline">
+              <Link href="/customise" className="underline font-semibold hover:text-dark-brown">
                 Contact us for a custom order
               </Link>
               .
             </p>
           </div>
         </FadeIn>
-      </div>
+          </div>
+        </div>
+      </section>
 
       {/* Related Products */}
-      <div className="my-16">
-        <FadeIn>
-          <h2 className="text-center font-headline text-4xl font-bold text-dark-brown mb-12">
-            Related Products
-          </h2>
-        </FadeIn>
-        <FadeIn>
-          <Carousel
-            opts={{ align: 'start', loop: false }}
-            className="mx-auto w-full max-w-sm md:max-w-3xl lg:max-w-5xl"
-          >
-            <CarouselContent>
-              {relatedProducts.map((relatedProduct) => {
-                const image = PlaceHolderImages.find(
-                  (img) => img.id === relatedProduct.images[0]
-                );
-                return (
-                  <CarouselItem
-                    key={relatedProduct.id}
-                    className="md:basis-1/2 lg:basis-1/4"
-                  >
-                    <Link
-                      href={`/products/${relatedProduct.slug}`}
-                      className="group block p-1"
+      <section className="py-16 bg-accent-beige">
+        <div className="container-luxury">
+          <FadeIn>
+            <h2 className="text-center font-headline text-3xl md:text-4xl lg:text-5xl font-bold text-dark-brown mb-12">
+              Related Products
+            </h2>
+          </FadeIn>
+          <FadeIn>
+            <Carousel
+              opts={{ align: 'start', loop: false }}
+              className="mx-auto w-full max-w-sm md:max-w-3xl lg:max-w-5xl"
+            >
+              <CarouselContent>
+                {relatedProducts.map((relatedProduct) => {
+                  const image = PlaceHolderImages.find(
+                    (img) => img.id === relatedProduct.images[0]
+                  );
+                  return (
+                    <CarouselItem
+                      key={relatedProduct.id}
+                      className="md:basis-1/2 lg:basis-1/4"
                     >
-                      <Card className="overflow-hidden">
-                        <div className="relative aspect-square w-full">
-                          {image && (
-                            <Image
-                              src={image.imageUrl}
-                              alt={relatedProduct.title}
-                              fill
-                              className="object-cover transition-transform duration-300 group-hover:scale-105"
-                              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                            />
-                          )}
-                        </div>
-                        <CardContent className="p-3">
-                          <h3 className="truncate font-headline text-lg font-semibold text-dark-brown">
-                            {relatedProduct.title}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            ${relatedProduct.price.toFixed(2)}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            <CarouselPrevious className="-left-4 hidden sm:flex" />
-            <CarouselNext className="-right-4 hidden sm:flex" />
-          </Carousel>
-        </FadeIn>
-      </div>
+                      <Link
+                        href={`/products/${relatedProduct.slug}`}
+                        className="group block p-1"
+                      >
+                        <Card className="overflow-hidden border border-brand-brown/20 hover:shadow-luxury transition-all">
+                          <div className="relative aspect-square w-full bg-white">
+                            {image && (
+                              <Image
+                                src={image.imageUrl}
+                                alt={relatedProduct.title}
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                              />
+                            )}
+                          </div>
+                          <CardContent className="p-4 bg-white">
+                            <h3 className="truncate font-headline text-lg font-semibold text-dark-brown">
+                              {relatedProduct.title}
+                            </h3>
+                            <p className="text-brand-brown font-medium">
+                              ${relatedProduct.price.toFixed(2)}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+              <CarouselPrevious className="-left-4 hidden sm:flex" />
+              <CarouselNext className="-right-4 hidden sm:flex" />
+            </Carousel>
+          </FadeIn>
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,6 +1,17 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
-
-export default clerkMiddleware();
+import { authMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+ 
+const isPublicRoute = createRouteMatcher(['/login(.*)', '/signup(.*)', '/']);
+ 
+export default authMiddleware({
+  publicRoutes: (req) => isPublicRoute(req),
+  afterAuth(auth, req) {
+    if (auth.userId && isPublicRoute(req)) {
+      const url = new URL(req.nextUrl.origin);
+      url.pathname = '/';
+      return Response.redirect(url);
+    }
+  },
+});
 
 export const config = {
   matcher: [

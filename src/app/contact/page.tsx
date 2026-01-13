@@ -94,7 +94,7 @@ export default function ContactPage() {
                         <Mail className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Email</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Email</h3>
                         <a href="mailto:hello@solandclay.com" className="text-brand-brown hover:text-dark-brown transition-colors">
                           hello@solandclay.com
                         </a>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                         <Phone className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Phone</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Phone</h3>
                         <span className="text-brand-brown">+91 98765 43210</span>
                       </div>
                     </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                         <MapPin className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Studio Location</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Studio Location</h3>
                         <span className="text-brand-brown">Koramangala, Bangalore, India</span>
                       </div>
                     </div>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                         <Instagram className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-black text-lg mb-1">Follow Us</h3>
+                        <h3 className="font-semibold text-dark-brown text-lg mb-1">Follow Us</h3>
                         <a href="#" className="text-brand-brown hover:text-dark-brown transition-colors">
                           @solandclay
                         </a>
@@ -153,7 +153,7 @@ export default function ContactPage() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-black font-medium">Name</FormLabel>
+                          <FormLabel className="text-dark-brown font-medium">Name</FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Your Name"
@@ -170,7 +170,7 @@ export default function ContactPage() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-black font-medium">Email</FormLabel>
+                          <FormLabel className="text-dark-brown font-medium">Email</FormLabel>
                           <FormControl>
                             <Input
                               type="email"
@@ -188,7 +188,7 @@ export default function ContactPage() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-black font-medium">Message</FormLabel>
+                          <FormLabel className="text-dark-brown font-medium">Message</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="Tell us about your inquiry or custom order..."
@@ -205,7 +205,7 @@ export default function ContactPage() {
                       name="image"
                       render={({ field: { onChange } }) => (
                         <FormItem>
-                          <FormLabel className="text-black font-medium">Attach Image (Optional)</FormLabel>
+                          <FormLabel className="text-dark-brown font-medium">Attach Image (Optional)</FormLabel>
                           <FormControl>
                             <Input
                               type="file"
