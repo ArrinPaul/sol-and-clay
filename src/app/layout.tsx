@@ -42,7 +42,14 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <ClerkProvider>
+        <ClerkProvider
+          appearance={{
+            variables: {
+              colorPrimary: '#8B7355',
+              colorText: '#1a1a1a',
+            },
+          }}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="light"

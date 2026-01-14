@@ -5,7 +5,14 @@ import { SignIn } from '@clerk/nextjs';
 export default function LoginPage() {
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-background">
-      <SignIn />
+      <SignIn 
+        appearance={{
+          elements: {
+            rootBox: "mx-auto",
+            card: "shadow-xl"
+          }
+        }}
+      />
     </div>
   );
 }
