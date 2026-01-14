@@ -8,6 +8,8 @@ import { Footer } from '@/components/layout/footer';
 import { AuraBackground } from '@/components/background/aura-background';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ClerkProvider } from '@clerk/nextjs';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const headlineFont = Cormorant_Garamond({
   variable: '--font-headline',
@@ -65,6 +67,8 @@ export default function RootLayout({
             <Toaster />
           </ThemeProvider>
         </ClerkProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
