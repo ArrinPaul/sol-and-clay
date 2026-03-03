@@ -14,9 +14,6 @@ type Props = {
 };
 
 const CollectionDetailPage: FC<Props> = ({ collection, products }) => {
-  const collectionImage = PlaceHolderImages.find(
-    (img) => img.id === collection.imageId
-  );
 
   return (
     <div className="min-h-screen">

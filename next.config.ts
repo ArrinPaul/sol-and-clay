@@ -2,18 +2,6 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -44,7 +32,12 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost:9002'],
+      allowedOrigins: [
+        'localhost:9002',
+        'localhost:9003',
+        // Add your production domain here when deploying
+        // 'your-domain.com',
+      ],
     },
   },
 };

@@ -5,16 +5,15 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { FadeIn } from '@/components/utils/fade-in';
-import { ShoppingBag, X, Loader2, ArrowRight } from 'lucide-react';
+import { ShoppingBag, X, Loader2, ArrowRight, Plus, Minus } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/hooks/use-cart';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { getStripe } from '@/lib/stripe';
 import { useToast } from '@/hooks/use-toast';
-import type { CartItem } from '@/lib/types';
 
 export default function CartPage() {
-  const { cartItems, loading, removeFromCart } = useCart();
+  const { cartItems, loading, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
   const { toast } = useToast();
 
   const subtotal =
@@ -140,12 +139,35 @@ export default function CartPage() {
                           </p>
                         </div>
                         <div className="flex items-center gap-6">
-                          <p className="text-brand-brown">Qty: {item.quantity}</p>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8 text-brand-brown hover:text-dark-brown hover:bg-brand-beige border-brand-brown/30"
+                              onClick={() => decrementQuantity(item.productId)}
+                              aria-label="Decrease quantity"
+                            >
+                              <Minus className="h-4 w-4" />
+                            </Button>
+                            <span className="w-8 text-center text-brand-brown font-medium">
+                              {item.quantity}
+                            </span>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8 text-brand-brown hover:text-dark-brown hover:bg-brand-beige border-brand-brown/30"
+                              onClick={() => incrementQuantity(item.productId)}
+                              aria-label="Increase quantity"
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
                           <Button
                             variant="ghost"
                             size="icon"
                             className="text-brand-brown hover:text-dark-brown hover:bg-brand-beige"
                             onClick={() => removeFromCart(item.productId)}
+                            aria-label="Remove item"
                           >
                             <X className="h-5 w-5" />
                           </Button>

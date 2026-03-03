@@ -49,8 +49,9 @@ export function CustomiseForm() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Log values for debugging - will be sent to backend in production
+    console.log('Custom order submitted:', values);
     // For now, just show a success message
-    // In production, this would send to a backend API
     toast({
       title: 'Request Submitted!',
       description:

@@ -15,10 +15,15 @@ export class FirebaseError extends Error {
   }
 }
 
+interface FirebaseErrorLike extends Error {
+  code?: string;
+}
+
 export const handleFirebaseError = (error: unknown): FirestorePermissionError => {
   if (error instanceof Error) {
+    const firebaseError = error as FirebaseErrorLike;
     return {
-      code: (error as any).code || 'UNKNOWN_ERROR',
+      code: firebaseError.code || 'UNKNOWN_ERROR',
       message: error.message,
     };
   }

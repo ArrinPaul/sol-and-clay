@@ -3,18 +3,36 @@
 import 'dotenv/config';
 import Stripe from 'stripe';
 import { headers } from 'next/headers';
-import { WithId } from '@/firebase';
+import { auth } from '@clerk/nextjs/server';
 import type { CartItem } from '@/lib/types';
+import { checkRateLimit, getClientIdentifier, RateLimiters } from '@/lib/rate-limit';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2024-06-20',
 });
 
 export async function createCheckoutSession(
-  items: WithId<CartItem>[]
+  items: CartItem[]
 ): Promise<{ sessionId: string }> {
   const headersList = await headers();
   const origin = headersList.get('origin') || 'http://localhost:9002';
+  
+  // Rate limiting
+  const clientId = getClientIdentifier(headersList);
+  const rateLimitResult = checkRateLimit(`checkout:${clientId}`, RateLimiters.checkout);
+  
+  if (!rateLimitResult.allowed) {
+    const waitSeconds = Math.ceil(rateLimitResult.resetInMs / 1000);
+    throw new Error(`Too many checkout attempts. Please try again in ${waitSeconds} seconds.`);
+  }
+
+  // Validate items
+  if (!items || items.length === 0) {
+    throw new Error('Cart is empty');
+  }
+
+  // Get user ID if authenticated (for order tracking)
+  const { userId } = await auth();
 
   const line_items = items.map((item) => {
     return {
@@ -38,12 +56,14 @@ export async function createCheckoutSession(
       mode: 'payment',
       success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/checkout/cancel`,
-      // You can pass metadata to store the cart items and user id
-      // This will be useful for fulfillment via webhooks
-      // metadata: {
-      //   userId: "some_user_id", // Pass the user ID here
-      //   cart: JSON.stringify(items.map(item => item.id)),
-      // }
+      // Pass metadata for order fulfillment
+      metadata: {
+        userId: userId || 'guest',
+        cartItems: JSON.stringify(items.map(item => ({
+          id: item.productId,
+          qty: item.quantity
+        }))),
+      },
     });
 
     if (!session.id) {

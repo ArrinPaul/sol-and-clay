@@ -18,14 +18,17 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// actionTypes is used to derive the Action type via typeof - this is intentional
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
   UPDATE_TOAST: "UPDATE_TOAST",
   DISMISS_TOAST: "DISMISS_TOAST",
   REMOVE_TOAST: "REMOVE_TOAST",
 } as const
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used in Action type discriminator
+
 type ActionType = typeof actionTypes
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 let count = 0
 

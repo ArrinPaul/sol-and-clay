@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { FadeIn } from '@/components/utils/fade-in';
@@ -11,12 +11,14 @@ export const dynamic = 'force-dynamic';
 
 export default function CheckoutSuccessPage() {
   const { clearCart } = useCart();
+  const hasCleared = useRef(false);
 
   // Clear the cart after a successful purchase
   useEffect(() => {
     // We get the session_id from the URL to confirm it was a success
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('session_id')) {
+    if (urlParams.get('session_id') && !hasCleared.current) {
+      hasCleared.current = true;
       clearCart();
     }
   }, [clearCart]);

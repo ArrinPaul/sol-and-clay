@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { useUser, UserButton } from '@clerk/nextjs';
 
 const navLinks = [
+  { href: '/', label: 'Home' },
   { href: '/collections', label: 'Collections' },
   { href: '/collaborate', label: 'Collaborate' },
   { href: '/customise', label: 'Customise' },
@@ -21,7 +22,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const { isSignedIn, user } = useUser();
+  const { isSignedIn } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {

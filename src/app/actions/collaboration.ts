@@ -2,17 +2,73 @@
 'use server';
 
 import { z } from 'zod';
+import { headers } from 'next/headers';
 import { filterCollaborationRequest } from '@/ai/flows/filter-collaboration-requests';
+import { getAdminDb, getAdminStorage, COLLECTIONS } from '@/firebase/admin';
+import { FieldValue } from 'firebase-admin/firestore';
+import { checkRateLimit, getClientIdentifier, RateLimiters } from '@/lib/rate-limit';
+import { sendCollaborationNotification } from '@/lib/email';
 
 const formSchema = z.object({
-  studioName: z.string(),
-  email: z.string().email(),
-  portfolioURL: z.string().url(),
-  message: z.string(),
-  image: z.instanceof(File),
+  studioName: z.string().min(1, 'Studio name is required'),
+  email: z.string().email('Invalid email address'),
+  portfolioURL: z.string().url('Invalid portfolio URL'),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
+  image: z.instanceof(File).optional(),
 });
 
+/**
+ * Upload image to Firebase Storage and return the download URL.
+ */
+async function uploadImage(file: File, studioName: string): Promise<string | null> {
+  try {
+    const storage = getAdminStorage();
+    const bucket = storage.bucket();
+    
+    // Create a unique filename
+    const timestamp = Date.now();
+    const sanitizedName = studioName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+    const extension = file.name.split('.').pop() || 'jpg';
+    const filename = `collaborations/${sanitizedName}-${timestamp}.${extension}`;
+    
+    // Convert File to Buffer
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
+    // Upload to Firebase Storage
+    const fileRef = bucket.file(filename);
+    await fileRef.save(buffer, {
+      metadata: {
+        contentType: file.type,
+      },
+    });
+    
+    // Make the file publicly accessible
+    await fileRef.makePublic();
+    
+    // Get the public URL
+    const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
+    return publicUrl;
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    return null;
+  }
+}
+
 export async function submitCollaborationRequest(formData: FormData) {
+  // Rate limiting
+  const headersList = await headers();
+  const clientId = getClientIdentifier(headersList);
+  const rateLimitResult = checkRateLimit(`collaboration:${clientId}`, RateLimiters.formSubmission);
+  
+  if (!rateLimitResult.allowed) {
+    const waitSeconds = Math.ceil(rateLimitResult.resetInMs / 1000);
+    return { 
+      success: false, 
+      error: `Too many submissions. Please try again in ${waitSeconds} seconds.` 
+    };
+  }
+
   const rawFormData = {
     studioName: formData.get('studioName'),
     email: formData.get('email'),
@@ -23,60 +79,73 @@ export async function submitCollaborationRequest(formData: FormData) {
 
   const parsed = formSchema.safeParse(rawFormData);
   if (!parsed.success) {
-    return { success: false, error: 'Invalid form data.' };
+    const errorMessages = parsed.error.errors.map(e => e.message).join(', ');
+    return { success: false, error: errorMessages };
   }
 
-  const { studioName, email, portfolioURL, message } = parsed.data;
-
-  // In a real application, you would upload the image to Firebase Storage
-  // and get a downloadable URL. For this demo, we'll use a placeholder.
-  const imageURL = 'https://picsum.photos/seed/sample-upload/800/600';
+  const { studioName, email, portfolioURL, message, image } = parsed.data;
 
   try {
+    // Upload image if provided
+    let imageURL: string | null = null;
+    if (image && image.size > 0) {
+      imageURL = await uploadImage(image, studioName);
+    }
+
+    // Analyze the submission with AI
     const analysisResult = await filterCollaborationRequest({
       studioName,
       email,
       portfolioURL,
-      pitch: message, // Use `message` field from form as `pitch`
-      imageURL,
+      pitch: message,
+      imageURL: imageURL || 'https://picsum.photos/seed/placeholder/800/600',
     });
 
-    // In a real application, you would now save the submission and the
-    // analysis result to your Firestore 'collaborations' collection.
-    console.log('Collaboration submission received:', {
-      ...parsed.data,
-      image: { name: parsed.data.image.name, size: parsed.data.image.size },
-    });
-    console.log('AI Analysis Result:', analysisResult);
-
-    // You could set a status based on the analysis
+    // Determine status based on AI analysis
     let status = 'pending_review';
     if (analysisResult.isSpam) {
       status = 'rejected_spam';
     } else if (!analysisResult.isRelevant) {
       status = 'rejected_irrelevant';
+    } else {
+      status = 'pending_review';
     }
 
-    // Example of what you would save to Firestore:
-    const dataToSave = {
+    // Save to Firestore
+    const db = getAdminDb();
+    const collaborationsRef = db.collection(COLLECTIONS.COLLABORATIONS);
+    
+    const docData = {
       studioName,
       email,
       portfolioURL,
       pitch: message,
-      imageURL, // The URL from Firebase Storage
+      imageURL,
       status,
-      aiReasoning: analysisResult.reason,
-      createdAt: new Date().toISOString(),
+      isSpam: analysisResult.isSpam,
+      isRelevant: analysisResult.isRelevant,
+      reason: analysisResult.reason,
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
     };
 
-    console.log('Data to save to Firestore:', dataToSave);
+    const docRef = await collaborationsRef.add(docData);
+    
+    console.log('✅ Collaboration saved to Firestore with ID:', docRef.id);
 
-    return { success: true };
+    // Notify admin about new collaboration request
+    await sendCollaborationNotification(studioName, email, status);
+
+    return { 
+      success: true, 
+      id: docRef.id,
+      status,
+    };
   } catch (error) {
     console.error('Error processing collaboration request:', error);
     return {
       success: false,
-      error: 'An error occurred while analyzing the submission.',
+      error: 'An error occurred while processing your submission. Please try again.',
     };
   }
 }
