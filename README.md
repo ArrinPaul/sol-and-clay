@@ -154,7 +154,8 @@ A nearly complete storefront prototype with some placeholders. Stated plainly:
 - **Orders have no shipping address.** The Stripe session does not ask for one, so a paid order cannot be shipped from the data it stores. The shipping page's mention of expedited options at checkout is not implemented.
 - **Emails only work once configured**, and the code that sends them expects the `@sendgrid/mail` or `resend` package, which is not in `package.json`.
 - The Stripe order's product ids are Stripe's generated ids, not the site's product ids (the site's ids are only in the session metadata).
-- There are no automated tests and no CI. **The install, build, lint and type check were not run** when this README was written (the dependency install did not complete in the environment used), so the quick start is unverified.
+- **`npm ci` fails** because `package-lock.json` is out of sync with `package.json` (for example the lock file has Genkit 1.27 while `^1.20.0` now resolves to 1.42). Use `npm install`, which is also what `vercel.json` runs, and regenerate the lock file.
+- There are no automated tests and no CI. The build, lint and type check were not run when this README was written, so the quick start is otherwise unverified.
 - The previous live demo link in the repository settings (`sol-and-clay.vercel.app`) may be offline.
 
 ## Documentation
